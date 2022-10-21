@@ -6,14 +6,15 @@ import InputGroup from "react-bootstrap/InputGroup";
 export default function Search() {
   return (
     <div>
-      <InputGroup className="mb-3">
+      <InputGroup className="mb-4 div-search">
         <Form.Control
-          placeholder="Search"
+          placeholder="What are you looking for?"
           aria-label="Search"
           aria-describedby="basic-addon2"
+          className='search-input'
         />
-        <Button variant="outline-secondary" id="button-addon2">
-          Button
+        <Button className='search-btn' variant="outline-secondary" id="button-addon2">
+          Search
         </Button>
       </InputGroup>
     </div>
