@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+
+
 }
 
 .App-logo {
@@ -42,6 +44,24 @@
 }
 
 a {
-  color: black;
-  text-decoration: none;
+  color: black !important;
+  text-decoration: none !important;
+}
+.component {
+  margin: 60px;
+}
+.buy-sell-background {
+  background-image: url("https://humanperformanceandhealth.org/wp-content/uploads/2019/10/header-image-1.jpg");
+  background-size: cover;
+  height: 250px;
+  padding: 100px 50px;
+}
+.buy-sell-title {
+  color: white;
+}
+.buy-sell-btn {
+  
+  color: transparent;
+  background-color: white;
+  padding: 10px 20px;
 }
