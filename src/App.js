@@ -8,7 +8,7 @@ import Home from "./Home";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+
 
 // Router
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
@@ -26,15 +26,19 @@ export default class App extends Component {
             <Navbar.Brand>
               {" "}
               <Link to="/">
-                <img className='logo' src="AGORA-LOGO.png"></img>
+                <img
+                  className="logo"
+                  alt="agora-logo"
+                  src="AGORA-LOGO.png"
+                ></img>
               </Link>{" "}
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Link to="/"> Empy link now </Link>&nbsp;
-                <Link to="/"> Empy link now </Link>&nbsp;
-                <Link to="/"> Empy link now </Link>&nbsp;
+            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+              <Nav className="">
+                <Link to="/"> Empy link now </Link>&nbsp;&nbsp;&nbsp;
+                <Link to="/"> Empy link now </Link>&nbsp;&nbsp;&nbsp;
+                <Link to="/"> Empy link now </Link>&nbsp;&nbsp;&nbsp;
               </Nav>
             </Navbar.Collapse>
           </Container>
