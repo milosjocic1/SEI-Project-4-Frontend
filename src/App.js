@@ -7,6 +7,7 @@ import Signin from "./auth/Signin";
 import ProductList from "./product/ProductList";
 
 
+
 // Bootstrap
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -71,12 +72,44 @@ export default function App()
         <div>
           <Routes>
             {/* <Route path="/" element={<Home />}></Route> */}
-            <Route path="/*" element={<Home category={allCategories} />}></Route>
+            <Route
+              path="/*"
+              element={<Home category={allCategories} />}
+            ></Route>
             <Route path="/signin" element={<Signin />}></Route>
             <Route path="/signup" element={<Signup />}></Route>
             <Route path="/productlist" element={<ProductList />}></Route>
           </Routes>
         </div>
+        <footer>
+          <div className="container d-flex">
+            <div className="col-3">
+              <img className="logo" alt="agora-logo" src="AGORA-LOGO.png"></img>
+            </div>
+            <div className="col-3">
+              <a href="/">Link 1</a>
+              <br></br>
+              <a href="/">Link 2</a>
+              <br></br>
+              <a href="/">Link 3</a>
+            </div>
+            <div className="col-3">
+              <a href="/">Link 1</a>
+              <br></br>
+              <a href="/">Link 2</a>
+              <br></br>
+              <a href="/">Link 3</a>
+            </div>
+            <div className="col-3">
+              <a href="/">Link 1</a>
+              <br></br>
+              <a href="/">Link 2</a>
+              <br></br>
+              <a href="/">Link 3</a>
+            </div>
+          </div>
+          <p className="footer-text">Built by Ellinha, Sashinha, Milinhos e Claudinha 2022 - This text will be updated.</p>
+        </footer>
       </Router>
     );
   }
