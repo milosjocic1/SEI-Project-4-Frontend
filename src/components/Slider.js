@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SliderControl from './SliderControl';
 import Slide from './Slide';
 
+
 export default class Slider extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +50,7 @@ export default class Slider extends Component {
     return (
       <div className="slider" aria-labelledby={headingId}>
         <ul className="slider__wrapper" style={wrapperTransform}>
-          <h3 id={headingId} class="visuallyhidden">
+          <h3 id={headingId} className="visuallyhidden">
             {heading}
           </h3>
 

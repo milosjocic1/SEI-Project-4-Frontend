@@ -66,7 +66,7 @@ export default class Slide extends React.Component {
 
         <article className="slide__content">
           <h2 className="slide__headline">{headline}</h2>
-          <button className="slide__action btn">{button}</button>
+          <button className="slide__action slide_btn">{button}</button>
         </article>
       </li>
     );
