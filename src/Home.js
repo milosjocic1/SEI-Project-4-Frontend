@@ -1,9 +1,10 @@
 import React from 'react'
 import Search from './components/Search'
 import Slider from './components/Slider';
+import Categories from './components/Categories';
 
 
-export default function Home() {
+export default function Home(props) {
 
     const slideData = [
       {
@@ -31,7 +32,7 @@ export default function Home() {
         src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/typewriter.jpg",
       },
     ];
-  
+  console.log(props.category)
     return (
       <div className="container component">
         <Search></Search>
@@ -44,6 +45,7 @@ export default function Home() {
           </div>
         </div>
         <Slider heading="Example Slider" slides={slideData} />
+        <Categories category={props.category}></Categories>
       </div>
     );
   }

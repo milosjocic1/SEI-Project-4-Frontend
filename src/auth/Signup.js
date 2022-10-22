@@ -1,5 +1,8 @@
 import React, {useState} from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import Signin from "./Signin";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+
 
 export default function Signup(props) {
 
@@ -41,6 +44,7 @@ export default function Signup(props) {
       <Link to="/signin">Signin</Link>&nbsp;
 
       <h2>Already have an account?<Link to="/signin"> Sign in here</Link></h2>
+      <h2></h2>
     </div>
   );
 }
