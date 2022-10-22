@@ -21,21 +21,21 @@ import "./App.css";
 export default function App() 
   {
      const categories = [
-          'Fashion',
-          'Electronics',
-          'Sports, Hobbies, Leisure',
-          'Home and Garden',
-          'Motors',
-          'Collectables and Art',
-          'Office Supplies',
-          'Health and Beauty',
-          'Media',
-        ]
+       "Fashion",
+       "Electronics",
+       "Sports, Hobbies, Leisure",
+       "Home and Garden",
+       "Motors",
+       "Media",
+       "Office Supplies",
+       "Health and Beauty",
+       "Collectables and Art",
+     ];
 
         
     
     const allCategories = categories.map((category) => {
-      return category
+      return <a href="/" className="categories-links">{category} </a>;
     })
 
     console.log(allCategories)

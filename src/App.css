@@ -375,12 +375,6 @@ a {
           calc(var(--y) / var(--d) * -1px)
         );
     } */
-  
-  
-
-  
-
-
 
 /* // =========================
 // Animations
@@ -391,3 +385,17 @@ a {
   to   { opacity: 1 }
 }
 
+
+.categories-div {
+  position: relative;
+  top: 400px;
+}
+.categories-links {
+  font-size: 22px;
+  line-height: 60px;
+  margin-right: 20px;
+  background-color: rgb(230, 230, 230);
+  padding: 10px 25px;
+  border-radius: 25px;
+
+}
