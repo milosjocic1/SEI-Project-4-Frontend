@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import Home from "./Home";
 import Signup from "./auth/Signup";
 import Signin from "./auth/Signin";
+import ProductList from "./product/ProductList";
+
 
 // Bootstrap
 import Container from "react-bootstrap/Container";
@@ -69,9 +71,10 @@ export default function App()
         <div>
           <Routes>
             {/* <Route path="/" element={<Home />}></Route> */}
-            <Route path="/" element={<Home category={allCategories} />}></Route>
+            <Route path="/*" element={<Home category={allCategories} />}></Route>
             <Route path="/signin" element={<Signin />}></Route>
             <Route path="/signup" element={<Signup />}></Route>
+            <Route path="/productlist" element={<ProductList />}></Route>
           </Routes>
         </div>
       </Router>
