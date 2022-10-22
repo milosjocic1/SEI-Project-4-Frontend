@@ -410,3 +410,9 @@ footer {
   text-align: center;
   font-size: 18px;
 }
+
+/* SINGLE PRODUCT */
+.categories-single-product {
+  position: relative;
+  top: -350px;
+}

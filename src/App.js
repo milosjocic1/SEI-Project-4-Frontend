@@ -5,6 +5,7 @@ import Home from "./Home";
 import Signup from "./auth/Signup";
 import Signin from "./auth/Signin";
 import ProductList from "./product/ProductList";
+import Product from "./product/Product";
 
 
 
@@ -65,6 +66,9 @@ export default function App()
                 <Link to="/signin"> Sign In </Link>&nbsp;&nbsp;&nbsp;
                 <Link to="/signup"> Sign Up </Link>&nbsp;&nbsp;&nbsp;
                 <Link to="/"> Empty link now </Link>&nbsp;&nbsp;&nbsp;
+                <Link to="/productlist"> Product List </Link>&nbsp;&nbsp;&nbsp;
+                <Link to="/singleproduct"> Single Product </Link>
+                &nbsp;&nbsp;&nbsp;
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -79,6 +83,10 @@ export default function App()
             <Route path="/signin" element={<Signin />}></Route>
             <Route path="/signup" element={<Signup />}></Route>
             <Route path="/productlist" element={<ProductList />}></Route>
+            <Route
+              path="/singleproduct"
+              element={<Product category={allCategories} />}
+            ></Route>
           </Routes>
         </div>
         <footer>
@@ -108,7 +116,10 @@ export default function App()
               <a href="/">Link 3</a>
             </div>
           </div>
-          <p className="footer-text">Built by Ellinha, Sashinha, Milinhos e Claudinha 2022 - This text will be updated.</p>
+          <p className="footer-text">
+            Built by Ellinha, Sashinha, Milinhos e Claudinha 2022 - This text
+            will be updated.
+          </p>
         </footer>
       </Router>
     );
