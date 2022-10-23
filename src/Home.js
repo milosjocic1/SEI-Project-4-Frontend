@@ -4,6 +4,7 @@ import Slider from './components/Slider';
 import Categories from './components/Categories';
 
 
+
 export default function Home(props) {
 
     const slideData = [
