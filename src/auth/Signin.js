@@ -1,6 +1,7 @@
 import "./Auth.css"
 import React, {useState} from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function Signin(props) {
 
@@ -20,7 +21,7 @@ export default function Signin(props) {
     <div className="container div-for-sign">
       <div className="row sign">
         <div className="col-md-6 signin-left">
-          <h1>Sign in</h1> <br />
+          <h1 className="sign-title">Sign in</h1> <br />
           <br />
           <Container>
             <Form.Group>
@@ -41,14 +42,25 @@ export default function Signin(props) {
               ></Form.Control>
               <p>Forgot your password?</p>
             </Form.Group>
-            <Button className="sign-button" onClick={loginHandler}>
-              Log in
-            </Button>
+            <div className="button-div">
+              <Button className="sign-button" onClick={loginHandler}>
+                Log in
+              </Button>
+            </div>
           </Container>
         </div>
         <div className="col-md-6 signin-right">
-          <h1 className="signup-signin-title">Been here before?</h1>
-          <p className="sign-up-white">Enter your personal details and start journey with us</p>
+          <h1 className="signup-signin-title">Been here before?</h1> <br />
+          <p className="sign-up-white">
+            Enter your personal details and get started with us!
+          </p>{" "}
+          <br />
+          <br />
+          <div className="button-div">
+            <button className="signin-register">
+              <Link to="/signup"> Register</Link>
+            </button>
+          </div>
         </div>
       </div>
     </div>

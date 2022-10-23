@@ -44,7 +44,7 @@ export default function Signup(props) {
       <Link to="/signin">Signin</Link>&nbsp;
 
       <h2>Already have an account?<Link to="/signin"> Sign in here</Link></h2>
-      <h2></h2>
+      
     </div>
   );
 }
