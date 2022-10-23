@@ -1,4 +1,4 @@
-h1 {
+.sign-title{
     font-size: 40px !important;
     text-align: center;
     font-weight: 700 !important;
@@ -17,7 +17,7 @@ h1 {
 }
 .signin-right {
     background-color: rgb(2, 2, 2);
-    padding: 80px 80px!important;
+    padding: 120px 80px!important;
 }
 input {
     border: none !important;
@@ -35,8 +35,21 @@ input {
 .signup-signin-title {
     color: white;
     font-weight: 600!important;
+    text-align: center;
 }
 .sign-up-white {
     color: white;
     text-align: center;
+}
+.signin-register {
+    background-color: white;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 10px 40px !important;
+    font-size: 20px !important;
+    text-align: center !important;
+}
+.button-div {
+    display: flex;
+    justify-content: center !important;
 }
