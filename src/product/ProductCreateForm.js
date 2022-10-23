@@ -1,7 +1,10 @@
 import React from 'react'
 
 export default function ProductCreateForm() {
+
   return (
-    <div>ProductCreateForm</div>
+    <div>
+        <h1>Add Product</h1>
+    </div>
   )
 }
