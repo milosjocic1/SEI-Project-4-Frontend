@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, {  useState, useEffect } from "react";
+import Axios from 'axios'
 
 // Components
 import Home from "./Home";
@@ -20,8 +21,29 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 // Css
 import "./App.css";
 
-export default function App() 
-  {
+export default function App() {
+
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+      loadProductList();
+    }, []);
+
+    const loadProductList = () => {
+      Axios.get("product/index")
+        .then((response) => {
+          console.log(response.data.products);
+          setProducts(response.data.products);
+        })
+        .catch((error) => {
+          console.log("Error Retrieving Producst");
+          console.log(error);
+        });
+    };
+  
+    
+
      const categories = [
        "Fashion",
        "Electronics",
@@ -67,7 +89,7 @@ export default function App()
                 <Link to="/signup"> Sign Up </Link>&nbsp;&nbsp;&nbsp;
                 <Link to="/"> Empty link now </Link>&nbsp;&nbsp;&nbsp;
                 <Link to="/productlist"> Product List </Link>&nbsp;&nbsp;&nbsp;
-                <Link to="/singleproduct"> Single Product </Link>
+                <Link to="/product"> Single Product </Link>
                 &nbsp;&nbsp;&nbsp;
               </Nav>
             </Navbar.Collapse>
@@ -82,10 +104,13 @@ export default function App()
             ></Route>
             <Route path="/signin" element={<Signin />}></Route>
             <Route path="/signup" element={<Signup />}></Route>
-            <Route path="/productlist" element={<ProductList />}></Route>
             <Route
-              path="/singleproduct"
-              element={<Product category={allCategories} />}
+              path="/productlist/*"
+              element={<ProductList product={products} />}
+            ></Route>
+            <Route
+              path="/product/:productId"
+              element={<Product product={products} category={allCategories} />}
             ></Route>
           </Routes>
         </div>
