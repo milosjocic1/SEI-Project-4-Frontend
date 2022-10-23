@@ -1,0 +1,42 @@
+h1 {
+    font-size: 40px !important;
+    text-align: center;
+    font-weight: 700 !important;
+}
+.div-for-sign {
+    padding: 120px 10px;
+}
+.sign {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+    
+   
+}
+.signin-left {
+    padding: 80px 80px!important;
+}
+.signin-right {
+    background-color: rgb(2, 2, 2);
+    padding: 80px 80px!important;
+}
+input {
+    border: none !important;
+    background-color: rgb(238, 238, 238) !important;
+    margin-bottom: 20px !important;
+    font-size: 20px !important;
+}
+.sign-button {
+    background-color: black !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 10px 40px !important;
+    font-size: 20px !important;
+}
+.signup-signin-title {
+    color: white;
+    font-weight: 600!important;
+}
+.sign-up-white {
+    color: white;
+    text-align: center;
+}
