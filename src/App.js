@@ -36,8 +36,8 @@ export default function App()
 
         
     
-    const allCategories = categories.map((category) => {
-      return <a href="/" className="categories-links">{category} </a>;
+    const allCategories = categories.map((category, index) => {
+      return <a href="/" key={index} className="categories-links">{category} </a>;
     })
 
     console.log(allCategories)
