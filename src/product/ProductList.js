@@ -22,23 +22,7 @@ const allProducts = props.product.map((product) => (
         <Link className='index-price-button' to={`/product/${product._id}`}>{product.price}</Link>
       </div>
     </div>
-    {/* <Routes>
-        <Route path={`product/${product._id}`} element={<Product {...product}></Product>}></Route>
-    </Routes> */}
-      
-        {/* <Route
-          path={`/product/${product._id}`}
-          render={({ match }) => {
-            <Product
-              product={product.find(
-                (product) => String(product._id) === match.params.id
-              )}
-            ></Product>;
-          }}
-          element={<Product {...product} />}
-        ></Route>
-       */}
-    
+
   </div>
 ));
 

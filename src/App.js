@@ -7,6 +7,9 @@ import Signup from "./auth/Signup";
 import Signin from "./auth/Signin";
 import ProductList from "./product/ProductList";
 import Product from "./product/Product";
+import ProductCreateForm from "./product/ProductCreateForm";
+import SellerDashboard from "./seller/SellerDashboard";
+
 
 
 
@@ -30,6 +33,9 @@ export default function App() {
       loadProductList();
     }, []);
 
+    // PRODUCTS CRUD
+
+    // PRODUCTS SHOW
     const loadProductList = () => {
       Axios.get("product/index")
         .then((response) => {
@@ -41,8 +47,35 @@ export default function App() {
           console.log(error);
         });
     };
+    // PRODUCTS DELETE
+    const deleteProduct = (id) => {
+      Axios.delete(`product/delete?id=${id}`)
+      .then(response => {
+        console.log("Product deleted successfully")
+        console.log(response);
+        loadProductList();
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
   
+    // WHEN CREATE SELLER/USER READY
+    // const loadMyProducts = (seller) => {
+    //   console.log(seller)
+    //   if(seller.product){
+    //     const myProducts = seller.product.map((item, key) => (
+    //       <div key={key}>
+    //         <p>{item.title}</p>
+    //       </div>
+    //     ))
+    //     return myProducts
+    //   }
+    // }
     
+    // const addSeller = (seller) => {
+    //   Axios.post("seller/add")
+    // }
 
      const categories = [
        "Fashion",
@@ -110,7 +143,13 @@ export default function App() {
             ></Route>
             <Route
               path="/product/:productId"
-              element={<Product product={products} category={allCategories} />}
+              element={<Product product={products} category={allCategories} deleteProduct={deleteProduct} />}
+            ></Route>
+            <Route path="/addproduct" element={<ProductCreateForm />}></Route>
+            {/* Below will have to add seller id to this link */}
+            <Route
+              path="/dashboard"
+              element={<SellerDashboard product={products} />}
             ></Route>
           </Routes>
         </div>
@@ -120,9 +159,10 @@ export default function App() {
               <img className="logo" alt="agora-logo" src="AGORA-LOGO.png"></img>
             </div>
             <div className="col-3">
-              <a href="/">Link 1</a>
+              <Link to="/addproduct"> Add a Product </Link>
               <br></br>
-              <a href="/">Link 2</a>
+              {/* Below will have to add seller id to this link */}
+              <Link to="/dashboard"> Seller Dashboard </Link>
               <br></br>
               <a href="/">Link 3</a>
             </div>
