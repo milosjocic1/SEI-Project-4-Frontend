@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Container, Form, Button } from "react-bootstrap";
 
 export default function ProductCreateForm(props) {
   const [newProduct, setNewProduct] = useState({});
@@ -20,7 +21,7 @@ export default function ProductCreateForm(props) {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Add Product</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group >
