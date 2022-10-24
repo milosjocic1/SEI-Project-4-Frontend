@@ -1,69 +1,71 @@
 import React, {useState} from "react";
-import { Container, Form, Button } from "react-bootstrap";
 import Signin from "./Signin";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 
-export default function Signup(props) {
+export default function Signup() {
+  
+  const [showBuyer, setShowBuyer] = useState(false)
+  // const buyerClick = () => setShowBuyer(true)
 
-    const [newUser, setNewUser] = useState({});
+  const [showSeller, setShowSeller] = useState(false)
+  // const sellerClick = () => setShowSeller(true)
 
-    const changeHandler = (e) => {
-        const user = {...newUser};
-        user[e.target.name] = e.target.value;
-        console.log(user);
-        setNewUser(user);
-    }
-
-    const registerHandler = () => {
-        props.register(newUser)
-    }
 
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <Container>
-        <Form.Group>
-          <Form.Label>How would you like to sign up today?</Form.Label><br></br>
-          <Button variant="primary" type="checkbox" id="inlineCheckbox1" name="userRole" value="buyer">Buyer</Button>&nbsp; &nbsp;
-          <Button variant="primary" type="checkbox" id="inlineCheckbox2" name="userRole" value="seller">Seller</Button><br></br><br></br>
-        </Form.Group>
-        {/* User Signup */}
-        <Form.Text>Let's get you signed up so you can start shopping!</Form.Text>
-        <Form.Group>
-          <Form.Label>First Name</Form.Label>
-          <Form.Control name="firstName" onChange={changeHandler}></Form.Control>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control name="lastName" onChange={changeHandler}></Form.Control>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Upload a profile photo</Form.Label>&nbsp;
-          <Button variant="primary">+</Button>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label htmlFor="sellerName">Seller Name</Form.Label>
-          <Form.Control name="sellerName" id="sellerNameInput"></Form.Control>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Add a bio to your shop page</Form.Label>
-          <Form.Control name="bio"></Form.Control>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control name="emailAddress" onChange={changeHandler}></Form.Control>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Password</Form.Label>
-          <Form.Control name="password" type="password" onChange={changeHandler}></Form.Control>
-        </Form.Group>
-        <Button variant="primary" onClick={registerHandler}>Sign up</Button>
-      </Container>
-      <Link to="/signin">Signin</Link>&nbsp;
+    <div className="signupForm">
 
+      <h2>Sign Up</h2>
+      <form method="POST" action="/auth/signup" encType="multipart/form-data">
+      <h3>How would you like to sign up today?</h3><br></br>
+        <div className="form-check form-check-inline groupOne">
+          <input className="form-check-input" type="checkbox" id="inlineCheckbox1" name="userRole" defaultValue="buyer"></input>
+          <button onClick={() => setShowBuyer(true)} className="form-check-label" htmlFor="inlineCheckbox1">Buyer</button>
+          &nbsp; &nbsp;
+        </div>
+        <div className="form-check form-check-inline groupOne">
+          <input className="form-check-input" type="checkbox" id="inlineCheckbox2" name="userRole" defaultValue="seller"></input>
+          <button onClick={() => setShowSeller(true)} className="form-check-label" htmlFor="inlineCheckbox2">Seller</button>
+          &nbsp; &nbsp;
+        </div>
+        {
+          showBuyer? 
+          <div>
+        <h3>Let's get you signed up so you can start shopping!</h3>
+        <div className="groupOne group1">
+          <label htmlFor="firstName">First Name</label>
+          <input type="text" className="form-control" id="firstNameInput" name="firstName" placeholder="Enter first name"></input>
+        </div>
+        <div className="groupOne group1">
+          <label>Last Name</label>
+          <input type="text" className="form-control" id="lastNameInput" name="lastName" placeholder="Enter last name" ></input>
+        </div>
+        <div className="groupOne group1">
+          <label>Upload a profile photo</label>&nbsp;
+          <button variant="primary">+</button>
+        </div>
+        <div className="groupTwo">
+          <label htmlFor="sellerName">Seller Name</label>
+          <input type="text" className="form-control" id="sellerNameInput" name="sellerName" placeholder="Enter seller name"></input>
+        </div>
+        <div className="groupTwo">
+          <label>Add a bio to your shop page</label>
+          <textarea className="form-control" rows="3" name="bio" placeholder="Max 500 characters"></textarea>
+        </div>
+        <div className="grouppOne group1">
+          <label htmlFor="emailAddress">Email Address</label>
+          <input type ="email" className="form-control" name="emailAddress" id="emailAddressInput" placeholder="Enter email"></input>
+        </div>
+        <div>
+          <label htmlFor="passowrd">Password</label>
+          <input className="form-control" name="password" type="password" id="passwordInput" placeholder="Password must be more than 6 characters" ></input>
+        </div>
+        <button variant="primary" >Sign up</button>
       <h2>Already have an account?<Link to="/signin"> Sign in here</Link></h2>
-      
+      </div>
+      : null
+    }
+    </form>
     </div>
   );
 }
