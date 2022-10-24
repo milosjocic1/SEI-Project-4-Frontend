@@ -17,7 +17,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
 // Router
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  Navigate,
+} from "react-router-dom";
 
 // Css
 import "./App.css";
@@ -70,6 +76,8 @@ export default function App() {
       });
   };
 
+
+
   const onLogoutHandler = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
@@ -82,7 +90,7 @@ export default function App() {
   //    <Alert variant="danger"> {message}</Alert>
   //  ) : null;
 
-  console.log(user);
+  // console.log(user.user);
 
   const categories = [
     "Fashion",
@@ -229,6 +237,10 @@ export default function App() {
           <Route
             path="/dashboard"
             element={<SellerDashboard product={products} />}
+          ></Route>
+          <Route
+            path="/logout"
+            element={ <Navigate to="/" />}
           ></Route>
         </Routes>
       </div>
