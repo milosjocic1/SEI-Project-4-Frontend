@@ -9,6 +9,8 @@ import ProductList from "./product/ProductList";
 import Product from "./product/Product";
 import ProductCreateForm from "./product/ProductCreateForm";
 import SellerDashboard from "./seller/SellerDashboard";
+import jwt_decode from "jwt-decode";
+
 
 
 
@@ -77,6 +79,66 @@ export default function App() {
     //   Axios.post("seller/add")
     // }
 
+    // ADD USER
+    const [isAuth, setIsAuth] = useState(false);
+    const [user, setUser] = useState({});
+    const [message, setMessage] = useState(null);
+    useEffect(() => {
+      let token = localStorage.getItem("token")
+      if (token != null) {
+        let user = jwt_decode(token);
+        if(user)
+        {
+          setIsAuth(true)
+          setUser(user);
+        }
+        else if(!user) {
+          localStorage.removeItem("token")
+          setIsAuth(false)
+        }
+      }
+    }, [])
+
+    const registerHandler = (user) => {
+      Axios.post("auth/signup", user)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
+
+   const loginHandler = (cred) => {
+     Axios.post("auth/signin", cred)
+       .then((response) => {
+         console.log(response.data.token);
+
+         if (response.data.token != null) {
+           localStorage.setItem("token", response.data.token);
+           let user = jwt_decode(response.data.token);
+           setIsAuth(true);
+           setUser(user);
+         }
+       })
+       .catch((error) => {
+         console.log(error);
+       });
+   };
+
+   const onLogoutHandler = (e) => {
+     e.preventDefault();
+     localStorage.removeItem("token");
+     setIsAuth(false);
+     setUser(null);
+     setMessage("User logged out successfully");
+   };
+
+  //  const errMessage = message ? (
+  //    <Alert variant="danger"> {message}</Alert>
+  //  ) : null;
+
+
      const categories = [
        "Fashion",
        "Electronics",
@@ -136,7 +198,7 @@ export default function App() {
               element={<Home category={allCategories} />}
             ></Route>
             <Route path="/signin" element={<Signin />}></Route>
-            <Route path="/signup" element={<Signup />}></Route>
+            <Route path="/signup" element={<Signup register={registerHandler}/>}></Route>
             <Route
               path="/productlist/*"
               element={<ProductList product={products} />}
