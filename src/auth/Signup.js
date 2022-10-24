@@ -1,6 +1,7 @@
 import React, {useState} from "react";
+import "./Auth.css"
 import Signin from "./Signin";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, useHref } from "react-router-dom";
 
 
 export default function Signup(props) {
@@ -20,68 +21,68 @@ export default function Signup(props) {
     const user = { ...newUser };
     user[e.target.name] = e.target.value;
     console.log(user);
+    console.log(e.target.name)
+    console.log(e.target.value);
     setNewUser(user);
   };
+
 
   const registerHandler = () => {
     props.register(newUser);
   };
 
   return (
-    <div className="signupForm">
-      <h2>Sign Up</h2>
+    <div className="signupForm container">
+      <h1 className="sign-title">Sign Up</h1>
       {/* <form> */}
       {/* <form method="POST" action="/auth/signup" encType="multipart/form-data"> */}
-      <h3>How would you like to sign up today?</h3>
+      <h3 className="sign-up-text">How would you like to sign up today?</h3>
       <br></br>
-      <div className="form-check form-check-inline groupOne">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox1"
-          name="userRole"
-          defaultValue="buyer"
-        ></input>
-        <button
-          onClick={() => {
-            setShowBuyer(true)
-            setShowSeller(false)
-          }}
-          className="form-check-label"
-          htmlFor="inlineCheckbox1"
-          name="userRole"
-          defaultValue="buyer"
-        >
-          Buyer
-        </button>
-        &nbsp; &nbsp;
-      </div>
-      <div className="form-check form-check-inline groupOne">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox2"
-          name="userRole"
-          defaultValue="seller"
-        ></input>
-        <button
-          onClick={() => {
-            setShowSeller(true)
-            setShowBuyer(false)}}
-          className="form-check-label"
-          htmlFor="inlineCheckbox2"
-          name="userRole"
-          defaultValue="seller"
-        >
-          Seller
-        </button>
-        &nbsp; &nbsp;
-      </div>
-      {(showBuyer) ? 
-        <div>
+      <div className="button-div div-spaced">
+        <div className="form-check form-check-inline groupOne">
+          <a href="#buyer-link">
+            <button
+              onClick={() => {
+                setShowBuyer(true);
+                setShowSeller(false);
+              }}
+              className="sign-button"
+              htmlFor="inlineCheckbox1"
+              name="userRole"
+              defaultValue="buyer"
+            >
+              Buyer
+            </button>
+          </a>
+          &nbsp; &nbsp;
+        </div>
+        <div className="form-check form-check-inline groupOne">
+          <a href="#seller-link">
+            <button
+              onClick={() => {
+                setShowSeller(true);
+                setShowBuyer(false);
+              }}
+              className="sign-button"
+              htmlFor="inlineCheckbox2"
+              name="userRole"
+              defaultValue="seller"
+            >
+              Seller
+            </button>
+          </a>
+          &nbsp; &nbsp;
+        </div>
+      </div>{" "}
+      <br />
+      <br />
+      <br />
+      {showBuyer ? (
+        <div id="buyer-link">
           <form>
             <div>
               <h3>Let's get you signed up so you can start shopping!</h3>
+              <br />
               <div className="groupOne group1">
                 <label htmlFor="firstName">First Name</label>
                 <input
@@ -151,21 +152,42 @@ export default function Signup(props) {
                   onChange={changeHandler}
                 ></input>
               </div>
-              <button variant="primary" onClick={registerHandler}>
+              <div>
+                <label htmlFor="userRole">
+                  You must accept our Terms and Conditions{" "}
+                </label>
+                <input
+                  name="userRole"
+                  type="radio"
+                  id="userRole"
+                  value="buyer"
+                  className="radio-button-signup"
+                  onChange={changeHandler}
+                ></input>
+              </div>
+              <button className="sign-button" onClick={registerHandler}>
                 Sign up
               </button>
+              <br />
+              <br />
               <h2>
                 Already have an account?<Link to="/signin"> Sign in here</Link>
-              </h2>
+              </h2>{" "}
+              <br />
+              <br />
+              <br />
+              <br />
             </div>
           </form>
         </div>
-       : (showSeller) ?
+      ) : showSeller ? (
         <form>
-          <div>
-            <h3>hey SELLER Let's get you signed up so you can start shopping!</h3>
+          <div id="seller-link">
+            <h3>
+              Let's get you signed up so you can start selling!
+            </h3>
             <div className="groupOne group1">
-              <label htmlFor="firstName">LALALA Name</label>
+              <label htmlFor="firstName">Name</label>
               <input
                 type="text"
                 className="form-control"
@@ -233,16 +255,36 @@ export default function Signup(props) {
                 onChange={changeHandler}
               ></input>
             </div>
-            <button variant="primary" onClick={registerHandler}>
+            <div>
+              <label htmlFor="userRole">
+                You must accept our Terms and Conditions{" "}
+              </label>
+              <input
+                name="userRole"
+                type="radio"
+                id="userRole"
+                value="seller"
+                className="radio-button-signup"
+                onChange={changeHandler}
+              ></input>
+            </div>
+            <button className="sign-button" onClick={registerHandler}>
               Sign up
             </button>
+            <br />
+            <br />
             <h2>
               Already have an account?<Link to="/signin"> Sign in here</Link>
             </h2>
+            <br />
+            <br />
+            <br />
+            <br />
           </div>
         </form>
-        : <div></div>
-      }
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }
