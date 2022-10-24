@@ -1,92 +1,37 @@
 import React from 'react'
-
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import '../ProductList.css'
+import Search from '../components/Search';
+import { Link } from "react-router-dom";
 
-export default function ProductList() {
-  return (
-    <div className="product-card-index">
-    <Card style={{width: '18rem'}} className="product-card">
-        <Card.Img className="card-img" variant="top" src="https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/449717/item/goods_00_449717.jpg?width=480&impolicy=quality_70&imformat=chrome"/>
-        <Card.Body>
-            <Card.Title>White T-Shirt</Card.Title>
-            <Card.Text>
-                True to size white t-shirt
-            </Card.Text>
-            <Button variant="primary">Add to Faves</Button>
-        </Card.Body>
-    </Card>
-    <Card style={{width: '18rem'}} className="product-card">
-        <Card.Img className="card-img" variant="top" src="https://cdn.shopify.com/s/files/1/0419/1525/files/2800x1080-Moto-Black-020122-1_800x533_crop_right.jpg?v=1643761804"/>
-        <Card.Body>
-            <Card.Title>Leather Jacket</Card.Title>
-            <Card.Text>
-                Muito bommmm
-            </Card.Text>
-            <Button variant="primary">Add to Faves</Button>
-        </Card.Body>
-    </Card>
-    <Card style={{width: '18rem'}} className="product-card">
-        <Card.Img className="card-img" variant="top" src="https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/449717/item/goods_00_449717.jpg?width=480&impolicy=quality_70&imformat=chrome"/>
-        <Card.Body>
-            <Card.Title>White T-Shirt</Card.Title>
-            <Card.Text>
-                True to size white t-shirt
-            </Card.Text>
-            <Button variant="primary">Add to Faves</Button>
-        </Card.Body>
-    </Card>
-    <Card style={{width: '18rem'}} className="product-card">
-        <Card.Img className="card-img" variant="top" src="https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/449717/item/goods_00_449717.jpg?width=480&impolicy=quality_70&imformat=chrome"/>
-        <Card.Body>
-            <Card.Title>White T-Shirt</Card.Title>
-            <Card.Text>
-                True to size white t-shirt
-            </Card.Text>
-            <Button variant="primary">Add to Faves</Button>
-        </Card.Body>
-    </Card>
-    <Card style={{width: '18rem'}} className="product-card">
-        <Card.Img className="card-img" variant="top" src="https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/449717/item/goods_00_449717.jpg?width=480&impolicy=quality_70&imformat=chrome"/>
-        <Card.Body>
-            <Card.Title>White T-Shirt</Card.Title>
-            <Card.Text>
-                True to size white t-shirt
-            </Card.Text>
-            <Button variant="primary">Add to Faves</Button>
-        </Card.Body>
-    </Card>
-    <Card style={{width: '18rem'}} className="product-card">
-        <Card.Img className="card-img" variant="top" src="https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/449717/item/goods_00_449717.jpg?width=480&impolicy=quality_70&imformat=chrome"/>
-        <Card.Body>
-            <Card.Title>White T-Shirt</Card.Title>
-            <Card.Text>
-                True to size white t-shirt
-            </Card.Text>
-            <Button variant="primary">Add to Faves</Button>
-        </Card.Body>
-    </Card>
-    <Card style={{width: '18rem'}} className="product-card">
-        <Card.Img className="card-img" variant="top" src="https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/449717/item/goods_00_449717.jpg?width=480&impolicy=quality_70&imformat=chrome"/>
-        <Card.Body>
-            <Card.Title>White T-Shirt</Card.Title>
-            <Card.Text>
-                True to size white t-shirt
-            </Card.Text>
-            <Button variant="primary">Add to Faves</Button>
-        </Card.Body>
-    </Card>
-    <Card style={{width: '18rem'}} className="product-card">
-        <Card.Img className="card-img" variant="top" src="https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/449717/item/goods_00_449717.jpg?width=480&impolicy=quality_70&imformat=chrome"/>
-        <Card.Body>
-            <Card.Title>White T-Shirt</Card.Title>
-            <Card.Text>
-                True to size white t-shirt
-            </Card.Text>
-            <Button variant="primary">Add to Faves</Button>
-        </Card.Body>
-    </Card>
+export default function ProductList(props) {
+ 
+console.log(props.product)
+
+const allProducts = props.product.map((product) => (
+  <div key={product._id} className="col-lg-4 col-sm-12">
+    <div className="card">
+      <img
+        className="card-img-top"
+        src="https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/449717/item/goods_00_449717.jpg?width=480&impolicy=quality_70&imformat=chrome"
+        alt=" "
+      ></img>
+      <div className="card-body">
+        <h5 className="card-title">{product.title}</h5>
+        <p className="card-text">{product.subTitle}</p>
+
+        <Link className='index-price-button' to={`/product/${product._id}`}>{product.price}</Link>
+      </div>
     </div>
-  )
+
+  </div>
+));
+
+  return (
+    <div className="container">
+      <div>
+        <Search></Search>
+        <div className='row card-group mt-1 mb-3'>{allProducts}</div>
+      </div>  
+    </div>
+  );
 }

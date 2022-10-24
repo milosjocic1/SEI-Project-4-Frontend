@@ -10,7 +10,10 @@
     "bootstrap": "^5.2.2",
     "jwt-decode": "^3.1.2",
     "multer": "^1.4.5-lts.1",
+<<<<<<< HEAD
     "proxy": "^1.0.2",
+=======
+>>>>>>> 4dde88d0dadfb2ab8353a63265658aac2860d7bb
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
@@ -41,5 +44,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:5423/"
 }
