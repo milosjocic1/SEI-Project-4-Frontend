@@ -35,20 +35,12 @@ export default function Signup(props) {
       <h3>How would you like to sign up today?</h3>
       <br></br>
       <div className="form-check form-check-inline groupOne">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox1"
-          name="userRole"
-          defaultValue="buyer"
-        ></input>
         <button
           onClick={() => {
             setShowBuyer(true)
             setShowSeller(false)
           }}
           className="form-check-label"
-          htmlFor="inlineCheckbox1"
           name="userRole"
           defaultValue="buyer"
         >
@@ -57,13 +49,6 @@ export default function Signup(props) {
         &nbsp; &nbsp;
       </div>
       <div className="form-check form-check-inline groupOne">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox2"
-          name="userRole"
-          defaultValue="seller"
-        ></input>
         <button
           onClick={() => {
             setShowSeller(true)
@@ -83,6 +68,7 @@ export default function Signup(props) {
             <div>
               <h3>Let's get you signed up so you can start shopping!</h3>
               <div className="groupOne group1">
+                <input type="hidden" value="buyer" name="userRole"></input>
                 <label htmlFor="firstName">First Name</label>
                 <input
                   type="text"
@@ -94,6 +80,7 @@ export default function Signup(props) {
                 ></input>
               </div>
               <div className="groupOne group1">
+              <input type="hidden" value="seller" name="userRole"></input>
                 <label>Last Name</label>
                 <input
                   type="text"
@@ -107,27 +94,6 @@ export default function Signup(props) {
               <div className="groupOne group1">
                 <label>Upload a profile photo</label>&nbsp;
                 <button variant="primary">+</button>
-              </div>
-              <div className="groupTwo">
-                <label htmlFor="sellerName">Seller Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="sellerNameInput"
-                  name="sellerName"
-                  placeholder="Enter seller name"
-                  onChange={changeHandler}
-                ></input>
-              </div>
-              <div className="groupTwo">
-                <label>Add a bio to your shop page</label>
-                <textarea
-                  className="form-control"
-                  rows="3"
-                  name="bio"
-                  placeholder="Max 500 characters"
-                  onChange={changeHandler}
-                ></textarea>
               </div>
               <div className="grouppOne group1">
                 <label htmlFor="emailAddress">Email Address</label>
