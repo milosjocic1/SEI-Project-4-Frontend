@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "./Auth.css"
 import Signin from "./Signin";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
@@ -20,8 +21,11 @@ export default function Signup(props) {
     const user = { ...newUser };
     user[e.target.name] = e.target.value;
     console.log(user);
+    console.log(e.target.name)
+    console.log(e.target.value);
     setNewUser(user);
   };
+
 
   const registerHandler = () => {
     props.register(newUser);
@@ -35,17 +39,10 @@ export default function Signup(props) {
       <h3>How would you like to sign up today?</h3>
       <br></br>
       <div className="form-check form-check-inline groupOne">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox1"
-          name="userRole"
-          defaultValue="buyer"
-        ></input>
         <button
           onClick={() => {
-            setShowBuyer(true)
-            setShowSeller(false)
+            setShowBuyer(true);
+            setShowSeller(false);
           }}
           className="form-check-label"
           htmlFor="inlineCheckbox1"
@@ -57,17 +54,11 @@ export default function Signup(props) {
         &nbsp; &nbsp;
       </div>
       <div className="form-check form-check-inline groupOne">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          id="inlineCheckbox2"
-          name="userRole"
-          defaultValue="seller"
-        ></input>
         <button
           onClick={() => {
-            setShowSeller(true)
-            setShowBuyer(false)}}
+            setShowSeller(true);
+            setShowBuyer(false);
+          }}
           className="form-check-label"
           htmlFor="inlineCheckbox2"
           name="userRole"
@@ -77,7 +68,7 @@ export default function Signup(props) {
         </button>
         &nbsp; &nbsp;
       </div>
-      {(showBuyer) ? 
+      {showBuyer ? (
         <div>
           <form>
             <div>
@@ -151,6 +142,19 @@ export default function Signup(props) {
                   onChange={changeHandler}
                 ></input>
               </div>
+              <div>
+                <label htmlFor="userRole">
+                  You must accept our Terms and Conditions{" "}
+                </label>
+                <input
+                  name="userRole"
+                  type="radio"
+                  id="userRole"
+                  value="buyer"
+                  className="radio-button-signup"
+                  onChange={changeHandler}
+                ></input>
+              </div>
               <button variant="primary" onClick={registerHandler}>
                 Sign up
               </button>
@@ -160,10 +164,12 @@ export default function Signup(props) {
             </div>
           </form>
         </div>
-       : (showSeller) ?
+      ) : showSeller ? (
         <form>
           <div>
-            <h3>hey SELLER Let's get you signed up so you can start shopping!</h3>
+            <h3>
+              hey SELLER Let's get you signed up so you can start shopping!
+            </h3>
             <div className="groupOne group1">
               <label htmlFor="firstName">LALALA Name</label>
               <input
@@ -233,6 +239,19 @@ export default function Signup(props) {
                 onChange={changeHandler}
               ></input>
             </div>
+            <div>
+              <label htmlFor="userRole">
+                You must accept our Terms and Conditions{" "}
+              </label>
+              <input
+                name="userRole"
+                type="radio"
+                id="userRole"
+                value="seller"
+                className="radio-button-signup"
+                onChange={changeHandler}
+              ></input>
+            </div>
             <button variant="primary" onClick={registerHandler}>
               Sign up
             </button>
@@ -241,8 +260,9 @@ export default function Signup(props) {
             </h2>
           </div>
         </form>
-        : <div></div>
-      }
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }
