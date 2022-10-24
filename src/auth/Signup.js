@@ -18,11 +18,18 @@ export default function Signup(props) {
     const registerHandler = () => {
         props.register(newUser)
     }
+
   return (
     <div>
       <h1>Sign Up</h1>
-
       <Container>
+        <Form.Group>
+          <Form.Label>How would you like to sign up today?</Form.Label><br></br>
+          <Button variant="primary" type="checkbox" id="inlineCheckbox1" name="userRole" value="buyer">Buyer</Button>&nbsp; &nbsp;
+          <Button variant="primary" type="checkbox" id="inlineCheckbox2" name="userRole" value="seller">Seller</Button><br></br><br></br>
+        </Form.Group>
+        {/* User Signup */}
+        <Form.Text>Let's get you signed up so you can start shopping!</Form.Text>
         <Form.Group>
           <Form.Label>First Name</Form.Label>
           <Form.Control name="firstName" onChange={changeHandler}></Form.Control>
@@ -30,6 +37,18 @@ export default function Signup(props) {
         <Form.Group>
           <Form.Label>Last Name</Form.Label>
           <Form.Control name="lastName" onChange={changeHandler}></Form.Control>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Upload a profile photo</Form.Label>&nbsp;
+          <Button variant="primary">+</Button>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="sellerName">Seller Name</Form.Label>
+          <Form.Control name="sellerName" id="sellerNameInput"></Form.Control>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Add a bio to your shop page</Form.Label>
+          <Form.Control name="bio"></Form.Control>
         </Form.Group>
         <Form.Group>
           <Form.Label>Email Address</Form.Label>
