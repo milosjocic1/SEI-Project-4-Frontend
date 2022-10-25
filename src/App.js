@@ -53,13 +53,11 @@ export default function App() {
     }
   }, []);
 
-
+console.log(user)
   const registerHandler = (user) => {
     Axios.post("auth/signup", user)
       .then((response) => {
         console.log(response);
-    
-       
       })
       .catch((error) => {
         console.log(error);
@@ -193,7 +191,7 @@ export default function App() {
             <Nav className="">
               {isAuth ? (
                 <div>
-                  {user ? "Welcome " + user.user.firstName : null}&nbsp;
+                  {user ? "Welcome " + user.user.name : null}&nbsp;
                   <Link to="/"> Empty link now </Link>&nbsp;&nbsp;&nbsp;
                   <Link to="/productlist"> Product List </Link>
                   &nbsp;&nbsp;&nbsp;
