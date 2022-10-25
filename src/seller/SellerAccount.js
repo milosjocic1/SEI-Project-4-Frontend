@@ -59,11 +59,22 @@ export default function SellerAccount(props) {
   //   }
   // };
 
+  const getSellerId = (id) => {
+    Axios.get(`/user/dashboard?userId=${id}`, id)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  getSellerId()
+
   const addProduct = (product) => {
-    Axios.post("product/add", product)
+    Axios.post("/product/add", product)
       .then((response) => {
         console.log("Product added successfully");
-        // loadProductList();
+        
       })
       .catch((error) => {
         console.log("Error adding Product");
