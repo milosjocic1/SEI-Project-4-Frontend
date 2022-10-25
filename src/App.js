@@ -8,7 +8,7 @@ import Signin from "./auth/Signin";
 import ProductList from "./product/ProductList";
 import Product from "./product/Product";
 import ProductCreateForm from "./product/ProductCreateForm";
-import SellerDashboard from "./seller/SellerDashboard";
+import SellerDashboard from "./seller/SellerAccount";
 import UserDashboard from "./user/UserDashboard";
 import jwt_decode from "jwt-decode";
 
@@ -123,6 +123,7 @@ console.log(user)
 
   const [products, setProducts] = useState([]);
 
+  console.log(products)
   useEffect(() => {
     loadProductList();
   }, []);

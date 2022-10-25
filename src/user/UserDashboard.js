@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import Profile from "./Profile";
+import BuyerAccount from "./BuyerAccount";
+import SellerAccount from "../seller/SellerAccount";
 
 import "./User.css";
-import Favourite from "./Favourite";
-import Reviews from "./Reviews";
-import Transaction from "./Transaction";
 
 export default function UserDashboard(props) {
   const [products, setProducts] = useState([]);
@@ -43,15 +41,12 @@ export default function UserDashboard(props) {
   
 
   return (
-    <div className="container">
-        <Profile {...currentUser}></Profile>
-
-        <div className="row mt-5 mb-5 d-flex justify-content-between">
-        <Favourite {...currentUser}></Favourite>
-        <Reviews {...currentUser}></Reviews>
-        </div>
+    <div>
+      {(currentUser.userRole === "buyer") ? 
+        <BuyerAccount user={currentUser} product={props}></BuyerAccount>
+     : 
+        <SellerAccount user={currentUser} product={props}></SellerAccount>
+      }
       
-        <Transaction {...currentUser}></Transaction>       
-      </div>
-  
+    </div>
   );}
