@@ -50,7 +50,7 @@ export default function Signin(props) {
           </Container>
         </div>
         <div className="col-md-6 signin-right">
-          <h1 className="signup-signin-title">Been here before?</h1> <br />
+          <h1 className="signup-signin-title">New to Agora?</h1> <br />
           <p className="sign-up-white">
             Enter your personal details and get started with us!
           </p>{" "}
