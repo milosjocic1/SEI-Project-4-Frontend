@@ -62,6 +62,7 @@ export default function App() {
   const loginHandler = (cred) => {
     Axios.post("auth/signin", cred)
       .then((response) => {
+        console.log(response)
         console.log(response.data.token);
 
         if (response.data.token != null) {
@@ -129,7 +130,7 @@ export default function App() {
         setProducts(response.data.products);
       })
       .catch((error) => {
-        console.log("Error Retrieving Producst");
+        console.log("Error Retrieving Products");
         console.log(error);
       });
   };
