@@ -24,7 +24,7 @@ console.log(props)
       </button>
 
       {showAddProductForm ? (
-        <ProductCreateForm functions={props} user={props}></ProductCreateForm>
+        <ProductCreateForm functions={props} seller={props} user={props}></ProductCreateForm>
       ) : (
         <div> </div>
       )}
