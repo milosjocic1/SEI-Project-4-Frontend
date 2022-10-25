@@ -115,6 +115,16 @@ export default function ProductCreateForm(props) {
             <option value="Collectables and Art">Collectables and Art</option>
           </Form.Select>
         </Form.Group>
+
+        {/* <Form.Group>
+          <Form.Label>ID</Form.Label>
+          <Form.Control
+            name="seller"
+            type="text"
+            onChange={handleChange}
+          ></Form.Control>
+        </Form.Group> */}
+
         <Form.Group>
           <Form.Label>Shipping Rate</Form.Label>
           <Form.Control
@@ -134,13 +144,12 @@ export default function ProductCreateForm(props) {
 
         <Form.Group>
           <Form.Check
-            type="switch"
+            type="radio"
             id="custom-switch"
             label="I am ready to sell it!"
             name="seller"
-            value={thisSellerId}
+            defaultValue={thisSellerId}
           />
-          
         </Form.Group>
         <Button variant="primary" type="submit">
           Submit
