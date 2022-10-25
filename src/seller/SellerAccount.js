@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Product from "../product/Product";
+import Profile from "../user/Profile";
+import MyProducts from "./MyProducts";
 
-export default function SellerDashboard() {
+export default function SellerAccount(props) {
   const [products, setProducts] = useState([]);
-  const [sellers, setSellers] = useState([]);
+
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
   // useEffect() - ComponentDidMount
   // React Hooks - Allows to hook the functionality into React
 
-  useEffect(() => {
-    // Axios function
-    loadDashboard();
-  }, []);
+  // useEffect(() => {
+  //   // Axios function
+  //   // loadDashboard();
+  // }, []);
 
   // const loadSellerList = () => {
   //   // Axios code will go here
@@ -30,20 +32,20 @@ export default function SellerDashboard() {
   //     });
   // };
 
-  console.log()
+  console.log(props)
 
-  const loadDashboard = () => {
-    Axios.get("/seller/dashboard")
-      .then((response) => {
-        console.log("hi");
-        console.log(response.data.user);
-        setSellers(response.data.user);
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log("error retrieving user line 40");
-      });
-  }
+  // const loadDashboard = () => {
+  //   Axios.get("/seller/dashboard")
+  //     .then((response) => {
+  //       console.log("hi");
+  //       console.log(response.data.user);
+  //       setSellers(response.data.user);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       console.log("error retrieving user line 40");
+  //     });
+  // }
 
   // const loadProductList = (seller) => {
   //   console.log(seller);
@@ -116,14 +118,16 @@ export default function SellerDashboard() {
         editView={editView}
         deleteProduct={deleteProduct}
       ></Product>
-      {loadDashboard}
+      
       {/* {loadProductList(sellers)} */}
     </div>
   ));
 
+  console.log(props)
   return (
-    <div>
-      Dashboard
+    <div className="container">
+      <Profile user={props}></Profile>
+      <MyProducts user={props} product={props} products={allProducts} addProduct={addProduct} editView={editView} editProduct={editProduct} deleteProduct={deleteProduct}></MyProducts>
       
     </div>
   );
