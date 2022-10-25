@@ -17,7 +17,7 @@ export default function ProductCreateForm(props) {
 
   const changeOptions = (event) => {
     const parentValue = event.target.value;
-    let options;
+    let options = "";
     if (parentValue == "Fashion") {
       options = ""
     }
@@ -72,11 +72,6 @@ export default function ProductCreateForm(props) {
           <Form.Label>Subcategory</Form.Label>
           {/* <Form.Control name="subcategory" type="text" onChange={handleChange}></Form.Control> */}
           <Form.Select name="subcategory" type="text" onChange={handleChange} changeOptions={changeOptions}>
-
-            {const name = document.querySelector('select[name="category"]');
-const val = name.value;
-console.log(val);
-}
             <option>Open this select menu</option>
             <option value="Fashion">Fashion</option>
             <option value="Electronics">Electronics</option>
@@ -87,6 +82,7 @@ console.log(val);
             <option value="Office Supplies">Office Supplies</option>
             <option value="Health and Beauty">Health and Beauty</option>
             <option value="Collectables and Art">Collectables and Art</option>
+            
            </Form.Select>
         </Form.Group>
         <Form.Group >
