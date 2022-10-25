@@ -191,8 +191,9 @@ console.log(user)
             <Nav className="">
               {isAuth ? (
                 <div>
+                  <Link to="/"> HOME </Link>
                   {user ? "Welcome " + user.user.name : null}&nbsp;
-                  <Link to="/"> Empty link now </Link>&nbsp;&nbsp;&nbsp;
+                  <Link to="/user/dashboard"> MY ACCOUNT </Link>
                   <Link to="/productlist"> Product List </Link>
                   &nbsp;&nbsp;&nbsp;
                   <Link to="/product"> Single Product </Link>
@@ -204,7 +205,12 @@ console.log(user)
                 <div>
                   <Link to="/signin"> Sign In </Link>&nbsp;&nbsp;&nbsp;
                   <Link to="/signup"> Sign Up </Link>&nbsp;&nbsp;&nbsp;
-                  <Link to="/"> Empty link now </Link>&nbsp;&nbsp;&nbsp;
+                  {user.userRole === "seller" ? (
+                    <Link to="/seller/dashboard"> Seller Dashboard </Link>
+                  ) : (
+                    <Link to="/user/dashboard"> User Dashboard </Link>
+                  )}
+                  &nbsp;&nbsp;&nbsp;
                   <Link to="/productlist"> Product List </Link>
                   &nbsp;&nbsp;&nbsp;
                   <Link to="/product"> Single Product </Link>
@@ -263,8 +269,6 @@ console.log(user)
             <Link to="/addproduct"> Add a Product </Link>
             <br></br>
             {/* Below will have to add seller id to this link */}
-            <Link to="/seller/dashboard"> Seller Dashboard </Link>
-            <br></br>
             <Link to="/user/dashboard"> User Dashboard </Link>
           </div>
           <div className="col-3">
