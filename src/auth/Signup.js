@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import "./Auth.css"
 import Signin from "./Signin";
-import { BrowserRouter as Router, Route, Routes, Link, useHref } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from "react-router-dom";
 
 
 export default function Signup(props) {
 
-
+ const navigate = useNavigate();
   
   const [showBuyer, setShowBuyer] = useState(false)
   // const buyerClick = () => setShowBuyer(true)
@@ -28,7 +28,8 @@ export default function Signup(props) {
 
 
   const registerHandler = () => {
-    props.register(newUser);
+    props.register(newUser)
+    navigate("/signin");
   };
 
   return (
