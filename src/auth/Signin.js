@@ -2,8 +2,11 @@ import "./Auth.css"
 import React, {useState} from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Signin(props) {
+
+  const navigate = useNavigate()
 
     const [newUser, setNewUser] = useState({});
 
@@ -16,6 +19,7 @@ export default function Signin(props) {
 
     const loginHandler = () => {
         props.login(newUser)
+        navigate("/")
     }
   return (
     <div className="container div-for-sign">
@@ -43,14 +47,14 @@ export default function Signin(props) {
               <p>Forgot your password?</p>
             </Form.Group>
             <div className="button-div">
-              <Button className="sign-button" onClick={loginHandler}>
+              <Button className="sign-button" onClick={loginHandler} >
                 Log in
               </Button>
             </div>
           </Container>
         </div>
         <div className="col-md-6 signin-right">
-          <h1 className="signup-signin-title">Been here before?</h1> <br />
+          <h1 className="signup-signin-title">New to Agora?</h1> <br />
           <p className="sign-up-white">
             Enter your personal details and get started with us!
           </p>{" "}
