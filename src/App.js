@@ -204,7 +204,12 @@ console.log(user)
                 <div>
                   <Link to="/signin"> Sign In </Link>&nbsp;&nbsp;&nbsp;
                   <Link to="/signup"> Sign Up </Link>&nbsp;&nbsp;&nbsp;
-                  <Link to="/"> Empty link now </Link>&nbsp;&nbsp;&nbsp;
+                  {user.userRole === "seller" ? (
+                    <Link to="/seller/dashboard"> Seller Dashboard </Link>
+                  ) : (
+                    <Link to="/user/dashboard"> User Dashboard </Link>
+                  )}
+                  &nbsp;&nbsp;&nbsp;
                   <Link to="/productlist"> Product List </Link>
                   &nbsp;&nbsp;&nbsp;
                   <Link to="/product"> Single Product </Link>
