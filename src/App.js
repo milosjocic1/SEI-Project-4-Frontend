@@ -191,7 +191,7 @@ console.log(user)
             <Nav className="">
               {isAuth ? (
                 <div>
-                  {user ? "Welcome " + user.user.firstName : null}&nbsp;
+                  {user ? "Welcome " + user.user.name : null}&nbsp;
                   <Link to="/"> Empty link now </Link>&nbsp;&nbsp;&nbsp;
                   <Link to="/productlist"> Product List </Link>
                   &nbsp;&nbsp;&nbsp;
