@@ -5,6 +5,7 @@ export default function ProductCreateForm(props) {
   const [newProduct, setNewProduct] = useState({});
 
   const handleChange = (event) => {
+    console.log(event.target)
     const attributeToChange = event.target.name;
     const newValue = event.target.value;
 
@@ -14,6 +15,13 @@ export default function ProductCreateForm(props) {
     setNewProduct(product);
   };
 
+  const changeOptions = (event) => {
+    const parentValue = event.target.value;
+    let options;
+    if (parentValue == "Fashion") {
+      options = ""
+    }
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
     props.addProduct(newProduct);
@@ -46,11 +54,40 @@ export default function ProductCreateForm(props) {
         </Form.Group>
         <Form.Group >
           <Form.Label>Category</Form.Label>
-          <Form.Control name="category" type="text" onChange={handleChange}></Form.Control>
+          {/* <Form.Control name="category" type="text" onChange={handleChange}></Form.Control> */}
+          <Form.Select name="category" type="text" onChange={handleChange}>
+            <option>Open this select menu</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Sports, Hobbies, Leisure">Sports, Hobbies, Leisure</option>
+            <option value="Home and Garden">Home and Garden</option>
+            <option value="Motors">Motors</option>
+            <option value="Media">Media</option>
+            <option value="Office Supplies">Office Supplies</option>
+            <option value="Health and Beauty">Health and Beauty</option>
+            <option value="Collectables and Art">Collectables and Art</option>
+           </Form.Select>
         </Form.Group>
         <Form.Group >
           <Form.Label>Subcategory</Form.Label>
-          <Form.Control name="subcategory" type="text" onChange={handleChange}></Form.Control>
+          {/* <Form.Control name="subcategory" type="text" onChange={handleChange}></Form.Control> */}
+          <Form.Select name="subcategory" type="text" onChange={handleChange} changeOptions={changeOptions}>
+
+            {const name = document.querySelector('select[name="category"]');
+const val = name.value;
+console.log(val);
+}
+            <option>Open this select menu</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Sports, Hobbies, Leisure">Sports, Hobbies, Leisure</option>
+            <option value="Home and Garden">Home and Garden</option>
+            <option value="Motors">Motors</option>
+            <option value="Media">Media</option>
+            <option value="Office Supplies">Office Supplies</option>
+            <option value="Health and Beauty">Health and Beauty</option>
+            <option value="Collectables and Art">Collectables and Art</option>
+           </Form.Select>
         </Form.Group>
         <Form.Group >
           <Form.Label>Shipping Rate</Form.Label>
