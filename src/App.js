@@ -23,17 +23,21 @@ import {
   Route,
   Routes,
   Link,
-  Navigate,
+  
+
 } from "react-router-dom";
 
 // Css
 import "./App.css";
 
 export default function App() {
+
+
   // ADD USER
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState({});
   const [message, setMessage] = useState(null);
+  
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -49,10 +53,13 @@ export default function App() {
     }
   }, []);
 
+
   const registerHandler = (user) => {
     Axios.post("auth/signup", user)
       .then((response) => {
         console.log(response);
+    
+       
       })
       .catch((error) => {
         console.log(error);
@@ -60,6 +67,7 @@ export default function App() {
   };
 
   const loginHandler = (cred) => {
+
     Axios.post("auth/signin", cred)
       .then((response) => {
         console.log(response)
@@ -71,6 +79,7 @@ export default function App() {
           setIsAuth(true);
           setUser(user);
           console.log(user);
+        
         }
       })
       .catch((error) => {
@@ -244,7 +253,7 @@ export default function App() {
             path="/user/dashboard"
             element={<UserDashboard user={user} product={products} />}
           ></Route>
-          <Route path="/logout" element={<Navigate to="/" />}></Route>
+          <Route path="/logout"></Route>
         </Routes>
       </div>
       <footer>
