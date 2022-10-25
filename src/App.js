@@ -53,13 +53,11 @@ export default function App() {
     }
   }, []);
 
-
+console.log(user)
   const registerHandler = (user) => {
     Axios.post("auth/signup", user)
       .then((response) => {
         console.log(response);
-    
-       
       })
       .catch((error) => {
         console.log(error);
