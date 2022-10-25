@@ -9,6 +9,7 @@ import ProductList from "./product/ProductList";
 import Product from "./product/Product";
 import ProductCreateForm from "./product/ProductCreateForm";
 import SellerDashboard from "./seller/SellerDashboard";
+import UserDashboard from "./user/UserDashboard";
 import jwt_decode from "jwt-decode";
 
 // Bootstrap
@@ -22,17 +23,21 @@ import {
   Route,
   Routes,
   Link,
-  Navigate,
+  
+
 } from "react-router-dom";
 
 // Css
 import "./App.css";
 
 export default function App() {
+
+
   // ADD USER
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState({});
   const [message, setMessage] = useState(null);
+  
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -48,10 +53,13 @@ export default function App() {
     }
   }, []);
 
+
   const registerHandler = (user) => {
     Axios.post("auth/signup", user)
       .then((response) => {
         console.log(response);
+    
+       
       })
       .catch((error) => {
         console.log(error);
@@ -59,8 +67,10 @@ export default function App() {
   };
 
   const loginHandler = (cred) => {
+
     Axios.post("auth/signin", cred)
       .then((response) => {
+        console.log(response)
         console.log(response.data.token);
 
         if (response.data.token != null) {
@@ -69,6 +79,7 @@ export default function App() {
           setIsAuth(true);
           setUser(user);
           console.log(user);
+        
         }
       })
       .catch((error) => {
@@ -128,7 +139,7 @@ export default function App() {
         setProducts(response.data.products);
       })
       .catch((error) => {
-        console.log("Error Retrieving Producst");
+        console.log("Error Retrieving Products");
         console.log(error);
       });
   };
@@ -235,13 +246,14 @@ export default function App() {
           <Route path="/addproduct" element={<ProductCreateForm />}></Route>
           {/* Below will have to add seller id to this link */}
           <Route
-            path="/dashboard"
-            element={<SellerDashboard product={products} />}
+            path="/seller/dashboard"
+            element={<SellerDashboard user={user} product={products} />}
           ></Route>
           <Route
-            path="/logout"
-            element={ <Navigate to="/" />}
+            path="/user/dashboard"
+            element={<UserDashboard user={user} product={products} />}
           ></Route>
+          <Route path="/logout"></Route>
         </Routes>
       </div>
       <footer>
@@ -253,9 +265,9 @@ export default function App() {
             <Link to="/addproduct"> Add a Product </Link>
             <br></br>
             {/* Below will have to add seller id to this link */}
-            <Link to="/dashboard"> Seller Dashboard </Link>
+            <Link to="/seller/dashboard"> Seller Dashboard </Link>
             <br></br>
-            <a href="/">Link 3</a>
+            <Link to="/user/dashboard"> User Dashboard </Link>
           </div>
           <div className="col-3">
             <a href="/">Link 1</a>

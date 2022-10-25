@@ -1,0 +1,16 @@
+.profile-dashboard {
+    padding: 20px 40px !important;
+    border: 1px solid rgb(225, 225, 225);
+    border-radius: 10px;
+}
+p {
+    font-size: 22px;
+}
+.change-password-button {
+    background-color: black;
+    color: white !important;
+    padding:2px 17px;
+}
+.profile-picture {
+    width: 150px;
+}
