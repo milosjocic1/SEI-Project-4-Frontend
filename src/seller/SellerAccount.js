@@ -10,29 +10,7 @@ export default function SellerAccount(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
-  // useEffect() - ComponentDidMount
-  // React Hooks - Allows to hook the functionality into React
-
-  // useEffect(() => {
-  //   // Axios function
-  //   // loadDashboard();
-  // }, []);
-
-  // const loadSellerList = () => {
-  //   // Axios code will go here
-  //   Axios.get("seller/index")
-  //     .then((response) => {
-  //       console.log(response);
-  //       // below is equivalent to this.setState in class component
-  //       setSellers(response.data.sellers);
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error Retrieving Authors");
-  //       console.log(error);
-  //     });
-  // };
-
-  console.log(props)
+  console.log(props);
 
   // const loadDashboard = () => {
   //   Axios.get("/seller/dashboard")
@@ -58,23 +36,29 @@ export default function SellerAccount(props) {
   //     return products;
   //   }
   // };
+  useEffect(() => {
+        // Axios function
+  loadProductList();
+  }, []);
+    
+  const loadProductList = () => {
+  // Axios code will go here
+  Axios.get("/product/index")
+    .then((response) => {
+      console.log(response);
+      setProducts(response.data.products);
+    })
+    .catch((error) => {
+      console.log("Error Retrieving Products");
+      console.log(error);
+    });
+};
 
-  const getSellerId = (id) => {
-    Axios.get(`/user/dashboard?userId=${id}`, id)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-  getSellerId()
 
   const addProduct = (product) => {
     Axios.post("/product/add", product)
       .then((response) => {
-        console.log("Product added successfully");
-        
+        console.log("Product added successfully from seller account");
       })
       .catch((error) => {
         console.log("Error adding Product");
@@ -92,7 +76,7 @@ export default function SellerAccount(props) {
         setCurrentProduct(product);
       })
       .catch((error) => {
-        console.log("Error loading author information");
+        console.log("Error loading product information");
         console.log(error);
       });
   };
@@ -129,17 +113,25 @@ export default function SellerAccount(props) {
         editView={editView}
         deleteProduct={deleteProduct}
       ></Product>
-      
+
       {/* {loadProductList(sellers)} */}
     </div>
   ));
 
-  console.log(props)
+  console.log(props);
   return (
     <div className="container">
       <Profile user={props}></Profile>
-      <MyProducts user={props} product={props} products={allProducts} addProduct={addProduct} editView={editView} editProduct={editProduct} deleteProduct={deleteProduct}></MyProducts>
-      
+      <MyProducts
+        seller={props}
+        user={props}
+        product={props}
+        products={allProducts}
+        addProduct={addProduct}
+        editView={editView}
+        editProduct={editProduct}
+        deleteProduct={deleteProduct}
+      ></MyProducts>
     </div>
   );
 }
