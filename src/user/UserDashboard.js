@@ -30,6 +30,7 @@ export default function UserDashboard(props) {
         let user = response.data.user
         console.log("hi");
         console.log(response.data.user);
+        console.log(response.data.seller);
         console.log(user)
         setCurrentUser(user);
       })

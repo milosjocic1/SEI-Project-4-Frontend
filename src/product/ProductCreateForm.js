@@ -4,6 +4,11 @@ import { Container, Form, Button } from "react-bootstrap";
 export default function ProductCreateForm(props) {
   const [newProduct, setNewProduct] = useState({});
 
+  console.log(props.functions)
+  console.log(props.user.user.user._id)
+
+  const thisUserId = props.user.user.user._id;
+
   const handleChange = (event) => {
     console.log(event.target)
     const attributeToChange = event.target.name;
@@ -15,16 +20,16 @@ export default function ProductCreateForm(props) {
     setNewProduct(product);
   };
 
-  const changeOptions = (event) => {
-    const parentValue = event.target.value;
-    let options = "";
-    if (parentValue == "Fashion") {
-      options = ""
-    }
-  }
+  // const changeOptions = (event) => {
+  //   const parentValue = event.target.value;
+  //   let options;
+  //   if (parentValue == "Fashion") {
+  //     options = ""
+  //   }
+  // }
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.addProduct(newProduct);
+    props.functions.addProduct(newProduct);
     event.target.reset();
   };
 
@@ -71,7 +76,8 @@ export default function ProductCreateForm(props) {
         <Form.Group >
           <Form.Label>Subcategory</Form.Label>
           {/* <Form.Control name="subcategory" type="text" onChange={handleChange}></Form.Control> */}
-          <Form.Select name="subcategory" type="text" onChange={handleChange} changeOptions={changeOptions}>
+          <Form.Select name="subcategory" type="text" onChange={handleChange}>
+
             <option>Open this select menu</option>
             <option value="Fashion">Fashion</option>
             <option value="Electronics">Electronics</option>
@@ -101,6 +107,11 @@ export default function ProductCreateForm(props) {
             onChange={handleChange}
           ></Form.Control>
         </Form.Group>
+        {/* <Form.Group>
+          <Form.Control name="seller" type="hidden" value={thisUserId} >
+            
+          </Form.Control>
+        </Form.Group> */}
         <Button variant="primary" type="submit">Submit</Button>
       </Form>
     </div>

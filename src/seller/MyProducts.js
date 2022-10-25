@@ -11,7 +11,7 @@ export default function MyProducts(props) {
             <p>{product.title}</p>
         </div>
     })
-
+console.log(props)
 
   return (
     <div>
@@ -24,7 +24,7 @@ export default function MyProducts(props) {
       </button>
 
       {showAddProductForm ? (
-        <ProductCreateForm></ProductCreateForm>
+        <ProductCreateForm functions={props} user={props}></ProductCreateForm>
       ) : (
         <div> </div>
       )}
