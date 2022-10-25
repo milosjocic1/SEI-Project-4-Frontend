@@ -73,10 +73,7 @@ export default function ProductCreateForm(props) {
           {/* <Form.Control name="subcategory" type="text" onChange={handleChange}></Form.Control> */}
           <Form.Select name="subcategory" type="text" onChange={handleChange} changeOptions={changeOptions}>
 
-            {const name = document.querySelector('select[name="category"]');
-const val = name.value;
-console.log(val);
-}
+            
             <option>Open this select menu</option>
             <option value="Fashion">Fashion</option>
             <option value="Electronics">Electronics</option>
