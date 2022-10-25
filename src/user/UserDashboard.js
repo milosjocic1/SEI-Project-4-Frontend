@@ -7,7 +7,7 @@ import Favourite from "./Favourite";
 import Reviews from "./Reviews";
 import Transaction from "./Transaction";
 
-export default function SellerDashboard() {
+export default function UserDashboard(props) {
   const [products, setProducts] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
@@ -16,16 +16,18 @@ export default function SellerDashboard() {
   // useEffect() - ComponentDidMount
   // React Hooks - Allows to hook the functionality into React
 
+  console.log(props)
   useEffect(() => {
     // Axios function
-    loadDashboard();
+    loadDashboard(props.user.user.id);
   }, []);
 
+  
 
     console.log()
 
-  const loadDashboard = () => {
-    Axios.get("/user/dashboard")
+  const loadDashboard = (id) => {
+    Axios.get(`/user/dashboard?userId=${id}`)
       .then((response) => {
         let user = response.data.user
         console.log("hi");
