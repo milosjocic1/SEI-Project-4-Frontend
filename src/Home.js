@@ -33,7 +33,7 @@ export default function Home(props) {
         src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/typewriter.jpg",
       },
     ];
-  console.log(props.category)
+  // console.log(props.category)
     return (
       <div className="container component">
         <Search></Search>

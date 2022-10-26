@@ -8,7 +8,7 @@ export default function ProductList(props) {
 console.log(props.product)
 
 const allProducts = props.product.map((product) => (
-  <div key={product._id} className="col-lg-4 col-sm-12">
+  <div key={product._id} className="col-lg-4 col-sm-12 mt-3">
     <div className="card">
       <img
         className="card-img-top"

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 export default function MyProductList(props) {
-  console.log(props);
+//   console.log(props);
 
   //   EDIT PRODUCTS
   const [isEdit, setIsEdit] = useState(false);
@@ -52,7 +52,7 @@ export default function MyProductList(props) {
   };
 
   return (
-    <div key={props._id} className="col-lg-4 col-sm-12">
+    <div key={props._id} className="col-lg-4 col-sm-12 mt-3">
       <div className="card">
         <img
           className="card-img-top"
