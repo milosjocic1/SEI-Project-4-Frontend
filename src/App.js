@@ -55,7 +55,7 @@ export default function App() {
 
 console.log(user)
   const registerHandler = (user) => {
-    Axios.post("auth/signup", user)
+    Axios.post("/auth/signup", user)
       .then((response) => {
         console.log(response);
       })
@@ -66,7 +66,7 @@ console.log(user)
 
   const loginHandler = (cred) => {
 
-    Axios.post("auth/signin", cred)
+    Axios.post("/auth/signin", cred)
       .then((response) => {
         console.log(response)
         console.log(response.data.token);
