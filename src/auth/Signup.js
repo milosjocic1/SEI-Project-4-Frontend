@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./Auth.css"
 
 
-import { BrowserRouter as Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
