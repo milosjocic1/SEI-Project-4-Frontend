@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import Profile from "./Profile";
+import BuyerAccount from "./BuyerAccount";
+import SellerAccount from "../seller/SellerAccount";
 
 import "./User.css";
-import Favourite from "./Favourite";
-import Reviews from "./Reviews";
-import Transaction from "./Transaction";
 
 export default function UserDashboard(props) {
   const [products, setProducts] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
+  const [seller, setSeller] = useState({})
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
@@ -22,18 +21,19 @@ export default function UserDashboard(props) {
     loadDashboard(props.user.user.id);
   }, []);
 
-  
 
-    console.log()
 
   const loadDashboard = (id) => {
-    Axios.get(`/user/dashboard?userId=${id}`)
+    Axios.get(`/user/dashboard/?userId=${id}`)
       .then((response) => {
         let user = response.data.user
         console.log("hi");
         console.log(response.data.user);
+        let seller = response.data.seller;
+        console.log(seller);
         console.log(user)
         setCurrentUser(user);
+        setSeller(seller)
       })
       .catch((error) => {
         console.log(error);
@@ -43,15 +43,12 @@ export default function UserDashboard(props) {
   
 
   return (
-    <div className="container">
-        <Profile {...currentUser}></Profile>
-
-        <div className="row mt-5 mb-5 d-flex justify-content-between">
-        <Favourite {...currentUser}></Favourite>
-        <Reviews {...currentUser}></Reviews>
-        </div>
+    <div>
+      {(currentUser.userRole === "buyer") ? 
+        <BuyerAccount user={currentUser} product={props}></BuyerAccount>
+     : 
+        <SellerAccount seller={seller} user={currentUser} product={props}></SellerAccount>
+      }
       
-        <Transaction {...currentUser}></Transaction>       
-      </div>
-  
+    </div>
   );}

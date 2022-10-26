@@ -8,7 +8,7 @@ import Signin from "./auth/Signin";
 import ProductList from "./product/ProductList";
 import Product from "./product/Product";
 import ProductCreateForm from "./product/ProductCreateForm";
-import SellerDashboard from "./seller/SellerDashboard";
+import SellerDashboard from "./seller/SellerAccount";
 import UserDashboard from "./user/UserDashboard";
 import jwt_decode from "jwt-decode";
 
@@ -55,7 +55,7 @@ export default function App() {
 
 console.log(user)
   const registerHandler = (user) => {
-    Axios.post("auth/signup", user)
+    Axios.post("/auth/signup", user)
       .then((response) => {
         console.log(response);
       })
@@ -66,7 +66,7 @@ console.log(user)
 
   const loginHandler = (cred) => {
 
-    Axios.post("auth/signin", cred)
+    Axios.post("/auth/signin", cred)
       .then((response) => {
         console.log(response)
         console.log(response.data.token);
@@ -93,6 +93,7 @@ console.log(user)
     setIsAuth(false);
     setUser(null);
     setMessage("User logged out successfully");
+    loadProductList();
   };
 
   //  const errMessage = message ? (
@@ -123,6 +124,7 @@ console.log(user)
 
   const [products, setProducts] = useState([]);
 
+  console.log(products)
   useEffect(() => {
     loadProductList();
   }, []);
@@ -131,7 +133,7 @@ console.log(user)
 
   // PRODUCTS SHOW
   const loadProductList = () => {
-    Axios.get("product/index")
+    Axios.get("/product/index")
       .then((response) => {
         console.log(response.data.products);
         setProducts(response.data.products);
@@ -143,7 +145,7 @@ console.log(user)
   };
   // PRODUCTS DELETE
   const deleteProduct = (id) => {
-    Axios.delete(`product/delete?id=${id}`)
+    Axios.delete(`/product/delete?id=${id}`)
       .then((response) => {
         console.log("Product deleted successfully");
         console.log(response);
@@ -205,11 +207,11 @@ console.log(user)
                 <div>
                   <Link to="/signin"> Sign In </Link>&nbsp;&nbsp;&nbsp;
                   <Link to="/signup"> Sign Up </Link>&nbsp;&nbsp;&nbsp;
-                  {user.userRole === "seller" ? (
+                  {/* {user.userRole === "seller" ? (
                     <Link to="/seller/dashboard"> Seller Dashboard </Link>
                   ) : (
                     <Link to="/user/dashboard"> User Dashboard </Link>
-                  )}
+                  )} */}
                   &nbsp;&nbsp;&nbsp;
                   <Link to="/productlist"> Product List </Link>
                   &nbsp;&nbsp;&nbsp;
@@ -249,10 +251,10 @@ console.log(user)
           ></Route>
           <Route path="/addproduct" element={<ProductCreateForm />}></Route>
           {/* Below will have to add seller id to this link */}
-          <Route
+          {/* <Route
             path="/seller/dashboard"
             element={<SellerDashboard user={user} product={products} />}
-          ></Route>
+          ></Route> */}
           <Route
             path="/user/dashboard"
             element={<UserDashboard user={user} product={products} />}
