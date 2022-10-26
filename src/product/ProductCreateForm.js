@@ -4,14 +4,14 @@ import { Container, Form, Button } from "react-bootstrap";
 export default function ProductCreateForm(props) {
   const [newProduct, setNewProduct] = useState({});
 
-  console.log(props.functions)
-  console.log(props.user.user.user)
-  console.log(props.seller.seller.seller._id)
+  console.log(props.functions);
+  console.log(props.user.user.user);
+  console.log(props.seller.seller.seller._id);
 
   const thisSellerId = props.seller.seller.seller._id;
 
   const handleChange = (event) => {
-    console.log(event.target)
+    console.log(event.target);
     const attributeToChange = event.target.name;
     const newValue = event.target.value;
 
@@ -20,6 +20,11 @@ export default function ProductCreateForm(props) {
     console.log(product);
     setNewProduct(product);
   };
+
+  function updatePage() {
+    props.handleShowAddProductForm(false);
+    props.myProducts();
+  }
 
   // const changeOptions = (event) => {
   //   const parentValue = event.target.value;
@@ -30,9 +35,9 @@ export default function ProductCreateForm(props) {
   // }
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.functions.addProduct(newProduct);
+    props.functions.addProduct(newProduct, thisSellerId);
     event.target.reset();
-   
+    updatePage();
   };
 
   return (
@@ -142,7 +147,7 @@ export default function ProductCreateForm(props) {
           ></Form.Control>
         </Form.Group>
 
-        <Form.Group>
+        {/* <Form.Group>
           <Form.Check
             type="radio"
             id="custom-switch"
@@ -150,7 +155,7 @@ export default function ProductCreateForm(props) {
             name="seller"
             defaultValue={thisSellerId}
           />
-        </Form.Group>
+        </Form.Group> */}
         <Button variant="primary" type="submit">
           Submit
         </Button>
