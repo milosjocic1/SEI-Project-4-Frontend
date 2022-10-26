@@ -33,6 +33,18 @@ export default function ProductCreateForm(props) {
   //     options = ""
   //   }
   // }
+  function updatePage() {
+    props.handleShowAddProductForm(false);
+    props.myProducts();
+  }
+
+  // const changeOptions = (event) => {
+  //   const parentValue = event.target.value;
+  //   let options;
+  //   if (parentValue == "Fashion") {
+  //     options = ""
+  //   }
+  // }
   const handleSubmit = (event) => {
     event.preventDefault();
     props.functions.addProduct(newProduct, thisSellerId);
