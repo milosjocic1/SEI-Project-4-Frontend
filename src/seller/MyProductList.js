@@ -1,12 +1,9 @@
-import React, {  useState } from 'react'
-import Axios from 'axios';
+import React, { useState } from "react";
+import Axios from "axios";
 import "../App.css";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 export default function MyProductList(props) {
-//   console.log(props);
-
   //   EDIT PRODUCTS
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
@@ -14,26 +11,22 @@ export default function MyProductList(props) {
   const editView = (id) => {
     Axios.get(`/product/edit?id=${id}`)
       .then((response) => {
-        console.log(response.data.product);
         let product = response.data.product;
-        console.log("Loaded Product Information");
+
         setIsEdit(true);
         setCurrentProduct(product);
       })
       .catch((error) => {
-        console.log("Error loading product information");
         console.log(error);
       });
   };
   const editProduct = (product) => {
     Axios.put("/product/update", product)
       .then((response) => {
-        console.log("Product Updated Successfully!");
         console.log(response);
         // loadProductList();
       })
       .catch((error) => {
-        console.log("Error editing product");
         console.log(error);
       });
   };
@@ -42,7 +35,6 @@ export default function MyProductList(props) {
   const deleteProduct = (id) => {
     Axios.delete(`/product/delete?id=${id}`)
       .then((response) => {
-        console.log("Product deleted successfully!");
         console.log(response);
         //   loadAuthorList();
       })
@@ -78,9 +70,11 @@ export default function MyProductList(props) {
               </Link>
             </div>
             <div className="col-4">
-              <Link onClick={() => {deleteProduct(props._id)}}
+              <Link
+                onClick={() => {
+                  deleteProduct(props._id);
+                }}
                 className="index-price-button edit-delete-btn"
-                
               >
                 Delete
               </Link>

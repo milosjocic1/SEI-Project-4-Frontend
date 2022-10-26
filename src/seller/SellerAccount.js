@@ -10,23 +10,20 @@ export default function SellerAccount(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
-  console.log(props);
-
   // const loadDashboard = () => {
   //   Axios.get("/seller/dashboard")
   //     .then((response) => {
-  //       console.log("hi");
-  //       console.log(response.data.user);
+
   //       setSellers(response.data.user);
   //     })
   //     .catch((error) => {
   //       console.log(error);
-  //       console.log("error retrieving user line 40");
+
   //     });
   // }
 
   // const loadProductList = (seller) => {
-  //   console.log(seller);
+
   //   if (seller.products) {
   //     const products = seller.products.map((item, key) => (
   //       <div key={key}>
@@ -37,23 +34,20 @@ export default function SellerAccount(props) {
   //   }
   // };
   useEffect(() => {
-        // Axios function
-  loadProductList();
+    // Axios function
+    loadProductList();
   }, []);
-    
-  const loadProductList = () => {
-  // Axios code will go here
-  Axios.get("/product/index")
-    .then((response) => {
-      console.log(response);
-      setProducts(response.data.products);
-    })
-    .catch((error) => {
-      console.log("Error Retrieving Products");
-      console.log(error);
-    });
-};
 
+  const loadProductList = () => {
+    // Axios code will go here
+    Axios.get("/product/index")
+      .then((response) => {
+        setProducts(response.data.products);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const addProduct = (product, id) => {
     Axios.post(`/product/add?id=${id}`, product)
@@ -61,7 +55,6 @@ export default function SellerAccount(props) {
         console.log("Product added successfully from seller account");
       })
       .catch((error) => {
-        console.log("Error adding Product");
         console.log(error);
       });
   };
@@ -69,14 +62,11 @@ export default function SellerAccount(props) {
   // const editView = (id) => {
   //   Axios.get(`/product/edit?id=${id}`)
   //     .then((response) => {
-  //       console.log(response.data.product);
   //       let product = response.data.product;
-  //       console.log("Loaded Product Information");
   //       setIsEdit(true);
   //       setCurrentProduct(product);
   //     })
   //     .catch((error) => {
-  //       console.log("Error loading product information");
   //       console.log(error);
   //     });
   // };
@@ -84,12 +74,10 @@ export default function SellerAccount(props) {
   // const editProduct = (product) => {
   //   Axios.put("/product/update", product)
   //     .then((response) => {
-  //       console.log("Product Updated Successfully!");
   //       console.log(response);
   //       // loadProductList();
   //     })
   //     .catch((error) => {
-  //       console.log("Error editing Product");
   //       console.log(error);
   //     });
   // };
@@ -97,7 +85,6 @@ export default function SellerAccount(props) {
   // const deleteProduct = (id) => {
   //   Axios.delete(`/product/delete?id=${id}`)
   //     .then((response) => {
-  //       console.log("Product deleted successfully!");
   //       console.log(response);
   //       // loadProductList();
   //     })
@@ -112,21 +99,19 @@ export default function SellerAccount(props) {
         {...product}
         // editView={editView}
         // deleteProduct={deleteProduct}
-      ></Product>
-
+      />
       {/* {loadProductList(sellers)} */}
     </div>
   ));
 
-  console.log(props);
   return (
     <div className="container">
-      <Profile user={props}></Profile>
+      <Profile user={props.user} />
       <MyProducts
-        seller={props}
-        user={props}
-        product={props}
-        products={allProducts}
+        seller={props.seller}
+        user={props.user}
+        products={props.products}
+        // products={allProducts}
         addProduct={addProduct}
         // editView={editView}
         // editProduct={editProduct}
