@@ -93,6 +93,7 @@ console.log(user)
     setIsAuth(false);
     setUser(null);
     setMessage("User logged out successfully");
+    loadProductList();
   };
 
   //  const errMessage = message ? (

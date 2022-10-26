@@ -9,16 +9,26 @@ export default function MyProducts(props) {
   const [showAddProductForm, setShowAddProductForm] = useState(false);
 
     console.log(props)
-  console.log(props.product.product.product[0]);
+    console.log(props.product.seller._id)
+        console.log(props.seller.seller._id);
+        console.log(props.product.seller[0]);
+
+  console.log(props.product.product.product)
 
   const myProducts = props.product.product.product.map((product, index) => {
-   
-    // if (props.seller.seller._id === product.seller[0]._id)
+    // console.log(product.seller._id)
+    // if (props.product.seller._id === product.seller[0]._id){
       return (
           <MyProductList key={index} {...product} />
-      );
-  });
-  console.log(props);
+      ) 
+      } 
+  
+  ); 
+  
+
+  const handleShowAddProductForm = (boolean) => {
+    setShowAddProductForm(boolean);
+   }
 
   return (
     <div>
@@ -36,6 +46,7 @@ export default function MyProducts(props) {
           functions={props}
           seller={props}
           user={props}
+          handleShowAddProductForm={handleShowAddProductForm}
         ></ProductCreateForm>
       ) : (
         <div> </div>
