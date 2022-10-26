@@ -54,19 +54,9 @@ export default function SellerAccount(props) {
     });
 };
 
-  // const getSellerId = (id) => {
-  //   Axios.get(`/seller/dashboard?userId=${id}`, id)
-  //     .then((response) => {
-  //       console.log(response);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
-  // // getSellerId()
 
-  const addProduct = (product, id) => {
-    Axios.post(`/product/add?id=${id}`, product)
+  const addProduct = (product) => {
+    Axios.post("/product/add", product)
       .then((response) => {
         console.log("Product added successfully from seller account");
       })
@@ -76,52 +66,52 @@ export default function SellerAccount(props) {
       });
   };
 
-  const editView = (id) => {
-    Axios.get(`/product/edit?id=${id}`)
-      .then((response) => {
-        console.log(response.data.product);
-        let product = response.data.product;
-        console.log("Loaded Product Information");
-        setIsEdit(true);
-        setCurrentProduct(product);
-      })
-      .catch((error) => {
-        console.log("Error loading product information");
-        console.log(error);
-      });
-  };
+  // const editView = (id) => {
+  //   Axios.get(`/product/edit?id=${id}`)
+  //     .then((response) => {
+  //       console.log(response.data.product);
+  //       let product = response.data.product;
+  //       console.log("Loaded Product Information");
+  //       setIsEdit(true);
+  //       setCurrentProduct(product);
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error loading product information");
+  //       console.log(error);
+  //     });
+  // };
 
-  const editProduct = (product) => {
-    Axios.put("/product/update", product)
-      .then((response) => {
-        console.log("Product Updated Successfully!");
-        console.log(response);
-        // loadProductList();
-      })
-      .catch((error) => {
-        console.log("Error editing Product");
-        console.log(error);
-      });
-  };
+  // const editProduct = (product) => {
+  //   Axios.put("/product/update", product)
+  //     .then((response) => {
+  //       console.log("Product Updated Successfully!");
+  //       console.log(response);
+  //       // loadProductList();
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error editing Product");
+  //       console.log(error);
+  //     });
+  // };
 
-  const deleteProduct = (id) => {
-    Axios.delete(`/product/delete?id=${id}`)
-      .then((response) => {
-        console.log("Product deleted successfully!");
-        console.log(response);
-        // loadProductList();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const deleteProduct = (id) => {
+  //   Axios.delete(`/product/delete?id=${id}`)
+  //     .then((response) => {
+  //       console.log("Product deleted successfully!");
+  //       console.log(response);
+  //       // loadProductList();
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   const allProducts = products.map((product, index) => (
     <div key={index}>
       <Product
         {...product}
-        editView={editView}
-        deleteProduct={deleteProduct}
+        // editView={editView}
+        // deleteProduct={deleteProduct}
       ></Product>
 
       {/* {loadProductList(sellers)} */}
@@ -138,9 +128,9 @@ export default function SellerAccount(props) {
         product={props}
         products={allProducts}
         addProduct={addProduct}
-        editView={editView}
-        editProduct={editProduct}
-        deleteProduct={deleteProduct}
+        // editView={editView}
+        // editProduct={editProduct}
+        // deleteProduct={deleteProduct}
       ></MyProducts>
     </div>
   );

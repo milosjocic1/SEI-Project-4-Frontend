@@ -144,7 +144,7 @@ console.log(user)
   };
   // PRODUCTS DELETE
   const deleteProduct = (id) => {
-    Axios.delete(`product/delete?id=${id}`)
+    Axios.delete(`/product/delete?id=${id}`)
       .then((response) => {
         console.log("Product deleted successfully");
         console.log(response);
