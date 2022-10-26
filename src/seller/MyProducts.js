@@ -15,17 +15,16 @@ export default function MyProducts(props) {
 
   console.log(props.product.product.product)
 
+//   SHOW SELLER RPDOCUTS ONLY
+
   const myProducts = props.product.product.product.map((product, index) => {
-    // console.log(product.seller._id)
-    // if (props.product.seller._id === product.seller[0]._id){
+    console.log(product)
+    if (props.product.seller._id === product.seller[0]._id){
       return (
           <MyProductList key={index} {...product} />
-      ) 
-      } 
-  
+      )}
+    }
   ); 
-  
-
   const handleShowAddProductForm = (boolean) => {
     setShowAddProductForm(boolean);
    }
