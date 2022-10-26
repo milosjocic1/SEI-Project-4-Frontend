@@ -132,7 +132,7 @@ console.log(user)
 
   // PRODUCTS SHOW
   const loadProductList = () => {
-    Axios.get("product/index")
+    Axios.get("/product/index")
       .then((response) => {
         console.log(response.data.products);
         setProducts(response.data.products);
