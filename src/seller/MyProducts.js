@@ -7,6 +7,9 @@ export default function MyProducts(props) {
     console.log(props.product.product.product[0])
 
     const myProducts = props.product.product.product.map((product, index) => {
+      console.log(props.seller.seller._id);
+      console.log(product.seller[0]._id)
+    if (props.seller.seller._id === product.seller[0]._id)
         return <div key={index}>
             <p>{product.title}</p>
         </div>
@@ -24,7 +27,7 @@ console.log(props)
       </button>
 
       {showAddProductForm ? (
-        <ProductCreateForm functions={props} user={props}></ProductCreateForm>
+        <ProductCreateForm functions={props} seller={props} user={props}></ProductCreateForm>
       ) : (
         <div> </div>
       )}

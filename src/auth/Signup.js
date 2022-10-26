@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import "./Auth.css"
 import Signin from "./Signin";
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from "react-router-dom";
+import Axios from 'axios'
+
 
 
 export default function Signup(props) {
@@ -17,6 +19,10 @@ export default function Signup(props) {
 
   const [newUser, setNewUser] = useState({});
 
+  const [fileInputState, setFileInputState] = useState("")
+  const [selectedFile, setSelectedFile] = useState("");
+  const [previewSource, setPreviewSource] = useState();
+
   const changeHandler = (e) => {
     const user = { ...newUser };
     user[e.target.name] = e.target.value;
@@ -28,9 +34,34 @@ export default function Signup(props) {
 
 
   const registerHandler = () => {
-    props.register(newUser)
+    props.register(newUser);
     navigate("/signin");
   };
+
+  
+  const handleFileInputChange = (e) => {
+      const file = e.target.files[0];
+      previewFile(file);
+    }
+
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource(reader.result)
+    }
+  }
+
+  const handleSubmitFile = (e) => {
+    console.log("submitting file")
+    e.preventDefault();
+    if(!previewSource) return;
+    uploadImage(previewSource);
+  }
+
+  const uploadImage = (base64EncodedImage) => {
+    console.log(base64EncodedImage)
+  }
 
   return (
     <div className="signupForm container">
@@ -80,11 +111,12 @@ export default function Signup(props) {
       <br />
       {showBuyer ? (
         <div id="buyer-link">
-          <form>
+          <form onSubmit={handleSubmitFile}>
             <div>
               <h3>Let's get you signed up so you can start shopping!</h3>
               <br />
               <div className="groupOne group1">
+                <input type="hidden" value="buyer" name="userRole"></input>
                 <label htmlFor="firstName">First Name</label>
                 <input
                   type="text"
@@ -96,6 +128,7 @@ export default function Signup(props) {
                 ></input>
               </div>
               <div className="groupOne group1">
+              <input type="hidden" value="seller" name="userRole"></input>
                 <label>Last Name</label>
                 <input
                   type="text"
@@ -107,29 +140,13 @@ export default function Signup(props) {
                 ></input>
               </div>
               <div className="groupOne group1">
-                <label>Upload a profile photo</label>&nbsp;
-                <button variant="primary">+</button>
+                <label>Upload a profile photo</label>&nbsp;<br></br>
+                <input name="image" type="file" value={fileInputState} onChange={handleFileInputChange}></input>
               </div>
-              <div className="groupTwo">
-                <label htmlFor="sellerName">Seller Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="sellerNameInput"
-                  name="sellerName"
-                  placeholder="Enter seller name"
-                  onChange={changeHandler}
-                ></input>
-              </div>
-              <div className="groupTwo">
-                <label>Add a bio to your shop page</label>
-                <textarea
-                  className="form-control"
-                  rows="3"
-                  name="bio"
-                  placeholder="Max 500 characters"
-                  onChange={changeHandler}
-                ></textarea>
+              <div>
+              {previewSource && (
+        <img src={previewSource} alt="chosen" style={{height: "150px"}}/>
+      )}
               </div>
               <div className="grouppOne group1">
                 <label htmlFor="emailAddress">Email Address</label>
@@ -166,7 +183,7 @@ export default function Signup(props) {
                   onChange={changeHandler}
                 ></input>
               </div>
-              <button className="sign-button" onClick={registerHandler}>
+              <button className="sign-button" type="button" onClick={registerHandler}>
                 Sign up
               </button>
               <br />
@@ -269,7 +286,7 @@ export default function Signup(props) {
                 onChange={changeHandler}
               ></input>
             </div>
-            <button className="sign-button" onClick={registerHandler}>
+            <button className="sign-button" value="submit" onClick={registerHandler}>
               Sign up
             </button>
             <br />

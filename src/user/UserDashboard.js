@@ -8,6 +8,7 @@ import "./User.css";
 export default function UserDashboard(props) {
   const [products, setProducts] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
+  const [seller, setSeller] = useState({})
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
@@ -20,19 +21,19 @@ export default function UserDashboard(props) {
     loadDashboard(props.user.user.id);
   }, []);
 
-  
 
-    console.log()
 
   const loadDashboard = (id) => {
-    Axios.get(`/user/dashboard?userId=${id}`)
+    Axios.get(`/user/dashboard/?userId=${id}`)
       .then((response) => {
         let user = response.data.user
         console.log("hi");
         console.log(response.data.user);
-        console.log(response.data.seller);
+        let seller = response.data.seller;
+        console.log(seller);
         console.log(user)
         setCurrentUser(user);
+        setSeller(seller)
       })
       .catch((error) => {
         console.log(error);
@@ -46,7 +47,7 @@ export default function UserDashboard(props) {
       {(currentUser.userRole === "buyer") ? 
         <BuyerAccount user={currentUser} product={props}></BuyerAccount>
      : 
-        <SellerAccount user={currentUser} product={props}></SellerAccount>
+        <SellerAccount seller={seller} user={currentUser} product={props}></SellerAccount>
       }
       
     </div>
