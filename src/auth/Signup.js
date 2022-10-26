@@ -59,6 +59,7 @@ export default function Signup(props) {
     // e.preventDefault();
     if(!previewSource) return;
     uploadImage(previewSource);
+
   }
 
   const uploadImage = async (base64EncodedImage) => {
@@ -69,7 +70,7 @@ export default function Signup(props) {
         body: JSON.stringify({data: base64EncodedImage}),
         headers: {'Content-type': 'application/json'}
       })
-    }
+    } 
     catch (error){
       console.log(error)
     }
@@ -155,7 +156,7 @@ export default function Signup(props) {
       
                <div className="groupOne group1">
                 <label>Upload a profile photo</label>&nbsp;<br></br>
-                <input name="image" type="file" value={fileInputState} onChange={handleFileInputChange}></input>
+                <input name="cloudinary_url" type="file" value={fileInputState} onChange={handleFileInputChange}></input>
               </div> 
                <div>
                 {previewSource && (
