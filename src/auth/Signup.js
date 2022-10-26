@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./Auth.css"
 
 
-import { BrowserRouter as Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -20,9 +20,9 @@ export default function Signup(props) {
 
   const [newUser, setNewUser] = useState({});
 
-  const [fileInputState, setFileInputState] = useState("")
-  const [selectedFile, setSelectedFile] = useState("");
-  const [previewSource, setPreviewSource] = useState();
+  // const [fileInputState, setFileInputState] = useState("")
+  // const [selectedFile, setSelectedFile] = useState("");
+  // const [previewSource, setPreviewSource] = useState();
 
   const changeHandler = (e) => {
     const user = { ...newUser };
@@ -40,29 +40,29 @@ export default function Signup(props) {
   };
 
   //IMAGE UPLOAD
-  const handleFileInputChange = (e) => {
-      const file = e.target.files[0];
-      previewFile(file);
-    }
+  // const handleFileInputChange = (e) => {
+  //     const file = e.target.files[0];
+  //     previewFile(file);
+  //   }
 
-  const previewFile = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewSource(reader.result)
-    }
-  }
+  // const previewFile = (file) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onloadend = () => {
+  //     setPreviewSource(reader.result)
+  //   }
+  // }
 
-  const handleSubmitFile = (e) => {
-    console.log("submitting file")
-    e.preventDefault();
-    if(!previewSource) return;
-    uploadImage(previewSource);
-  }
+  // const handleSubmitFile = (e) => {
+  //   console.log("submitting file")
+  //   e.preventDefault();
+  //   if(!previewSource) return;
+  //   uploadImage(previewSource);
+  // }
 
-  const uploadImage = (base64EncodedImage) => {
-    console.log(base64EncodedImage)
-  }
+  // const uploadImage = (base64EncodedImage) => {
+  //   console.log(base64EncodedImage)
+  // }
 
   return (
     <div className="signupForm container">
@@ -112,7 +112,7 @@ export default function Signup(props) {
       <br />
       {showBuyer ? (
         <div id="buyer-link">
-          <form onClick={handleFileInputChange}>
+          <form>
             <div>
               <h3>Let's get you signed up so you can start shopping!</h3>
               <br />
@@ -141,11 +141,11 @@ export default function Signup(props) {
                 ></input>
               </div>
       
-              <div className="groupOne group1">
+              {/* <div className="groupOne group1">
                 <label>Upload a profile photo</label>&nbsp;<br></br>
                 <input name="image" type="file" value={fileInputState} onChange={handleFileInputChange}></input>
-              </div>
-              <div>
+              </div> */}
+              {/* <div>
                 {previewSource && (
                   <img
                     src={previewSource}
@@ -153,7 +153,7 @@ export default function Signup(props) {
                     style={{ height: "150px" }}
                   />
                 )}
-              </div>
+              </div> */}
               <div className="grouppOne group1">
                 <label htmlFor="emailAddress">Email Address</label>
                 <input
@@ -234,10 +234,10 @@ export default function Signup(props) {
                 onChange={changeHandler}
               ></input>
             </div>
-            <div className="groupOne group1">
+            {/* <div className="groupOne group1">
               <label>Upload a profile photo</label>&nbsp;
               <button variant="primary">+</button>
-            </div>
+            </div> */}
             <div className="groupTwo">
               <label htmlFor="sellerName">Seller Name</label>
               <input
