@@ -442,5 +442,15 @@ footer {
   color: white !important;
   padding: 5px 20px;
   font-size: 20px;
+  border: 0;
 
+}
+
+.edit-delete-btn{
+    color: black !important;
+    background-color: rgb(237, 237, 237);
+}
+.add-product {
+  margin-top: 100px;
+  margin-bottom: 50px;
 }

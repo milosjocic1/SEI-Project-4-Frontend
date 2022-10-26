@@ -132,7 +132,7 @@ console.log(user)
 
   // PRODUCTS SHOW
   const loadProductList = () => {
-    Axios.get("product/index")
+    Axios.get("/product/index")
       .then((response) => {
         console.log(response.data.products);
         setProducts(response.data.products);
@@ -144,7 +144,7 @@ console.log(user)
   };
   // PRODUCTS DELETE
   const deleteProduct = (id) => {
-    Axios.delete(`product/delete?id=${id}`)
+    Axios.delete(`/product/delete?id=${id}`)
       .then((response) => {
         console.log("Product deleted successfully");
         console.log(response);
@@ -206,11 +206,11 @@ console.log(user)
                 <div>
                   <Link to="/signin"> Sign In </Link>&nbsp;&nbsp;&nbsp;
                   <Link to="/signup"> Sign Up </Link>&nbsp;&nbsp;&nbsp;
-                  {user.userRole === "seller" ? (
+                  {/* {user.userRole === "seller" ? (
                     <Link to="/seller/dashboard"> Seller Dashboard </Link>
                   ) : (
                     <Link to="/user/dashboard"> User Dashboard </Link>
-                  )}
+                  )} */}
                   &nbsp;&nbsp;&nbsp;
                   <Link to="/productlist"> Product List </Link>
                   &nbsp;&nbsp;&nbsp;
@@ -250,10 +250,10 @@ console.log(user)
           ></Route>
           <Route path="/addproduct" element={<ProductCreateForm />}></Route>
           {/* Below will have to add seller id to this link */}
-          <Route
+          {/* <Route
             path="/seller/dashboard"
             element={<SellerDashboard user={user} product={products} />}
-          ></Route>
+          ></Route> */}
           <Route
             path="/user/dashboard"
             element={<UserDashboard user={user} product={products} />}
