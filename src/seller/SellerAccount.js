@@ -77,7 +77,7 @@ export default function SellerAccount(props) {
   };
 
   const editView = (id) => {
-    Axios.get(`product/edit?id=${id}`)
+    Axios.get(`/product/edit?id=${id}`)
       .then((response) => {
         console.log(response.data.product);
         let product = response.data.product;
@@ -92,7 +92,7 @@ export default function SellerAccount(props) {
   };
 
   const editProduct = (product) => {
-    Axios.put("product/update", product)
+    Axios.put("/product/update", product)
       .then((response) => {
         console.log("Product Updated Successfully!");
         console.log(response);
@@ -105,7 +105,7 @@ export default function SellerAccount(props) {
   };
 
   const deleteProduct = (id) => {
-    Axios.delete(`product/delete?id=${id}`)
+    Axios.delete(`/product/delete?id=${id}`)
       .then((response) => {
         console.log("Product deleted successfully!");
         console.log(response);

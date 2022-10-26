@@ -12,6 +12,8 @@ export default function MyProducts(props) {
     if (props.seller.seller._id === product.seller[0]._id)
         return <div key={index}>
             <p>{product.title}</p>
+      
+            
         </div>
     })
 console.log(props)
