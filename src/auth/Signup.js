@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import "./Auth.css"
-import Signin from "./Signin";
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from "react-router-dom";
-import Axios from 'axios'
+
+
+import { BrowserRouter as Link, useNavigate } from "react-router-dom";
+
 
 
 
@@ -38,7 +39,7 @@ export default function Signup(props) {
     navigate("/signin");
   };
 
-  
+  //IMAGE UPLOAD
   const handleFileInputChange = (e) => {
       const file = e.target.files[0];
       previewFile(file);
@@ -111,7 +112,7 @@ export default function Signup(props) {
       <br />
       {showBuyer ? (
         <div id="buyer-link">
-          <form onSubmit={handleSubmitFile}>
+          <form onClick={handleFileInputChange}>
             <div>
               <h3>Let's get you signed up so you can start shopping!</h3>
               <br />
@@ -128,7 +129,7 @@ export default function Signup(props) {
                 ></input>
               </div>
               <div className="groupOne group1">
-              <input type="hidden" value="seller" name="userRole"></input>
+                <input type="hidden" value="seller" name="userRole"></input>
                 <label>Last Name</label>
                 <input
                   type="text"
@@ -139,14 +140,19 @@ export default function Signup(props) {
                   onChange={changeHandler}
                 ></input>
               </div>
+      
               <div className="groupOne group1">
                 <label>Upload a profile photo</label>&nbsp;<br></br>
                 <input name="image" type="file" value={fileInputState} onChange={handleFileInputChange}></input>
               </div>
               <div>
-              {previewSource && (
-        <img src={previewSource} alt="chosen" style={{height: "150px"}}/>
-      )}
+                {previewSource && (
+                  <img
+                    src={previewSource}
+                    alt="chosen"
+                    style={{ height: "150px" }}
+                  />
+                )}
               </div>
               <div className="grouppOne group1">
                 <label htmlFor="emailAddress">Email Address</label>
@@ -183,7 +189,11 @@ export default function Signup(props) {
                   onChange={changeHandler}
                 ></input>
               </div>
-              <button className="sign-button" type="button" onClick={registerHandler}>
+              <button
+                className="sign-button"
+                type="button"
+                onClick={registerHandler}
+              >
                 Sign up
               </button>
               <br />
@@ -201,9 +211,7 @@ export default function Signup(props) {
       ) : showSeller ? (
         <form>
           <div id="seller-link">
-            <h3>
-              Let's get you signed up so you can start selling!
-            </h3>
+            <h3>Let's get you signed up so you can start selling!</h3>
             <div className="groupOne group1">
               <label htmlFor="firstName">Name</label>
               <input
@@ -286,7 +294,11 @@ export default function Signup(props) {
                 onChange={changeHandler}
               ></input>
             </div>
-            <button className="sign-button" value="submit" onClick={registerHandler}>
+            <button
+              className="sign-button"
+              value="submit"
+              onClick={registerHandler}
+            >
               Sign up
             </button>
             <br />
