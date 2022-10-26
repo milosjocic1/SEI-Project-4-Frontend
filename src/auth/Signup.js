@@ -111,7 +111,7 @@ export default function Signup(props) {
       <br />
       {showBuyer ? (
         <div id="buyer-link">
-          <form onSubmit={handleSubmitFile}>
+          <form onSubmit={handleSubmitFile} encType="">
             <div>
               <h3>Let's get you signed up so you can start shopping!</h3>
               <br />
@@ -147,6 +147,7 @@ export default function Signup(props) {
               {previewSource && (
         <img src={previewSource} alt="chosen" style={{height: "150px"}}/>
       )}
+      <button type="button">Use this image</button>
               </div>
               <div className="grouppOne group1">
                 <label htmlFor="emailAddress">Email Address</label>
@@ -286,7 +287,7 @@ export default function Signup(props) {
                 onChange={changeHandler}
               ></input>
             </div>
-            <button className="sign-button" value="submit" onClick={registerHandler}>
+            <button className="sign-button" onClick={registerHandler}>
               Sign up
             </button>
             <br />
