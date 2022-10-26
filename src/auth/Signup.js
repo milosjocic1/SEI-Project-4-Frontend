@@ -36,6 +36,7 @@ export default function Signup(props) {
 
   const registerHandler = () => {
     props.register(newUser);
+    handleSubmitFile();
     navigate("/signin");
   };
 
@@ -53,15 +54,26 @@ export default function Signup(props) {
     }
   }
 
-  const handleSubmitFile = (e) => {
+  const handleSubmitFile = () => {
     console.log("submitting file")
-    e.preventDefault();
+    // e.preventDefault();
     if(!previewSource) return;
     uploadImage(previewSource);
   }
 
-  const uploadImage = (base64EncodedImage) => {
+  const uploadImage = async (base64EncodedImage) => {
     console.log(base64EncodedImage)
+    try {
+      await fetch('/api/upload', {
+        method: 'POST',
+        body: JSON.stringify({data: base64EncodedImage}),
+        headers: {'Content-type': 'application/json'}
+      })
+    }
+    catch (error){
+      console.log(error)
+    }
+
   }
 
   return (
@@ -112,7 +124,7 @@ export default function Signup(props) {
       <br />
       {showBuyer ? (
         <div id="buyer-link">
-          <form onClick={handleFileInputChange} type="multipart/form-data">
+          <form encType="multipart/form-data">
             <div>
               <h3>Let's get you signed up so you can start shopping!</h3>
               <br />
@@ -141,11 +153,11 @@ export default function Signup(props) {
                 ></input>
               </div>
       
-              <div className="groupOne group1">
+               <div className="groupOne group1">
                 <label>Upload a profile photo</label>&nbsp;<br></br>
                 <input name="image" type="file" value={fileInputState} onChange={handleFileInputChange}></input>
-              </div>
-              <div>
+              </div> 
+               <div>
                 {previewSource && (
                   <img
                     src={previewSource}
@@ -234,10 +246,10 @@ export default function Signup(props) {
                 onChange={changeHandler}
               ></input>
             </div>
-            <div className="groupOne group1">
+            {/* <div className="groupOne group1">
               <label>Upload a profile photo</label>&nbsp;
               <button variant="primary">+</button>
-            </div>
+            </div> */}
             <div className="groupTwo">
               <label htmlFor="sellerName">Seller Name</label>
               <input
