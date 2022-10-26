@@ -12,30 +12,6 @@ export default function SellerAccount(props) {
 
   console.log(props);
 
-  // const loadDashboard = () => {
-  //   Axios.get("/seller/dashboard")
-  //     .then((response) => {
-  //       console.log("hi");
-  //       console.log(response.data.user);
-  //       setSellers(response.data.user);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       console.log("error retrieving user line 40");
-  //     });
-  // }
-
-  // const loadProductList = (seller) => {
-  //   console.log(seller);
-  //   if (seller.products) {
-  //     const products = seller.products.map((item, key) => (
-  //       <div key={key}>
-  //         <p>{item.title}</p>
-  //       </div>
-  //     ));
-  //     return products;
-  //   }
-  // };
   useEffect(() => {
         // Axios function
   loadProductList();

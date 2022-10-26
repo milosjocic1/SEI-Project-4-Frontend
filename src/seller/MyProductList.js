@@ -11,6 +11,8 @@ export default function MyProductList(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
+  
+
   const editView = (id) => {
     Axios.get(`/product/edit?id=${id}`)
       .then((response) => {
@@ -50,6 +52,8 @@ export default function MyProductList(props) {
         console.log(error);
       });
   };
+
+
 
   return (
     <div key={props._id} className="col-lg-4 col-sm-12 mt-3">

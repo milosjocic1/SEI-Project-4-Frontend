@@ -8,23 +8,25 @@ import MyProductList from "./MyProductList";
 export default function MyProducts(props) {
   const [showAddProductForm, setShowAddProductForm] = useState(false);
 
-    console.log(props)
-    console.log(props.product.seller._id)
-        console.log(props.seller.seller._id);
-        console.log(props.product.seller[0]);
 
-  console.log(props.product.product.product)
 
-//   SHOW SELLER RPDOCUTS ONLY
 
-  const myProducts = props.product.product.product.map((product, index) => {
-    console.log(product)
-    if (props.product.seller._id === product.seller[0]._id){
-      return (
-          <MyProductList key={index} {...product} />
-      )}
-    }
-  ); 
+    let userId = props.user.product.user.user.id;
+    
+    console.log(userId)
+    let productUserId = props.product.user._id;
+    
+    const newTry = props.product.product.product.map((product, index) => {
+        console.log(product.seller[0].id)
+        if(product.seller[0]._id.toString() == userId.toString()) {
+            console.log("match")
+        } else {
+            console.log("No")
+        }
+    
+    })
+
+
   const handleShowAddProductForm = (boolean) => {
     setShowAddProductForm(boolean);
    }
@@ -51,7 +53,7 @@ export default function MyProducts(props) {
         <div> </div>
       )}
       <div className="row card-group mt-1 mb-3">
-        <h3>My Listings</h3><br></br><br></br>{myProducts}</div>
+        <h3>My Listings</h3><br></br><br></br>{newTry}</div>
     </div>
   );
-}
+      }
