@@ -20,6 +20,10 @@ export default function MyProducts(props) {
   });
   console.log(props);
 
+  const handleShowAddProductForm = (boolean) => {
+    setShowAddProductForm(boolean);
+   }
+
   return (
     <div>
       <button
@@ -36,6 +40,7 @@ export default function MyProducts(props) {
           functions={props}
           seller={props}
           user={props}
+          handleShowAddProductForm={handleShowAddProductForm}
         ></ProductCreateForm>
       ) : (
         <div> </div>

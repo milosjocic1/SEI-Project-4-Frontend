@@ -93,6 +93,7 @@ console.log(user)
     setIsAuth(false);
     setUser(null);
     setMessage("User logged out successfully");
+    loadProductList();
   };
 
   //  const errMessage = message ? (
@@ -206,11 +207,11 @@ console.log(user)
                 <div>
                   <Link to="/signin"> Sign In </Link>&nbsp;&nbsp;&nbsp;
                   <Link to="/signup"> Sign Up </Link>&nbsp;&nbsp;&nbsp;
-                  {user.userRole === "seller" ? (
+                  {/* {user.userRole === "seller" ? (
                     <Link to="/seller/dashboard"> Seller Dashboard </Link>
                   ) : (
                     <Link to="/user/dashboard"> User Dashboard </Link>
-                  )}
+                  )} */}
                   &nbsp;&nbsp;&nbsp;
                   <Link to="/productlist"> Product List </Link>
                   &nbsp;&nbsp;&nbsp;
@@ -250,10 +251,10 @@ console.log(user)
           ></Route>
           <Route path="/addproduct" element={<ProductCreateForm />}></Route>
           {/* Below will have to add seller id to this link */}
-          <Route
+          {/* <Route
             path="/seller/dashboard"
             element={<SellerDashboard user={user} product={products} />}
-          ></Route>
+          ></Route> */}
           <Route
             path="/user/dashboard"
             element={<UserDashboard user={user} product={products} />}
