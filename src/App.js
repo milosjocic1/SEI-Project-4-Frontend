@@ -53,7 +53,7 @@ export default function App() {
     }
   }, []);
 
-console.log(user)
+// console.log(user)
   const registerHandler = (user) => {
     Axios.post("/auth/signup", user)
       .then((response) => {
@@ -124,12 +124,10 @@ console.log(user)
 
   const [products, setProducts] = useState([]);
 
-  console.log(products)
+  // console.log(products)
   useEffect(() => {
     loadProductList();
   }, []);
-
-  // PRODUCTS CRUD
 
   // PRODUCTS SHOW
   const loadProductList = () => {
@@ -143,37 +141,9 @@ console.log(user)
         console.log(error);
       });
   };
-  // PRODUCTS DELETE
-  const deleteProduct = (id) => {
-    Axios.delete(`/product/delete?id=${id}`)
-      .then((response) => {
-        console.log("Product deleted successfully");
-        console.log(response);
-        loadProductList();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
-  // WHEN CREATE SELLER/USER READY
-  // const loadMyProducts = (seller) => {
-  //   console.log(seller)
-  //   if(seller.product){
-  //     const myProducts = seller.product.map((item, key) => (
-  //       <div key={key}>
-  //         <p>{item.title}</p>
-  //       </div>
-  //     ))
-  //     return myProducts
-  //   }
-  // }
 
-  // const addSeller = (seller) => {
-  //   Axios.post("seller/add")
-  // }
-
-  console.log(allCategories);
+  // console.log(allCategories);
 
   return (
     <Router>
@@ -226,7 +196,12 @@ console.log(user)
       <div>
         <Routes>
           {/* <Route path="/" element={<Home />}></Route> */}
-          <Route path="/*" element={<Home category={allCategories} />}></Route>
+          <Route
+            path="/*"
+            element={
+              <Home category={allCategories} user={user} product={products} />
+            }
+          ></Route>
           <Route
             path="/signin"
             element={<Signin login={loginHandler} />}
@@ -237,7 +212,7 @@ console.log(user)
           ></Route>
           <Route
             path="/productlist/*"
-            element={<ProductList product={products} />}
+            element={<ProductList user={user} product={products} />}
           ></Route>
           <Route
             path="/product/:productId"
@@ -245,7 +220,7 @@ console.log(user)
               <Product
                 product={products}
                 category={allCategories}
-                deleteProduct={deleteProduct}
+                user={user}
               />
             }
           ></Route>
@@ -259,7 +234,7 @@ console.log(user)
             path="/user/dashboard"
             element={<UserDashboard user={user} product={products} />}
           ></Route>
-          <Route path="/logout"></Route>
+          <Route path="/logout" user={user} product={products}></Route>
         </Routes>
       </div>
       <footer>

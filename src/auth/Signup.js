@@ -20,9 +20,9 @@ export default function Signup(props) {
 
   const [newUser, setNewUser] = useState({});
 
-  // const [fileInputState, setFileInputState] = useState("")
-  // const [selectedFile, setSelectedFile] = useState("");
-  // const [previewSource, setPreviewSource] = useState();
+  const [fileInputState, setFileInputState] = useState("")
+  const [selectedFile, setSelectedFile] = useState("");
+  const [previewSource, setPreviewSource] = useState();
 
   const changeHandler = (e) => {
     const user = { ...newUser };
@@ -36,33 +36,45 @@ export default function Signup(props) {
 
   const registerHandler = () => {
     props.register(newUser);
+    handleSubmitFile();
     navigate("/signin");
   };
 
   //IMAGE UPLOAD
-  // const handleFileInputChange = (e) => {
-  //     const file = e.target.files[0];
-  //     previewFile(file);
-  //   }
+  const handleFileInputChange = (e) => {
+      const file = e.target.files[0];
+      previewFile(file);
+    }
 
-  // const previewFile = (file) => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onloadend = () => {
-  //     setPreviewSource(reader.result)
-  //   }
-  // }
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource(reader.result)
+    }
+  }
 
-  // const handleSubmitFile = (e) => {
-  //   console.log("submitting file")
-  //   e.preventDefault();
-  //   if(!previewSource) return;
-  //   uploadImage(previewSource);
-  // }
+  const handleSubmitFile = () => {
+    console.log("submitting file")
+    // e.preventDefault();
+    if(!previewSource) return;
+    uploadImage(previewSource);
+  }
 
-  // const uploadImage = (base64EncodedImage) => {
-  //   console.log(base64EncodedImage)
-  // }
+  const uploadImage = async (base64EncodedImage) => {
+    console.log(base64EncodedImage)
+    try {
+      await fetch('/api/upload', {
+        method: 'POST',
+        body: JSON.stringify({data: base64EncodedImage}),
+        headers: {'Content-type': 'application/json'}
+      })
+    }
+    catch (error){
+      console.log(error)
+    }
+
+  }
 
   return (
     <div className="signupForm container">
@@ -112,7 +124,7 @@ export default function Signup(props) {
       <br />
       {showBuyer ? (
         <div id="buyer-link">
-          <form>
+          <form encType="multipart/form-data">
             <div>
               <h3>Let's get you signed up so you can start shopping!</h3>
               <br />
@@ -141,11 +153,11 @@ export default function Signup(props) {
                 ></input>
               </div>
       
-              {/* <div className="groupOne group1">
+               <div className="groupOne group1">
                 <label>Upload a profile photo</label>&nbsp;<br></br>
                 <input name="image" type="file" value={fileInputState} onChange={handleFileInputChange}></input>
-              </div> */}
-              {/* <div>
+              </div> 
+               <div>
                 {previewSource && (
                   <img
                     src={previewSource}
@@ -153,7 +165,7 @@ export default function Signup(props) {
                     style={{ height: "150px" }}
                   />
                 )}
-              </div> */}
+              </div>
               <div className="grouppOne group1">
                 <label htmlFor="emailAddress">Email Address</label>
                 <input
