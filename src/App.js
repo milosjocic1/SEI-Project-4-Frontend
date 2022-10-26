@@ -189,7 +189,7 @@ export default function App() {
             element={<ProductList user={user} products={products} />}
           ></Route>
           <Route
-            path="/product/:productId"
+            path="/product/:productId/*"
             element={
               <Product
                 product={products}
