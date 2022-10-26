@@ -4,7 +4,7 @@ import "./User.css";
 
 export default function Profile(props) {
 
-  console.log(props.user)
+  console.log(props)
   return (
     <div>
       <div className="row">
