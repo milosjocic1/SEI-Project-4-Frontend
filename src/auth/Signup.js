@@ -14,9 +14,6 @@ export default function Signup(props) {
 
   const [newUser, setNewUser] = useState({});
 
-  const [fileInputState, setFileInputState] = useState("");
-  const [selectedFile, setSelectedFile] = useState("");
-  const [previewSource, setPreviewSource] = useState();
 
   const changeHandler = (e) => {
     const user = { ...newUser };
@@ -25,47 +22,26 @@ export default function Signup(props) {
     setNewUser(user);
   };
 
-  const registerHandler = () => {
-    props.register(newUser);
-    handleSubmitFile();
+  const registerHandler = async () => {
+    await props.register(newUser);
+    // await handleSubmitFile();
     navigate("/signin");
   };
 
-  //IMAGE UPLOAD
+  // //IMAGE UPLOAD
   const handleFileInputChange = (e) => {
-    const file = e.target.files[0];
-    previewFile(file);
+    props.handleFileInputChange(e)
   };
 
-  const previewFile = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewSource(reader.result);
-    };
-  };
+  // const previewFile = (file) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onloadend = () => {
+  //     setPreviewSource(reader.result);
+  //   };
+  // };
 
-  const handleSubmitFile = () => {
-    // e.preventDefault();
-    if (!previewSource) return;
-    uploadImage(previewSource);
-
-  }
-
-  const uploadImage = async (base64EncodedImage) => {
-    try {
-      await fetch('/api/upload', {
-        method: 'POST',
-        body: JSON.stringify({data: base64EncodedImage}),
-        headers: {'Content-type': 'application/json'}
-      })
-    } 
-    catch (error){
-      console.log(error)
-    }
-
-  }
-
+  
   return (
     <div className="signupForm container">
       <h1 className="sign-title">Sign Up</h1>
@@ -144,12 +120,12 @@ export default function Signup(props) {
               </div>
               <div className="groupOne group1">
                 <label>Upload a profile photo</label>&nbsp;<br></br>
-                <input name="cloudinary_url" type="file" value={fileInputState} onChange={handleFileInputChange}></input>
+                <input name="cloudinary_url" type="file"  onChange={handleFileInputChange}></input>
               </div> 
                <div>
-                {previewSource && (
+                {props.previewSource && (
                   <img
-                    src={previewSource}
+                    src={props.previewSource}
                     alt="chosen"
                     style={{ height: "150px" }}
                   />
