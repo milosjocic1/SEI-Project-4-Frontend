@@ -1,18 +1,14 @@
-import React from 'react'
-import Categories from '../components/Categories';
-import Search from '../components/Search'
-import Review from '../seller/Review';
+import React from "react";
+import Categories from "../components/Categories";
+import Search from "../components/Search";
+import Review from "../seller/Review";
 import { useParams } from "react-router-dom";
 
-
 export default function Product(props) {
-
-  
-  const {productId} = useParams()
-  const thisProduct = props.product.find((product) => product._id === productId);
-
-console.log(props)
-// console.log(thisProduct)
+  const { productId } = useParams();
+  const thisProduct = props.product.find(
+    (product) => product._id === productId
+  );
 
   return (
     <div className="container">

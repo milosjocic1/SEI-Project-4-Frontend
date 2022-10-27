@@ -1,43 +1,40 @@
-import "./Auth.css"
-import React, {useState} from "react";
+import "./Auth.css";
+import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function Signin(props) {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
+  const [newUser, setNewUser] = useState({});
 
-    const [newUser, setNewUser] = useState({});
+  const changeHandler = (e) => {
+    const user = { ...newUser };
+    user[e.target.name] = e.target.value;
 
-    const changeHandler = (e) => {
-        const user = {...newUser};
-        user[e.target.name] = e.target.value;
-        console.log(user);
-        setNewUser(user);
-    }
+    setNewUser(user);
+  };
 
-    const loginHandler = () => {
-        props.login(newUser)
-        navigate("/")
-    }
+  const loginHandler = () => {
+    props.login(newUser);
+    navigate("/");
+  };
   return (
     <div className="container div-for-sign">
       <div className="row sign">
         <div className="col-md-6 signin-left">
           <h1 className="sign-title">Sign in</h1> <br />
           <br />
-          <Container>
+          <form onSubmit={loginHandler}>
             <Form.Group>
-              {/* <Form.Label>Email Address</Form.Label> */}
               <Form.Control
                 name="emailAddress"
                 placeholder="Email"
                 onChange={changeHandler}
-              ></Form.Control>
+              />
             </Form.Group>
             <Form.Group>
-              {/* <Form.Label>Password</Form.Label> */}
               <Form.Control
                 name="password"
                 placeholder="Password"
@@ -47,11 +44,11 @@ export default function Signin(props) {
               <p>Forgot your password?</p>
             </Form.Group>
             <div className="button-div">
-              <Button className="sign-button" onClick={loginHandler} >
+              <Button className="sign-button" type="submit">
                 Log in
               </Button>
             </div>
-          </Container>
+          </form>
         </div>
         <div className="col-md-6 signin-right">
           <h1 className="signup-signin-title">New to Agora?</h1> <br />
