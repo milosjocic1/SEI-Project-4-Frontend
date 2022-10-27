@@ -1,99 +1,77 @@
 import React, { useState } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 
-export default function ProductCreateForm(props) {
-  const [newProduct, setNewProduct] = useState({});
-
-  const thisSellerId = props.seller._id;
+export default function ShippingForm(props) {
+  const [newShipping, setNewShipping] = useState(props.shipping);
 
   const handleChange = (event) => {
     const attributeToChange = event.target.name;
     const newValue = event.target.value;
 
-    const product = { ...newProduct };
-    product[attributeToChange] = newValue;
-
-    setNewProduct(product);
+    const shipping = { ...newShipping };
+    shipping[attributeToChange] = newValue;
+    setNewShipping(shipping);
   };
 
-  // function updatePage() {
-  //   props.handleShowAddProductForm(false);
-  //   props.myProducts();
-  // }
-
-  // const changeOptions = (event) => {
-  //   const parentValue = event.target.value;
-  //   let options;
-  //   if (parentValue == "Fashion") {
-  //     options = ""
-  //   }
-  // }
-  // function updatePage() {
-  //   props.handleShowAddProductForm(false);
-  //   props.myProducts();
-  // }
-
-  // const changeOptions = (event) => {
-  //   const parentValue = event.target.value;
-  //   let options;
-  //   if (parentValue == "Fashion") {
-  //     options = ""
-  //   }
-  // }
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.functions.addProduct(newProduct, thisSellerId);
+    props.editAuthor(newProduct);
     event.target.reset();
-    // updatePage();
   };
 
   return (
     <div className="container">
-      <h1>Add Product</h1>
+      <h1>Shipping & Billing</h1>
       <Form onSubmit={handleSubmit}>
+
         <Form.Group>
-          <Form.Label>Title</Form.Label>
+          <div>Your Shipping Address</div>  
+          <Form.Label>Address Line 1</Form.Label>
           <Form.Control
-            name="title"
+            name="addressLine1"
             type="text"
             onChange={handleChange}
           ></Form.Control>
         </Form.Group>
+
         <Form.Group>
-          <Form.Label>Subtitle</Form.Label>
+          <Form.Label>Address Line 2</Form.Label>
           <Form.Control
-            name="subTitle"
+            name="addressLine2"
             type="text"
             onChange={handleChange}
           ></Form.Control>
         </Form.Group>
+
         <Form.Group>
-          <Form.Label>Description</Form.Label>
+          <Form.Label>City</Form.Label>
           <Form.Control
-            name="description"
+            name="city"
             type="text"
             onChange={handleChange}
           ></Form.Control>
         </Form.Group>
+
         <Form.Group>
-          <Form.Label>Condition</Form.Label>
+          <Form.Label>County</Form.Label>
           <Form.Control
-            name="condition"
+            name="county"
             type="text"
             onChange={handleChange}
           ></Form.Control>
         </Form.Group>
+
         <Form.Group>
-          <Form.Label>Price</Form.Label>
+          <Form.Label>PostCode</Form.Label>
           <Form.Control
             name="price"
-            type="number"
+            type="text"
             onChange={handleChange}
           ></Form.Control>
         </Form.Group>
+
         <Form.Group>
           <Form.Label>Category</Form.Label>
-          {/* <Form.Control name="category" type="text" onChange={handleChange}></Form.Control> */}
           <Form.Select name="category" type="text" onChange={handleChange}>
             <option>Open this select menu</option>
             <option value="Fashion">Fashion</option>
@@ -111,7 +89,6 @@ export default function ProductCreateForm(props) {
         </Form.Group>
         <Form.Group>
           <Form.Label>Subcategory</Form.Label>
-          {/* <Form.Control name="subcategory" type="text" onChange={handleChange}></Form.Control> */}
           <Form.Select name="subCategory" type="text" onChange={handleChange}>
             <option>Open this select menu</option>
             <option value="Fashion">Fashion</option>
@@ -127,15 +104,6 @@ export default function ProductCreateForm(props) {
             <option value="Collectables and Art">Collectables and Art</option>
           </Form.Select>
         </Form.Group>
-
-        {/* <Form.Group>
-          <Form.Label>ID</Form.Label>
-          <Form.Control
-            name="seller"
-            type="text"
-            onChange={handleChange}
-          ></Form.Control>
-        </Form.Group> */}
 
         <Form.Group>
           <Form.Label>Shipping Rate</Form.Label>
@@ -154,16 +122,7 @@ export default function ProductCreateForm(props) {
           ></Form.Control>
         </Form.Group>
 
-        {/* <Form.Group>
-          <Form.Check
-            type="radio"
-            id="custom-switch"
-            label="I am ready to sell it!"
-            name="seller"
-            defaultValue={thisSellerId}
-          />
-        </Form.Group> */}
-        <Button variant="primary" type="submit">
+        <Button variant="primary" value="Update Product" type="submit">
           Submit
         </Button>
       </Form>
