@@ -231,7 +231,13 @@ export default function App() {
           ></Route>
           <Route
             path="/signup"
-            element={<Signup register={registerHandler} handleFileInputChange={handleFileInputChange} previewSource={previewSource}/>}
+            element={
+              <Signup
+                register={registerHandler}
+                handleFileInputChange={handleFileInputChange}
+                previewSource={previewSource}
+              />
+            }
           ></Route>
           <Route
             path="/productlist/*"
@@ -247,7 +253,7 @@ export default function App() {
               />
             }
           ></Route>
-          <Route path="/addproduct" element={<ProductCreateForm handleFileInputChange={handleFileInputChange} previewSource={previewSource}/>}></Route>
+          <Route path="/addproduct" element={<ProductCreateForm />}></Route>
           {/* Below will have to add seller id to this link */}
           {/* <Route
             path="/seller/dashboard"
@@ -255,7 +261,14 @@ export default function App() {
           ></Route> */}
           <Route
             path="/user/dashboard"
-            element={<UserDashboard user={user} products={products} />}
+            element={
+              <UserDashboard
+                user={user}
+                products={products}
+                handleFileInputChange={handleFileInputChange}
+                previewSource={previewSource}
+              />
+            }
           ></Route>
           <Route path="/cart" element={<Cart user={user} products={products}/>} />
           <Route path="/logout" user={user} product={products}></Route>
