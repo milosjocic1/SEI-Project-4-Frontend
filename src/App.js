@@ -12,6 +12,7 @@ import ProductCreateForm from "./product/ProductCreateForm";
 import SellerDashboard from "./seller/SellerAccount";
 import UserDashboard from "./user/UserDashboard";
 import jwt_decode from "jwt-decode";
+import Cart from "./cart/Cart"
 
 // Bootstrap
 import Container from "react-bootstrap/Container";
@@ -164,8 +165,43 @@ export default function App() {
     catch (error){
       console.log(error)
     }
-
   }
+
+  // ATTEMPT TO ADD PRODUCT IMAGE
+    const [previewSourceProduct, setPreviewSourceProduct] = useState();
+
+    const handleProductFileInputChange = (e) => {
+      const file = e.target.files[0];
+      previewProductFile(file);
+    };
+ 
+      const previewProductFile = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          setPreviewSourceProduct(reader.result);
+        };
+      };
+
+    const handleSubmitFileProduct = (productId) => {
+      // e.preventDefault();
+      if (!previewSource) return;
+      uploadProduct(previewSource, productId);
+    };
+
+    const uploadProduct = async (base64EncodedImage, productId) => {
+      try {
+        // let userId = localStorage.getItem("userId");
+        console.log(productId);
+        await fetch(`/api/uploadProduct?productId=${productId}`, {
+          method: "POST",
+          body: JSON.stringify({ data: base64EncodedImage }),
+          headers: { "Content-type": "application/json" },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   return (
     <Router>
@@ -191,7 +227,11 @@ export default function App() {
                   <Link to="/productlist"> Product List </Link>
                   &nbsp;&nbsp;&nbsp;
                   <Link to="/product"> Single Product </Link>
+<<<<<<< HEAD
                   <Link to="/cart"> Cart </Link>
+=======
+                  <Link to="/cart">Cart</Link>
+>>>>>>> 8c529ccd629cae920dd62b6ee38758638753102c
                   <Link to="/logout" onClick={onLogoutHandler}>
                     Logout
                   </Link>{" "}
@@ -231,7 +271,13 @@ export default function App() {
           ></Route>
           <Route
             path="/signup"
-            element={<Signup register={registerHandler} handleFileInputChange={handleFileInputChange} previewSource={previewSource}/>}
+            element={
+              <Signup
+                register={registerHandler}
+                handleFileInputChange={handleFileInputChange}
+                previewSource={previewSource}
+              />
+            }
           ></Route>
           <Route
             path="/productlist/*"
@@ -255,7 +301,17 @@ export default function App() {
           ></Route> */}
           <Route
             path="/user/dashboard"
-            element={<UserDashboard user={user} products={products} />}
+            element={
+              <UserDashboard
+                user={user}
+                products={products}
+                handleFileInputChange={handleFileInputChange}
+                previewSourceProduct={previewSourceProduct}
+                handleProductFileInputChange={handleProductFileInputChange}
+                previewProductFile={previewProductFile}
+                handleSubmitFileProduct={handleSubmitFileProduct}
+              />
+            }
           ></Route>
           <Route path="/cart" element={<Cart user={user} products={products}/>} />
           <Route path="/logout" user={user} product={products}></Route>

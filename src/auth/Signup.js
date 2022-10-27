@@ -120,9 +120,13 @@ export default function Signup(props) {
               </div>
               <div className="groupOne group1">
                 <label>Upload a profile photo</label>&nbsp;<br></br>
-                <input name="cloudinary_url" type="file"  onChange={handleFileInputChange}></input>
-              </div> 
-               <div>
+                <input
+                  name="cloudinary_url"
+                  type="file"
+                  onChange={handleFileInputChange}
+                ></input>
+              </div>
+              <div>
                 {props.previewSource && (
                   <img
                     src={props.previewSource}
@@ -211,10 +215,23 @@ export default function Signup(props) {
                 onChange={changeHandler}
               ></input>
             </div>
-            {/* <div className="groupOne group1">
-              <label>Upload a profile photo</label>&nbsp;
-              <button variant="primary">+</button>
-            </div> */}
+            <div className="groupOne group1">
+              <label>Upload a profile photo</label>&nbsp;<br></br>
+              <input
+                name="cloudinary_url"
+                type="file"
+                onChange={handleFileInputChange}
+              ></input>
+            </div>
+            <div>
+              {props.previewSource && (
+                <img
+                  src={props.previewSource}
+                  alt="chosen"
+                  style={{ height: "150px" }}
+                />
+              )}
+            </div>
             <div className="groupTwo">
               <label htmlFor="sellerName">Seller Name</label>
               <input

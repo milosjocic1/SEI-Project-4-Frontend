@@ -19,6 +19,7 @@ export default function UserDashboard(props) {
     // Axios function
     loadDashboard(props.user.id);
   }, []);
+  console.log(props)
 
   const loadDashboard = (id) => {
     Axios.get(`/user/dashboard/?userId=${id}`)
@@ -37,9 +38,14 @@ export default function UserDashboard(props) {
         <BuyerAccount user={currentUser} product={props} />
       ) : (
         <SellerAccount
+          handleFileInputChange={props.handleFileInputChange}
+          previewSourceProduct={props.previewSourceProduct}
           seller={seller}
           user={currentUser}
           products={props.products}
+          handleProductFileInputChange={props.handleProductFileInputChange}
+          previewProductFile={props.previewProductFile}
+          handleSubmitFileProduct={props.handleSubmitFileProduct}
         />
       )}
     </div>

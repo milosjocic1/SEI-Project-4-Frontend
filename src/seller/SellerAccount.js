@@ -10,6 +10,7 @@ export default function SellerAccount(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
+  console.log(props)
   // const loadDashboard = () => {
   //   Axios.get("/seller/dashboard")
   //     .then((response) => {
@@ -53,6 +54,9 @@ export default function SellerAccount(props) {
     Axios.post(`/product/add?id=${id}`, product)
       .then((response) => {
         console.log("Product added successfully from seller account");
+        // product image upload test
+        props.handleSubmitFileProduct(response.data.product._id);
+
         loadProductList()
       })
       .catch((error) => {
@@ -109,6 +113,10 @@ export default function SellerAccount(props) {
     <div className="container">
       <Profile user={props.user} />
       <MyProducts
+        handleProductFileInputChange={props.handleProductFileInputChange}
+        previewSourceProduct={props.previewSourceProduct}
+        previewProductFile={props.previewProductFile}
+        handleSubmitFileProduct={props.handleSubmitFileProduct}
         seller={props.seller}
         user={props.user}
         products={props.products}
