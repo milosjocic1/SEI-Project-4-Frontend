@@ -144,7 +144,7 @@ export default function ProductCreateForm(props) {
           <Form.Label>Price</Form.Label>
           <Form.Control
             name="price"
-            type="text"
+            type="number"
             onChange={handleChange}
           ></Form.Control>
         </Form.Group>
