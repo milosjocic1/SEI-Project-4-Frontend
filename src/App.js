@@ -245,7 +245,7 @@ export default function App() {
               />
             }
           ></Route>
-          <Route path="/addproduct" element={<ProductCreateForm />}></Route>
+          <Route path="/addproduct" element={<ProductCreateForm handleFileInputChange={handleFileInputChange} previewSource={previewSource}/>}></Route>
           {/* Below will have to add seller id to this link */}
           {/* <Route
             path="/seller/dashboard"
