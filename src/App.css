@@ -455,7 +455,14 @@ footer {
   color: white;
   padding: 10px 40px;
   font-size: 22px;
+
+
 }
+
+.buy-btn:hover {
+  background-color: red;
+}
+
 .index-price-button {
   background-color: black;
   color: white !important;
@@ -465,6 +472,12 @@ footer {
 
 }
 
+.index-price-button:hover {
+  background-color: red;
+}
+
+
+
 .edit-delete-btn{
     color: black !important;
     background-color: rgb(237, 237, 237);
@@ -472,6 +485,10 @@ footer {
 }
 .view-product-btn {
   display: inline-block;
+}
+
+.view-product-btn:hover {
+  background-color: red;
 }
 .add-product {
   margin-top: 100px;

@@ -56,13 +56,13 @@ export default function MyProductList(props) {
       <div className="card">
         <img
           className="card-img-top"
-          src="https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/449717/item/goods_00_449717.jpg?width=480&impolicy=quality_70&imformat=chrome"
+          src={`${props.cloudinary_url}`}
           alt=" "
         ></img>
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
           <p className="card-text">{props.subTitle}</p>
-          <p className="card-text">Price: {props.price}</p>
+          <p className="card-text">Price: £{props.price}</p>
           <div className="row">
             <div className="col-4">
               <Link className="index-price-button view-product-btn m-1" to={`/product/${props._id}`}>

@@ -4,15 +4,15 @@ import { Container, Form, Button } from "react-bootstrap";
 export default function ProductCreateForm(props) {
   const [newProduct, setNewProduct] = useState({});
 
+
+  console.log(props)
   const thisSellerId = props.seller._id;
 
   const handleChange = (event) => {
     const attributeToChange = event.target.name;
     const newValue = event.target.value;
-
     const product = { ...newProduct };
     product[attributeToChange] = newValue;
-
     setNewProduct(product);
   };
 
@@ -39,20 +39,20 @@ export default function ProductCreateForm(props) {
     event.preventDefault();
     props.functions.addProduct(newProduct, thisSellerId);
     event.target.reset();
-    props.handleSubmitFile(props.response.data.user._id);
+    props.handleSubmitFileProduct(props.response.data.user._id);
     updatePage();
   };
 
-  const handleFileInputChange = (e) => {
-    props.handleFileInputChange(e)
+  const handleProductFileInputChange = (e) => {
+    props.handleProductFileInputChange(e)
   };
 
-  console.log(props)
+
 
   return (
     <div className="container">
       <h1>Add Product</h1>
-      <form>
+      <form encType="multiform/form-data">
         <div>
           <input name="title" type="text" onChange={handleChange} placeholder="Product Title"></input>
           <input name="subTitle" type="text" onChange={handleChange} placeholder="Product Subtitle"></input>
@@ -63,34 +63,34 @@ export default function ProductCreateForm(props) {
             <option value="fashion">Fashion</option>
             <option value="electronics">Electronics</option>
             <option value="sports-hobbies-leisures">Sports, hobbies, leisures</option>
-            <option value="home-garden">Home & Garden</option>
+            <option value="home-garden">Home and Garden</option>
             <option value="motors">Motors</option>
             <option value="media">Media</option>
             <option value="office-supplies">Office Supplies</option>
-            <option value="health-beauty">Health & Beauty</option>
+            <option value="health-beauty">Health and Beauty</option>
             <option value="collectables-art">Collectables and Art</option>
           </select>
-          <select name="subCategory" onChange={handleChange} placeholder="Subcategory">
+          <select type="text" name="subCategory" onChange={handleChange} placeholder="Subcategory">
             <option value="fashion">Fashion</option>
             <option value="electronics">Electronics</option>
             <option value="sports-hobbies-leisures">Sports, hobbies, leisures</option>
-            <option value="home-garden">Home & Garden</option>
+            <option value="home-garden">Home and Garden</option>
             <option value="motors">Motors</option>
             <option value="media">Media</option>
             <option value="office-supplies">Office Supplies</option>
-            <option value="health-beauty">Health & Beauty</option>
+            <option value="health-beauty">Health and Beauty</option>
             <option value="collectables-art">Collectables and Art</option>
           </select>
           <input name="shippingRate" type="text" onChange={handleChange} placeholder="Shipping Rate"></input>
           <input name="returnsPolicy" type="text" onChange={handleChange} placeholder="Policy"></input>
           <label>Upload a photo of the product</label>&nbsp;<br></br>
               <div>
-                <input name="cloudinary_url" type="file"  onChange={handleFileInputChange}></input>
+                <input name="cloudinary_url" type="file"  onChange={handleProductFileInputChange}></input>
               </div> 
                <div>
-                {props.previewSource && (
+                {props.previewSourceProduct && (
                   <img
-                    src={props.previewSource}
+                    src={props.previewSourceProduct}
                     alt="chosen"
                     style={{ height: "150px" }}
                   />
@@ -144,7 +144,7 @@ export default function ProductCreateForm(props) {
           <Form.Label>Price</Form.Label>
           <Form.Control
             name="price"
-            type="text"
+            type="number"
             onChange={handleChange}
           ></Form.Control>
         </Form.Group>
@@ -204,7 +204,7 @@ export default function ProductCreateForm(props) {
           <Form.Label>Shipping Rate</Form.Label>
           <Form.Control
             name="shippingRate"
-            type="text"
+            type="number"
             onChange={handleChange}
           ></Form.Control>
         </Form.Group>

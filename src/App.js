@@ -5,6 +5,7 @@ import Axios from "axios";
 import Home from "./Home";
 import Signup from "./auth/Signup";
 import Signin from "./auth/Signin";
+import Cart from "./cart/Cart";
 import ProductList from "./product/ProductList";
 import Product from "./product/Product";
 import ProductCreateForm from "./product/ProductCreateForm";
@@ -28,6 +29,8 @@ export default function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState({});
   const [message, setMessage] = useState(null);
+
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -66,6 +69,20 @@ export default function App() {
     loadProductList();
   };
 
+  const buyItem = (id, productId) => {
+    Axios.post(`/cart?userId=${id}&productId=${productId}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  
+
+  const counterUp = () => {
+    setCounter(prevCount => prevCount + 1);
+  }
   //  const errMessage = message ? (
   //    <Alert variant="danger"> {message}</Alert>
   //  ) : null;
@@ -163,8 +180,43 @@ export default function App() {
     catch (error){
       console.log(error)
     }
-
   }
+
+  // ATTEMPT TO ADD PRODUCT IMAGE
+    const [previewSourceProduct, setPreviewSourceProduct] = useState();
+
+    const handleProductFileInputChange = (e) => {
+      const file = e.target.files[0];
+      previewProductFile(file);
+    };
+ 
+      const previewProductFile = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          setPreviewSourceProduct(reader.result);
+        };
+      };
+
+    const handleSubmitFileProduct = (productId) => {
+      // e.preventDefault();
+      if (!previewSourceProduct) return;
+      uploadProduct(previewSourceProduct, productId);
+    };
+
+    const uploadProduct = async (base64EncodedImage, productId) => {
+      try {
+        // let userId = localStorage.getItem("userId");
+        console.log(productId);
+        await fetch(`/api/uploadProduct?productId=${productId}`, {
+          method: "POST",
+          body: JSON.stringify({ data: base64EncodedImage }),
+          headers: { "Content-type": "application/json" },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   return (
     <Router>
@@ -184,12 +236,12 @@ export default function App() {
             <Nav className="">
               {isAuth ? (
                 <div>
-                  <Link to="/"> HOME </Link>
+                  <Link to="/">HOME</Link>&nbsp;
                   {user ? "Welcome " + user.name : null}&nbsp;
-                  <Link to="/user/dashboard"> MY ACCOUNT </Link>
-                  <Link to="/productlist"> Product List </Link>
-                  &nbsp;&nbsp;&nbsp;
-                  <Link to="/product"> Single Product </Link>
+                  <Link to="/user/dashboard">MY ACCOUNT</Link>&nbsp;
+                  <Link to="/productlist">Product List</Link>&nbsp;
+                  <Link to="/product">Single Product</Link>&nbsp;
+                  <Link to="/cart">Cart {counter}</Link>&nbsp;
                   <Link to="/logout" onClick={onLogoutHandler}>
                     Logout
                   </Link>{" "}
@@ -229,11 +281,17 @@ export default function App() {
           ></Route>
           <Route
             path="/signup"
-            element={<Signup register={registerHandler} handleFileInputChange={handleFileInputChange} previewSource={previewSource}/>}
+            element={
+              <Signup
+                register={registerHandler}
+                handleFileInputChange={handleFileInputChange}
+                previewSource={previewSource}
+              />
+            }
           ></Route>
           <Route
             path="/productlist/*"
-            element={<ProductList user={user} products={products} />}
+            element={<ProductList user={user} products={products} buyItem={buyItem}/>}
           ></Route>
           <Route
             path="/product/:productId/*"
@@ -242,10 +300,12 @@ export default function App() {
                 product={products}
                 category={allCategories}
                 user={user}
+                buyItem={buyItem}
+                counterUp={counterUp}
               />
             }
           ></Route>
-          <Route path="/addproduct" element={<ProductCreateForm handleFileInputChange={handleFileInputChange} previewSource={previewSource}/>}></Route>
+          <Route path="/addproduct" element={<ProductCreateForm />}></Route>
           {/* Below will have to add seller id to this link */}
           {/* <Route
             path="/seller/dashboard"
@@ -253,8 +313,19 @@ export default function App() {
           ></Route> */}
           <Route
             path="/user/dashboard"
-            element={<UserDashboard user={user} products={products} />}
+            element={
+              <UserDashboard
+                user={user}
+                products={products}
+                handleFileInputChange={handleFileInputChange}
+                previewSourceProduct={previewSourceProduct}
+                handleProductFileInputChange={handleProductFileInputChange}
+                previewProductFile={previewProductFile}
+                handleSubmitFileProduct={handleSubmitFileProduct}
+              />
+            }
           ></Route>
+          <Route path="/cart" element={<Cart user={user} products={products}/>} />
           <Route path="/logout" user={user} product={products}></Route>
         </Routes>
       </div>
@@ -268,6 +339,7 @@ export default function App() {
             <br></br>
             {/* Below will have to add seller id to this link */}
             <Link to="/user/dashboard"> User Dashboard </Link>
+    
           </div>
           <div className="col-3">
             <a href="/">Link 1</a>

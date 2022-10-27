@@ -10,9 +10,9 @@ export default function BuyerAccount(props) {
     <div className="container">
       <Profile user={props.user} />
       <div className="row mt-5 mb-5 d-flex justify-content-between">
-        <Favourite user={props} />
+        <Favourite user={props}/>
       </div>
-      <Transaction user={props} />
+      <Transaction user={props}/>
     </div>
   );
 }

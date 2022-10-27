@@ -49,12 +49,15 @@ export default function MyProducts(props) {
           functions={props}
           seller={props.seller}
           user={props.user}
-          handleShowAddProductForm={handleShowAddProductForm}
+          handleProductFileInputChange={props.handleProductFileInputChange}
+          previewSourceProduct={props.previewSourceProduct}
+          previewProductFile={props.previewProductFile}
+          handleSubmitFileProduct={props.handleSubmitFileProduct}
         />
       ) : (
         <div> </div>
       )}
-      
+
       <div className="row card-group mt-1 mb-3">
         <h3>My Listings</h3>
         <br></br>
