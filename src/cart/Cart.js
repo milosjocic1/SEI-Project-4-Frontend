@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import CartItem from "../cart/CartItem";
+
 import { Form, Button } from "react-bootstrap";
 
     export default function Cart(props){
@@ -217,5 +218,7 @@ import { Form, Button } from "react-bootstrap";
           </Form>
         </div>
         </div>
+            <button>Continue to Checkout</button>
+          </div>
         );
       }
