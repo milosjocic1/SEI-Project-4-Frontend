@@ -62,9 +62,11 @@ a {
   border-radius: 0;
 }
 .search-input {
-  border: 1px black solid !important;
+  border: 1px rgb(186, 186, 186) solid !important;
+  border-radius: 10px!important;
   font-size: 22px !important;
   padding: 10px 20px !important;
+  background-color: white !important;
 }
 .search-btn {
   background-color: black !important;
@@ -73,7 +75,7 @@ a {
   font-size: 22px !important;
   border: none !important;
   margin-left: 10px !important;
-  border-radius: 0 !important;
+  border-radius: 10px !important;
   height: 55px;
 }
 
@@ -93,7 +95,7 @@ a {
 .buy-sell-title {
   color: white;
   font-size: 60px;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 .buy-sell-btn {
   color: transparent;
@@ -205,6 +207,7 @@ a {
     top: 210px;
     /* height: var(--size); */
     padding: 5px 15px;
+    border-radius: 10px;
     /* width: var(--size); */
   }
     
@@ -317,7 +320,8 @@ a {
 
 .slide__image-wrapper {
   background-color: var(--color-accent);
-  border-radius: 1%;
+   border-radius: 10px !important;
+
   height: 160%;
   left: 0%;
   overflow: hidden;
@@ -330,7 +334,6 @@ a {
 
 .slide__image {
   --d: 20;
-  
   height: 110%;
   left: -5%;
   object-fit: cover;
@@ -415,10 +418,10 @@ a {
   font-size: 22px;
   line-height: 30px;
   margin-top: 15px;
-  margin-right: 10px;
+  margin-right: 15px;
   background-color: rgb(230, 230, 230);
   padding: 10px 25px;
-  border-radius: 25px;
+  border-radius: 10px;
   display: inline-block;
 
 }
@@ -474,4 +477,21 @@ footer {
   margin-top: 100px;
   margin-bottom: 50px;
   padding: 20px 40px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 964px) {
+   .agora-image-cart {
+    display: none;
+  }
+}
+
+@media (max-width: 428px) {
+ 
+  .buy-sell-title {
+    font-size: 45px;
+    margin-top: -10px;
+  }
 }

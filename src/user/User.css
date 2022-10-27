@@ -5,12 +5,26 @@
 }
 p {
     font-size: 22px;
+    line-height: 24px;
 }
 .change-password-button {
+    background-color: rgb(201, 201, 201);
+    padding:2px 17px;
+}
+.edit-btn {
     background-color: black;
     color: white !important;
-    padding:2px 17px;
 }
 .profile-picture {
     width: 150px;
+    border-radius: 50px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+.user-name{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.user-role {
+    text-transform: uppercase;
 }
