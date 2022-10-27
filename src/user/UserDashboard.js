@@ -39,10 +39,13 @@ export default function UserDashboard(props) {
       ) : (
         <SellerAccount
           handleFileInputChange={props.handleFileInputChange}
-          previewSource={props.previewSource}
+          previewSourceProduct={props.previewSourceProduct}
           seller={seller}
           user={currentUser}
           products={props.products}
+          handleProductFileInputChange={props.handleProductFileInputChange}
+          previewProductFile={props.previewProductFile}
+          handleSubmitFileProduct={props.handleSubmitFileProduct}
         />
       )}
     </div>
