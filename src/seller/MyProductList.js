@@ -73,7 +73,7 @@ export default function MyProductList(props) {
               <Link
                 onClick={() => editView(props._id)}
                     // CONTINUE FROM HERE!!!!
-                    className="index-price-button edit-delete-btn"
+                    className="index-price-button m-1 edit-delete-btn"
               >
                 Edit
               </Link>
