@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import CartItem from "../cart/CartItem";
-
 import { Form, Button } from "react-bootstrap";
 
     export default function Cart(props){
@@ -73,6 +72,7 @@ import { Form, Button } from "react-bootstrap";
       useEffect(() => {
         loadCartList();
       }, []);
+      
       const loadCartList = () => {
         Axios.get(`/cart/?userId=${props.user.id}`)
           .then(({data}) => {
@@ -106,7 +106,7 @@ import { Form, Button } from "react-bootstrap";
                     <th></th>
                   </tr>
                 </tbody>
-                {cart.products?.map((item, index) => (
+              {cart.products?.map((item, index) => (
                 <tr key={index}>
                     {<CartItem {...item}/>}
                 </tr>
@@ -218,7 +218,5 @@ import { Form, Button } from "react-bootstrap";
           </Form>
         </div>
         </div>
-            <button>Continue to Checkout</button>
-          </div>
         );
       }
