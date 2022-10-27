@@ -53,6 +53,7 @@ export default function SellerAccount(props) {
     Axios.post(`/product/add?id=${id}`, product)
       .then((response) => {
         console.log("Product added successfully from seller account");
+        loadProductList()
       })
       .catch((error) => {
         console.log(error);

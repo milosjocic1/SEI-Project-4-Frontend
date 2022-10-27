@@ -6,18 +6,23 @@ import ProductEditForm from "../product/ProductEditForm";
 
 export default function MyProductList(props) {
   //   EDIT PRODUCTS
-  const [isEdit, setIsEdit] = useState(false);
+  // const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
+  const [showEditProductForm, setShowEditProductForm] = useState(false);
 
-  
+  const handleShowEditProductForm = (boolean) => {
+    setShowEditProductForm(boolean);
+  };
 
   const editView = (id) => {
     Axios.get(`/product/edit?id=${id}`)
       .then((response) => {
         let product = response.data.product;
 
-        setIsEdit(true);
+        // setIsEdit(true);
+        setShowEditProductForm(true);
         setCurrentProduct(product);
+        editProduct(product);
       })
       .catch((error) => {
         console.log(error);
@@ -46,10 +51,8 @@ export default function MyProductList(props) {
       });
   };
 
-
-
   return (
-    <div key={props._id} className="col-lg-4 col-sm-12 mt-3">
+    <div key={props._id} className="col-md-5 col-lg-4 col-sm-12 mt-3">
       <div className="card">
         <img
           className="card-img-top"
@@ -61,29 +64,26 @@ export default function MyProductList(props) {
           <p className="card-text">{props.subTitle}</p>
           <p className="card-text">Price: {props.price}</p>
           <div className="row">
-            <div className="col-5">
-              <Link className="index-price-button" to={`/product/${props._id}`}>
+            <div className="col-4">
+              <Link className="index-price-button view-product-btn m-1" to={`/product/${props._id}`}>
                 View
               </Link>
             </div>
             <div className="col-3">
               <Link
-                onClick={<ProductEditForm key={props._id} product={currentProduct} editProduct={editProduct} />
+                onClick={() => editView(props._id)}
                     // CONTINUE FROM HERE!!!!
-
-                }
-                className="index-price-button edit-delete-btn"
-                to={`/product/edit?id=${props._id}`}
+                    className="index-price-button m-1 edit-delete-btn"
               >
                 Edit
               </Link>
             </div>
-            <div className="col-4">
+            <div className="col-3">
               <Link
                 onClick={() => {
                   deleteProduct(props._id);
                 }}
-                className="index-price-button edit-delete-btn"
+                className="index-price-button m-1 edit-delete-btn"
               >
                 Delete
               </Link>
@@ -91,6 +91,18 @@ export default function MyProductList(props) {
           </div>
         </div>
       </div>
+      {showEditProductForm ? (
+        <ProductEditForm
+          functions={props}
+          seller={props.seller}
+          user={props.user}
+          handleShowEditProductForm={handleShowEditProductForm}
+          key={currentProduct._id} product={currentProduct} editProduct={editProduct}
+        />
+      ) : (
+        <div> </div>
+      )}
     </div>
+  
   );
 }

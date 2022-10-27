@@ -4,6 +4,8 @@ import { Form, Button } from "react-bootstrap";
 export default function ProductEditForm(props) {
   const [newProduct, setNewProduct] = useState(props.product);
 
+  const thisSellerId = props.seller._id;
+
   const handleChange = (event) => {
     const attributeToChange = event.target.name;
     const newValue = event.target.value;
@@ -13,15 +15,21 @@ export default function ProductEditForm(props) {
     setNewProduct(product);
   };
 
+  function updatePage() {
+    props.handleShowEditProductForm(false);
+    // props.myProducts();
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.editAuthor(newProduct);
+    props.editProduct(newProduct, thisSellerId);
     event.target.reset();
+    updatePage();
   };
 
   return (
     <div className="container">
-      <h1>Add Product</h1>
+      <h1>Edit Product</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Title</Form.Label>
@@ -29,6 +37,7 @@ export default function ProductEditForm(props) {
             name="title"
             type="text"
             onChange={handleChange}
+            value={newProduct.title}
           ></Form.Control>
         </Form.Group>
         <Form.Group>
@@ -37,6 +46,7 @@ export default function ProductEditForm(props) {
             name="subTitle"
             type="text"
             onChange={handleChange}
+            value={newProduct.subTitle}
           ></Form.Control>
         </Form.Group>
         <Form.Group>
@@ -45,6 +55,7 @@ export default function ProductEditForm(props) {
             name="description"
             type="text"
             onChange={handleChange}
+            value={newProduct.description}
           ></Form.Control>
         </Form.Group>
         <Form.Group>
@@ -53,6 +64,7 @@ export default function ProductEditForm(props) {
             name="condition"
             type="text"
             onChange={handleChange}
+            value={newProduct.condition}
           ></Form.Control>
         </Form.Group>
         <Form.Group>
@@ -61,12 +73,21 @@ export default function ProductEditForm(props) {
             name="price"
             type="text"
             onChange={handleChange}
+            value={newProduct.price}
           ></Form.Control>
         </Form.Group>
         <Form.Group>
           <Form.Label>Category</Form.Label>
-          <Form.Select name="category" type="text" onChange={handleChange}>
-            <option>Open this select menu</option>
+          <Form.Select
+            name="category"
+            type="text"
+            onChange={handleChange}
+            value={newProduct.category}
+            defaultValue="default"
+          >
+            <option value="default" disabled>
+              Categories
+            </option>
             <option value="Fashion">Fashion</option>
             <option value="Electronics">Electronics</option>
             <option value="Sports, Hobbies, Leisure">
@@ -82,8 +103,16 @@ export default function ProductEditForm(props) {
         </Form.Group>
         <Form.Group>
           <Form.Label>Subcategory</Form.Label>
-          <Form.Select name="subCategory" type="text" onChange={handleChange}>
-            <option>Open this select menu</option>
+          <Form.Select
+            name="subCategory"
+            type="text"
+            onChange={handleChange}
+            defaultValue="default"
+            value={newProduct.subCategory}
+          >
+            <option value="default" disabled>
+              Sub-Categories
+            </option>
             <option value="Fashion">Fashion</option>
             <option value="Electronics">Electronics</option>
             <option value="Sports, Hobbies, Leisure">
@@ -104,6 +133,7 @@ export default function ProductEditForm(props) {
             name="shippingRate"
             type="text"
             onChange={handleChange}
+            value={newProduct.shippingRate}
           ></Form.Control>
         </Form.Group>
         <Form.Group>
@@ -112,6 +142,7 @@ export default function ProductEditForm(props) {
             name="returnsPolicy"
             type="text"
             onChange={handleChange}
+            value={newProduct.returnsPolicy}
           ></Form.Control>
         </Form.Group>
 

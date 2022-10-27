@@ -16,11 +16,6 @@ export default function ProductCreateForm(props) {
     setNewProduct(product);
   };
 
-  // function updatePage() {
-  //   props.handleShowAddProductForm(false);
-  //   props.myProducts();
-  // }
-
   // const changeOptions = (event) => {
   //   const parentValue = event.target.value;
   //   let options;
@@ -28,10 +23,10 @@ export default function ProductCreateForm(props) {
   //     options = ""
   //   }
   // }
-  // function updatePage() {
-  //   props.handleShowAddProductForm(false);
-  //   props.myProducts();
-  // }
+  function updatePage() {
+    props.handleShowAddProductForm(false);
+    // props.myProducts();
+  }
 
   // const changeOptions = (event) => {
   //   const parentValue = event.target.value;
@@ -44,13 +39,75 @@ export default function ProductCreateForm(props) {
     event.preventDefault();
     props.functions.addProduct(newProduct, thisSellerId);
     event.target.reset();
-    // updatePage();
+    props.handleSubmitFile(props.response.data.user._id);
+    updatePage();
   };
+
+  const handleFileInputChange = (e) => {
+    props.handleFileInputChange(e)
+  };
+
+  console.log(props)
 
   return (
     <div className="container">
       <h1>Add Product</h1>
-      <Form onSubmit={handleSubmit}>
+      <form>
+        <div>
+          <input name="title" type="text" onChange={handleChange} placeholder="Product Title"></input>
+          <input name="subTitle" type="text" onChange={handleChange} placeholder="Product Subtitle"></input>
+          <input name="description" type="text" onChange={handleChange} placeholder="Desription"></input>
+          <input name="condition" type="text" onChange={handleChange} placeholder="Condition"></input>
+          <input name="price" type="text" onChange={handleChange} placeholder="Price"></input>
+          <select name="category" onChange={handleChange} placeholder="Category">
+            <option value="fashion">Fashion</option>
+            <option value="electronics">Electronics</option>
+            <option value="sports-hobbies-leisures">Sports, hobbies, leisures</option>
+            <option value="home-garden">Home & Garden</option>
+            <option value="motors">Motors</option>
+            <option value="media">Media</option>
+            <option value="office-supplies">Office Supplies</option>
+            <option value="health-beauty">Health & Beauty</option>
+            <option value="collectables-art">Collectables and Art</option>
+          </select>
+          <select name="subCategory" onChange={handleChange} placeholder="Subcategory">
+            <option value="fashion">Fashion</option>
+            <option value="electronics">Electronics</option>
+            <option value="sports-hobbies-leisures">Sports, hobbies, leisures</option>
+            <option value="home-garden">Home & Garden</option>
+            <option value="motors">Motors</option>
+            <option value="media">Media</option>
+            <option value="office-supplies">Office Supplies</option>
+            <option value="health-beauty">Health & Beauty</option>
+            <option value="collectables-art">Collectables and Art</option>
+          </select>
+          <input name="shippingRate" type="text" onChange={handleChange} placeholder="Shipping Rate"></input>
+          <input name="returnsPolicy" type="text" onChange={handleChange} placeholder="Policy"></input>
+          <label>Upload a photo of the product</label>&nbsp;<br></br>
+              <div>
+                <input name="cloudinary_url" type="file"  onChange={handleFileInputChange}></input>
+              </div> 
+               <div>
+                {props.previewSource && (
+                  <img
+                    src={props.previewSource}
+                    alt="chosen"
+                    style={{ height: "150px" }}
+                  />
+                )}
+              </div>
+          <button
+                className="sign-button"
+                onClick={handleSubmit}
+              >
+                Add product
+              </button>
+        </div>
+
+      </form>
+
+
+      {/* <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Title</Form.Label>
           <Form.Control
@@ -93,9 +150,16 @@ export default function ProductCreateForm(props) {
         </Form.Group>
         <Form.Group>
           <Form.Label>Category</Form.Label>
-          {/* <Form.Control name="category" type="text" onChange={handleChange}></Form.Control> */}
-          <Form.Select name="category" type="text" onChange={handleChange}>
-            <option>Open this select menu</option>
+
+          <Form.Select
+            name="category"
+            type="text"
+            onChange={handleChange}
+            defaultValue="default"
+          >
+            <option value="default" disabled>
+              Categories
+            </option>
             <option value="Fashion">Fashion</option>
             <option value="Electronics">Electronics</option>
             <option value="Sports, Hobbies, Leisure">
@@ -111,9 +175,16 @@ export default function ProductCreateForm(props) {
         </Form.Group>
         <Form.Group>
           <Form.Label>Subcategory</Form.Label>
-          {/* <Form.Control name="subcategory" type="text" onChange={handleChange}></Form.Control> */}
-          <Form.Select name="subCategory" type="text" onChange={handleChange}>
-            <option>Open this select menu</option>
+
+          <Form.Select
+            name="subCategory"
+            type="text"
+            onChange={handleChange}
+            defaultValue="default"
+          >
+            <option value="default" disabled>
+              Sub-Categories
+            </option>
             <option value="Fashion">Fashion</option>
             <option value="Electronics">Electronics</option>
             <option value="Sports, Hobbies, Leisure">
@@ -128,15 +199,7 @@ export default function ProductCreateForm(props) {
           </Form.Select>
         </Form.Group>
 
-        {/* <Form.Group>
-          <Form.Label>ID</Form.Label>
-          <Form.Control
-            name="seller"
-            type="text"
-            onChange={handleChange}
-          ></Form.Control>
-        </Form.Group> */}
-
+       
         <Form.Group>
           <Form.Label>Shipping Rate</Form.Label>
           <Form.Control
@@ -154,19 +217,11 @@ export default function ProductCreateForm(props) {
           ></Form.Control>
         </Form.Group>
 
-        {/* <Form.Group>
-          <Form.Check
-            type="radio"
-            id="custom-switch"
-            label="I am ready to sell it!"
-            name="seller"
-            defaultValue={thisSellerId}
-          />
-        </Form.Group> */}
+        
         <Button variant="primary" type="submit">
           Submit
         </Button>
-      </Form>
+      </Form> */}
     </div>
   );
 }
