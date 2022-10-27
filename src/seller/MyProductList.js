@@ -9,8 +9,6 @@ export default function MyProductList(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
-  
-
   const editView = (id) => {
     Axios.get(`/product/edit?id=${id}`)
       .then((response) => {
@@ -46,10 +44,8 @@ export default function MyProductList(props) {
       });
   };
 
-
-
   return (
-    <div key={props._id} className="col-lg-4 col-sm-12 mt-3">
+    <div key={props._id} className="col-md-5 col-lg-4 col-sm-12 mt-3">
       <div className="card">
         <img
           className="card-img-top"
@@ -61,29 +57,33 @@ export default function MyProductList(props) {
           <p className="card-text">{props.subTitle}</p>
           <p className="card-text">Price: {props.price}</p>
           <div className="row">
-            <div className="col-5">
-              <Link className="index-price-button" to={`/product/${props._id}`}>
+            <div className="col-4">
+              <Link className="index-price-button view-product-btn m-1" to={`/product/${props._id}`}>
                 View
               </Link>
             </div>
             <div className="col-3">
               <Link
-                onClick={<ProductEditForm key={props._id} product={currentProduct} editProduct={editProduct} />
-                    // CONTINUE FROM HERE!!!!
-
+                onClick={
+                  <ProductEditForm
+                    key={props._id}
+                    product={currentProduct}
+                    editProduct={editProduct}
+                  />
+                  // CONTINUE FROM HERE!!!!
                 }
-                className="index-price-button edit-delete-btn"
+                className="index-price-button m-1 edit-delete-btn"
                 to={`/product/edit?id=${props._id}`}
               >
                 Edit
               </Link>
             </div>
-            <div className="col-4">
+            <div className="col-3">
               <Link
                 onClick={() => {
                   deleteProduct(props._id);
                 }}
-                className="index-price-button edit-delete-btn"
+                className="index-price-button m-1 edit-delete-btn"
               >
                 Delete
               </Link>
