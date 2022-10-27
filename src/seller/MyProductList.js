@@ -1,39 +1,35 @@
-import React, {  useState } from 'react'
-import Axios from 'axios';
+import React, { useState } from "react";
+import Axios from "axios";
 import "../App.css";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
+import ProductEditForm from "../product/ProductEditForm";
 
 export default function MyProductList(props) {
-//   console.log(props);
-
   //   EDIT PRODUCTS
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
+  
+
   const editView = (id) => {
     Axios.get(`/product/edit?id=${id}`)
       .then((response) => {
-        console.log(response.data.product);
         let product = response.data.product;
-        console.log("Loaded Product Information");
+
         setIsEdit(true);
         setCurrentProduct(product);
       })
       .catch((error) => {
-        console.log("Error loading product information");
         console.log(error);
       });
   };
   const editProduct = (product) => {
-    Axios.put("/product/update", product)
+    Axios.put(`/product/update`, product)
       .then((response) => {
-        console.log("Product Updated Successfully!");
         console.log(response);
         // loadProductList();
       })
       .catch((error) => {
-        console.log("Error editing product");
         console.log(error);
       });
   };
@@ -42,7 +38,6 @@ export default function MyProductList(props) {
   const deleteProduct = (id) => {
     Axios.delete(`/product/delete?id=${id}`)
       .then((response) => {
-        console.log("Product deleted successfully!");
         console.log(response);
         //   loadAuthorList();
       })
@@ -50,6 +45,8 @@ export default function MyProductList(props) {
         console.log(error);
       });
   };
+
+
 
   return (
     <div key={props._id} className="col-lg-4 col-sm-12 mt-3">
@@ -71,16 +68,22 @@ export default function MyProductList(props) {
             </div>
             <div className="col-3">
               <Link
+                onClick={<ProductEditForm key={props._id} product={currentProduct} editProduct={editProduct} />
+                    // CONTINUE FROM HERE!!!!
+
+                }
                 className="index-price-button edit-delete-btn"
-                to={`/product/${props._id}`}
+                to={`/product/edit?id=${props._id}`}
               >
                 Edit
               </Link>
             </div>
             <div className="col-4">
-              <Link onClick={() => {deleteProduct(props._id)}}
+              <Link
+                onClick={() => {
+                  deleteProduct(props._id);
+                }}
                 className="index-price-button edit-delete-btn"
-                
               >
                 Delete
               </Link>

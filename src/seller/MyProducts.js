@@ -1,38 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductCreateForm from "../product/ProductCreateForm";
 import "../App.css";
 import MyProductList from "./MyProductList";
-
-
+import axios from "axios";
 
 export default function MyProducts(props) {
   const [showAddProductForm, setShowAddProductForm] = useState(false);
 
-    console.log(props)
-    console.log(props.product.seller._id)
-        console.log(props.seller.seller._id);
-        console.log(props.product.seller[0]);
+  // const [showAllItems, setShowAllItems] = useState(allProducts)
 
-  console.log(props.product.product.product)
+  // const all
 
-//   SHOW SELLER RPDOCUTS ONLY
+  //   SHOW SELLER RPDOCUTS ONLY
 
-  const myProducts = props.product.product.product.map((product, index) => {
-    console.log(product)
-    if (props.product.seller._id === product.seller[0]._id){
-      return (
-          <MyProductList key={index} {...product} />
-      )}
-    }
-  ); 
+  const myProducts = props.products
+    .filter((product) => {
+      if (product.seller.length) {
+        const { seller } = product;
+        const [sellerInfo] = seller;
+        const productSellerId = sellerInfo._id;
+
+        return productSellerId === props.seller._id;
+      }
+    })
+    .map((product) => {
+      return <MyProductList key={product._id} {...product} />;
+    });
+
   const handleShowAddProductForm = (boolean) => {
     setShowAddProductForm(boolean);
-   }
+  };
 
   return (
     <div>
       <button
-      className="index-price-button add-product"
+        className="index-price-button add-product"
         onClick={() => {
           setShowAddProductForm(true);
         }}
@@ -43,15 +45,19 @@ export default function MyProducts(props) {
       {showAddProductForm ? (
         <ProductCreateForm
           functions={props}
-          seller={props}
-          user={props}
+          seller={props.seller}
+          user={props.user}
           handleShowAddProductForm={handleShowAddProductForm}
-        ></ProductCreateForm>
+        />
       ) : (
         <div> </div>
       )}
       <div className="row card-group mt-1 mb-3">
-        <h3>My Listings</h3><br></br><br></br>{myProducts}</div>
+        <h3>My Listings</h3>
+        <br></br>
+        <br></br>
+        {!!myProducts.length ? myProducts : <p>No listings yet!</p>}
+      </div>
     </div>
   );
 }

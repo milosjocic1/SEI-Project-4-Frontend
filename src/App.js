@@ -1,5 +1,5 @@
-import React, {  useState, useEffect } from "react";
-import Axios from 'axios'
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
 
 // Components
 import Home from "./Home";
@@ -18,31 +18,22 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
 // Router
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Link,
-  
-
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 // Css
 import "./App.css";
 
 export default function App() {
-
-
   // ADD USER
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState({});
   const [message, setMessage] = useState(null);
-  
 
   useEffect(() => {
     let token = localStorage.getItem("token");
     if (token != null) {
-      let user = jwt_decode(token);
+      let { user } = jwt_decode(token);
+
       if (user) {
         setIsAuth(true);
         setUser(user);
@@ -53,7 +44,6 @@ export default function App() {
     }
   }, []);
 
-// console.log(user)
   const registerHandler = (user) => {
     Axios.post("/auth/signup", user)
       .then((response) => {
@@ -63,29 +53,6 @@ export default function App() {
         console.log(error);
       });
   };
-
-  const loginHandler = (cred) => {
-
-    Axios.post("/auth/signin", cred)
-      .then((response) => {
-        console.log(response)
-        console.log(response.data.token);
-
-        if (response.data.token != null) {
-          localStorage.setItem("token", response.data.token);
-          let user = jwt_decode(response.data.token);
-          setIsAuth(true);
-          setUser(user);
-          console.log(user);
-        
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-
 
   const onLogoutHandler = (e) => {
     e.preventDefault();
@@ -100,8 +67,6 @@ export default function App() {
   //    <Alert variant="danger"> {message}</Alert>
   //  ) : null;
 
-  // console.log(user.user);
-
   const categories = [
     "Fashion",
     "Electronics",
@@ -114,17 +79,16 @@ export default function App() {
     "Collectables and Art",
   ];
 
-  const allCategories = categories.map((category, index) => {
+  const allCategories = categories.map((category) => {
     return (
-      <a href="/" key={index} className="categories-links">
-        {category}{" "}
+      <a href="/" key={category} className="categories-links">
+        {category}
       </a>
     );
   });
 
   const [products, setProducts] = useState([]);
 
-  // console.log(products)
   useEffect(() => {
     loadProductList();
   }, []);
@@ -133,17 +97,27 @@ export default function App() {
   const loadProductList = () => {
     Axios.get("/product/index")
       .then((response) => {
-        console.log(response.data.products);
         setProducts(response.data.products);
       })
       .catch((error) => {
-        console.log("Error Retrieving Products");
         console.log(error);
       });
   };
 
-
-  // console.log(allCategories);
+  const loginHandler = (cred) => {
+    Axios.post("/auth/signin", cred)
+      .then((response) => {
+        if (response.data.token != null) {
+          localStorage.setItem("token", response.data.token);
+          let { user } = jwt_decode(response.data.token);
+          setIsAuth(true);
+          setUser(user);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Router>
@@ -164,7 +138,7 @@ export default function App() {
               {isAuth ? (
                 <div>
                   <Link to="/"> HOME </Link>
-                  {user ? "Welcome " + user.user.name : null}&nbsp;
+                  {user ? "Welcome " + user.name : null}&nbsp;
                   <Link to="/user/dashboard"> MY ACCOUNT </Link>
                   <Link to="/productlist"> Product List </Link>
                   &nbsp;&nbsp;&nbsp;
@@ -212,10 +186,10 @@ export default function App() {
           ></Route>
           <Route
             path="/productlist/*"
-            element={<ProductList user={user} product={products} />}
+            element={<ProductList user={user} products={products} />}
           ></Route>
           <Route
-            path="/product/:productId"
+            path="/product/:productId/*"
             element={
               <Product
                 product={products}
@@ -232,7 +206,7 @@ export default function App() {
           ></Route> */}
           <Route
             path="/user/dashboard"
-            element={<UserDashboard user={user} product={products} />}
+            element={<UserDashboard user={user} products={products} />}
           ></Route>
           <Route path="/logout" user={user} product={products}></Route>
         </Routes>
@@ -271,6 +245,3 @@ export default function App() {
     </Router>
   );
 }
-
-
-

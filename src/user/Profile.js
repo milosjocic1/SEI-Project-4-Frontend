@@ -1,33 +1,31 @@
-import React from 'react'
+import React from "react";
 
 import "./User.css";
 
 export default function Profile(props) {
-
-  console.log(props)
   return (
     <div>
       <div className="row">
         <div className="col-md-4">
-          <h1>Hi, {props.user.user.firstName}</h1>
+          <h1>Hi, {props.user.firstName}</h1>
           <p>Here is your Dashboard!</p>
           <p>
-            You are signed in as a <strong>{props.user.user.userRole}</strong>
+            You are signed in as a <strong>{props.user.userRole}</strong>
           </p>
         </div>
         <div className="col-md-8 profile-dashboard">
           <div className="row">
             <div className="col-9">
               <p>
-                Name: {props.user.user.firstName} {props.user.user.lastName}
+                Name: {props.user.firstName} {props.user.lastName}
               </p>
-              <p>Email: {props.user.user.emailAddress}</p>
+              <p>Email: {props.user.emailAddress}</p>
               <p>
                 <a className="change-password-button" href="/">
                   Change your password
                 </a>
               </p>
-              <p>Member since: {props.user.user.createdAt}</p>
+              <p>Member since: {props.user.createdAt}</p>
             </div>
             <div className="col-3">
               <img

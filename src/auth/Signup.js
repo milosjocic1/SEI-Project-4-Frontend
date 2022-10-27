@@ -1,38 +1,29 @@
-import React, {useState} from "react";
-import "./Auth.css"
-
+import React, { useState } from "react";
+import "./Auth.css";
 
 import { Link, useNavigate } from "react-router-dom";
 
-
-
-
 export default function Signup(props) {
+  const navigate = useNavigate();
 
- const navigate = useNavigate();
-  
-  const [showBuyer, setShowBuyer] = useState(false)
+  const [showBuyer, setShowBuyer] = useState(false);
   // const buyerClick = () => setShowBuyer(true)
-  
 
-  const [showSeller, setShowSeller] = useState(false)
+  const [showSeller, setShowSeller] = useState(false);
   // const sellerClick = () => setShowSeller(true)
 
   const [newUser, setNewUser] = useState({});
 
-  const [fileInputState, setFileInputState] = useState("")
+  const [fileInputState, setFileInputState] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState();
 
   const changeHandler = (e) => {
     const user = { ...newUser };
     user[e.target.name] = e.target.value;
-    console.log(user);
-    console.log(e.target.name)
-    console.log(e.target.value);
+
     setNewUser(user);
   };
-
 
   const registerHandler = () => {
     props.register(newUser);
@@ -42,28 +33,26 @@ export default function Signup(props) {
 
   //IMAGE UPLOAD
   const handleFileInputChange = (e) => {
-      const file = e.target.files[0];
-      previewFile(file);
-    }
+    const file = e.target.files[0];
+    previewFile(file);
+  };
 
   const previewFile = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      setPreviewSource(reader.result)
-    }
-  }
+      setPreviewSource(reader.result);
+    };
+  };
 
   const handleSubmitFile = () => {
-    console.log("submitting file")
     // e.preventDefault();
-    if(!previewSource) return;
+    if (!previewSource) return;
     uploadImage(previewSource);
 
   }
 
   const uploadImage = async (base64EncodedImage) => {
-    console.log(base64EncodedImage)
     try {
       await fetch('/api/upload', {
         method: 'POST',
@@ -153,8 +142,7 @@ export default function Signup(props) {
                   onChange={changeHandler}
                 ></input>
               </div>
-      
-               <div className="groupOne group1">
+              <div className="groupOne group1">
                 <label>Upload a profile photo</label>&nbsp;<br></br>
                 <input name="cloudinary_url" type="file" value={fileInputState} onChange={handleFileInputChange}></input>
               </div> 
