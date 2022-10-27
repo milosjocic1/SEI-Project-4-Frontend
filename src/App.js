@@ -200,8 +200,8 @@ export default function App() {
 
     const handleSubmitFileProduct = (productId) => {
       // e.preventDefault();
-      if (!previewSource) return;
-      uploadProduct(previewSource, productId);
+      if (!previewSourceProduct) return;
+      uploadProduct(previewSourceProduct, productId);
     };
 
     const uploadProduct = async (base64EncodedImage, productId) => {

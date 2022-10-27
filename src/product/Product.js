@@ -22,10 +22,7 @@ export default function Product(props) {
       <div className="row d-flex mt-6 product-details-div">
         <p>{thisProduct.subCategory}</p>
         <div className="col-md-5">
-          <img
-            src="https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/449717/item/goods_00_449717.jpg?width=480&impolicy=quality_70&imformat=chrome"
-            alt=""
-          />
+          <img src={`${thisProduct.cloudinary_url}`} alt="" />
         </div>
         <div className="col-md-7">
           <h1>{thisProduct.title}</h1>
@@ -38,7 +35,7 @@ export default function Product(props) {
             Sold by: <span>{thisProduct.seller[0].sellerName}</span>
           </p>
           <p>
-            Shipping fee to the UK: <span> {thisProduct.shippingRate}</span>
+            Shipping fee to the UK: <span> £{thisProduct.shippingRate}</span>
           </p>{" "}
           <br />
           <br />
