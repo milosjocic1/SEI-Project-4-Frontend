@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ProductCreateForm from "../product/ProductCreateForm";
+// import ProductEditForm from "../product/ProductEditForm";
 import "../App.css";
 import MyProductList from "./MyProductList";
-import axios from "axios";
+// import axios from "axios";
 
 export default function MyProducts(props) {
   const [showAddProductForm, setShowAddProductForm] = useState(false);
 
   // const [showAllItems, setShowAllItems] = useState(allProducts)
+  
 
   // const all
 
@@ -30,7 +32,7 @@ export default function MyProducts(props) {
   const handleShowAddProductForm = (boolean) => {
     setShowAddProductForm(boolean);
   };
-
+  
   return (
     <div>
       <button
@@ -52,6 +54,7 @@ export default function MyProducts(props) {
       ) : (
         <div> </div>
       )}
+      
       <div className="row card-group mt-1 mb-3">
         <h3>My Listings</h3>
         <br></br>

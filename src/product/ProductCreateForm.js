@@ -16,11 +16,6 @@ export default function ProductCreateForm(props) {
     setNewProduct(product);
   };
 
-  // function updatePage() {
-  //   props.handleShowAddProductForm(false);
-  //   props.myProducts();
-  // }
-
   // const changeOptions = (event) => {
   //   const parentValue = event.target.value;
   //   let options;
@@ -28,10 +23,10 @@ export default function ProductCreateForm(props) {
   //     options = ""
   //   }
   // }
-  // function updatePage() {
-  //   props.handleShowAddProductForm(false);
-  //   props.myProducts();
-  // }
+  function updatePage() {
+    props.handleShowAddProductForm(false);
+    // props.myProducts();
+  }
 
   // const changeOptions = (event) => {
   //   const parentValue = event.target.value;
@@ -44,7 +39,7 @@ export default function ProductCreateForm(props) {
     event.preventDefault();
     props.functions.addProduct(newProduct, thisSellerId);
     event.target.reset();
-    // updatePage();
+    updatePage();
   };
 
   return (
