@@ -1,6 +1,7 @@
-/* .App {
-  text-align: center;
-} */
+.App {
+  overflow: hidden;
+  width: 100% !important;
+}
 
 /* .App-logo {
   height: 40vmin;
@@ -158,16 +159,7 @@ a {
 // Buttons
 // ========================= */
 
-/* .slide_btn {
-  background-color: var(--color-primary);
-  border: none;
-  border-radius: 0.125rem;
-  color: white;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
-  padding: 1rem 2.5rem 1.125rem;
-} */
+
   .slide_btn:focus {
     outline-color: var(--color-focus);
     outline-offset: 2px;
@@ -188,36 +180,49 @@ a {
 .slider__controls {
   display: flex;
   justify-content: center;
+  margin-top: 150px;
   
-  position: absolute;
-  top: calc(100% + 7rem);
+  /* position: absolute;
+  top: calc(100% + 8rem);
   left: 45%;
-  width: 10%;
+  width: 10%; */
 
 }
   .slide_btn {
-    --size: 3rem;
+    --size: 2rem;
+    font-size: 20px;
     
-    align-items: center;
     background-color: white;
     border: 3px solid transparent;
     color: black;
     display: flex;
-    position: absolute;
-    top: 210px;
-    /* height: var(--size); */
-    padding: 5px 15px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    top: 150px;
+    height: var(--size);
+    padding: 15px;
     border-radius: 10px;
-    /* width: var(--size); */
+    width: 200px;
+    
+
   }
     
     .slide_btn:focus {
       border-color: var(--color-focus);
       outline: none;
+    
+      
     }
         
     .btn--previous  {
       transform: rotate(180deg);
+      width: 100px;
+   
+    }
+    .btn--next {
+      width: 100px;
+      z-index: 1
     }
   
 
@@ -231,9 +236,9 @@ a {
   /* --slide-size: 25.65vmin; */
   /* --slide-size: 25.65vmin; */
   --slide-margin: 1vmin;
-  
+  overflow-x: hidden;
+  width: 100%;
   height: var(--slide-size);
-  
   margin: 40px 0px;
   position: relative;
   /* width: var(--slide-size); */
@@ -241,13 +246,17 @@ a {
 
 .slider__wrapper {
   display: flex;
-  margin: 0 calc(var(--slide-margin) * -1);
+  /* height: 100%; */
+  justify-content: center;
+  width: 100%;
+  
+  /* margin: 0 calc(var(--slide-margin) * -1); */
   /* margin: 0 auto; */
   /* HERE BELOW */
   /* position: absolute; */
   padding: 0;
   transition: transform var(--base-duration) cubic-bezier(0.25, 1, 0.35, 1);
-  align-items: end;
+  /* align-items: end; */
 }
 
 
@@ -259,12 +268,13 @@ a {
   align-items: end;
   color: white;
   display: flex;
+  
   flex: 1;
   flex-direction: column;
   height: var(--slide-size);
   justify-content: center;
   margin: 0 var(--slide-margin);
-  opacity: 0.25;
+  /* opacity: 0.25; */
   position: relative;
   transition: 
     opacity calc(var(--base-duration) / 2) var(--base-ease),
@@ -272,30 +282,7 @@ a {
   width: var(--slide-size);
   z-index: 1;
 }
-  .slide--previous, .slide--next {    
-  
-      opacity: 0.5;
-    }
-  .slide--previous, .slide--next:hover {
-    opacity: 0.5;
-  }
-  
-  /* &--previous {
-    cursor: w-resize;
-    
-    &:hover {
-      transform: translateX(2%);
-    }
-  }
-  
-  &--next {
-    cursor: e-resize;
-    
-    &:hover {
-      transform: translateX(-2%);
-    }
-  }
-} */
+
 
 .slide--current {
   --x: 0;
@@ -320,8 +307,7 @@ a {
 
 .slide__image-wrapper {
   background-color: var(--color-accent);
-   border-radius: 10px !important;
-
+  border-radius: 10px !important;
   height: 160%;
   left: 0%;
   overflow: hidden;
@@ -329,7 +315,7 @@ a {
   top: 0%;  
   transition: transform calc(var(--base-duration) / 4) var(--base-ease);
   width: 100%;
- 
+  filter: grayscale(20%);
 }
 
 .slide__image {
@@ -337,7 +323,7 @@ a {
   height: 110%;
   left: -5%;
   object-fit: cover;
-  opacity: 0;
+  /* opacity: 2; */
   pointer-events: none;
   position: absolute;
   top: -5%;
@@ -361,24 +347,24 @@ a {
 .slide__headline {
   font-size: 30px;
   font-weight: 600;
+  height: 65px;
   position: relative;
-  top: 75px;
+  top: 140px;
   color: white!important;
   text-shadow: rgba(28, 27, 27, 0.812) 0px 3px 3px;
+  text-align: center;
 }
 
 .slide__content {
   --d: 60;
   
   /* opacity: 0; */
-  padding: 4vmin;
-  position: relative;
+  padding: 50px;
+  /* position: relative; */
   transition: transform var(--base-duration) var(--base-ease);
   align-items: end;
   /* visibility: hidden; */
 
-  
-  
  } 
  .slide--current  {
     animation: fade-in calc(var(--base-duration) / 2) var(--base-ease) forwards;
@@ -407,10 +393,7 @@ a {
 .categories-div {
   /* position: relative;
   top: 400px; */
-  margin-top: 200px;
-  
-  
- 
+  margin-top: 50px;
 
 }
 .categories-links {

@@ -7,12 +7,21 @@ export default class Slider extends Component {
   constructor(props) {
     super(props);
 
+
+   
     this.state = { current: 0 };
     this.handlePreviousClick = this.handlePreviousClick.bind(this);
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handleSlideClick = this.handleSlideClick.bind(this);
-  }
+     ;
+    
 
+    
+
+  }
+  
+
+    
   handlePreviousClick() {
     const previous = this.state.current - 1;
 
@@ -38,33 +47,37 @@ export default class Slider extends Component {
   }
 
   render() {
-    const { current, direction } = this.state;
+    const { current } = this.state;
     const { slides, heading } = this.props;
     const headingId = `slider-heading__${heading
       .replace(/\s+/g, "-")
       .toLowerCase()}`;
     const wrapperTransform = {
-      transform: `translateX(-${current * (100 / slides.length)}%)`,
+      transform: `translateX(-${current * (1500 / slides.length)}%)`,
+      // transform: `translateX(-${current * (100 / slides.length)}%)`,
     };
 
     return (
-      <div className="slider" aria-labelledby={headingId}>
-        <ul className="slider__wrapper" style={wrapperTransform}>
-          <h3 id={headingId} className="visuallyhidden">
-            {heading}
-          </h3>
+      <div className="slider container" aria-labelledby={headingId}>
 
-          {slides.map((slide) => {
-            return (
-              <Slide
-                key={slide.index}
-                slide={slide}
-                current={current}
-                handleSlideClick={this.handleSlideClick}
-              />
-            );
-          })}
-        </ul>
+          <ul className="slider__wrapper" style={wrapperTransform}>
+            <h3 id={headingId} className="visuallyhidden">
+              {heading}
+            </h3>
+
+            {slides.map((slide, key) => {
+              console.log(slide);
+              return (
+                <Slide
+                  key={key}
+                  slide={slide}
+                  current={current}
+                  handleSlideClick={this.handleSlideClick}
+                />
+              );
+            })}
+          </ul>
+ 
 
         <div className="slider__controls">
           <SliderControl

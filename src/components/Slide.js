@@ -9,6 +9,7 @@ export default class Slide extends React.Component {
     this.handleSlideClick = this.handleSlideClick.bind(this);
     this.imageLoaded = this.imageLoaded.bind(this);
     this.slide = React.createRef();
+    console.log(this.props.slide)
   }
 
   handleMouseMove(event) {
@@ -39,14 +40,17 @@ export default class Slide extends React.Component {
   }
 
   render() {
-    const { src, button, headline, index } = this.props.slide;
+    
+    // const { src, button, headline, index } = this.props.slide;
+    console.log(this.props.slide)
     const current = this.props.current;
     let classNames = "slide";
 
-    if (current === index) classNames += " slide--current";
-    else if (current - 1 === index) classNames += " slide--previous";
-    else if (current + 1 === index) classNames += " slide--next";
+    if (current === this.props.key) classNames += " slide--current";
+    else if (current - 1 === this.props.key) classNames += " slide--previous";
+    else if (current + 1 === this.props.key) classNames += " slide--next";
 
+    console.log(this.props.slide.cloudinary_url)
     return (
       <li
         ref={this.slide}
@@ -58,15 +62,17 @@ export default class Slide extends React.Component {
         <div className="slide__image-wrapper">
           <img
             className="slide__image"
-            alt={headline}
-            src={src}
+            alt={this.props.title}
+            src={`${this.props.slide.cloudinary_url}`}
             onLoad={this.imageLoaded}
           />
         </div>
 
         <article className="slide__content">
-          <h2 className="slide__headline">{headline}</h2>
-          <button className="slide__action slide_btn">{button}</button>
+          <h2 className="slide__headline">{this.props.slide.title}</h2>
+          <button className="slide__action slide_btn">
+            £{this.props.slide.price}
+          </button>
         </article>
       </li>
     );
