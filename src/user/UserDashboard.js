@@ -34,7 +34,7 @@ export default function UserDashboard(props) {
   return (
     <div>
       {props.user.userRole === "buyer" ? (
-        <BuyerAccount user={props.user} product={props} />
+        <BuyerAccount user={currentUser} product={props.products} />
       ) : (
         <SellerAccount
           seller={seller}
