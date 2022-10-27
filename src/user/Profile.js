@@ -5,17 +5,17 @@ import "./User.css";
 export default function Profile(props) {
   return (
     <div>
-      <div className="row">
-        <div className="col-md-4">
+      <div className="row container">
+        <div className="col-md-4 col-sm-12">
           <h1>Hi, {props.user.firstName}</h1>
           <p>Here is your Dashboard!</p>
           <p>
             You are signed in as a <strong>{props.user.userRole}</strong>
           </p>
         </div>
-        <div className="col-md-8 profile-dashboard">
+        <div className="col-md-8 col-sm-12 profile-dashboard">
           <div className="row">
-            <div className="col-9">
+            <div className="col-md-9 col-sm-12">
               <p>
                 Name: {props.user.firstName} {props.user.lastName}
               </p>
@@ -27,7 +27,7 @@ export default function Profile(props) {
               </p>
               <p>Member since: {props.user.createdAt}</p>
             </div>
-            <div className="col-3">
+            <div className="col-md-3 col-sm-12">
               <img
                 alt="profile"
                 className="profile-picture"

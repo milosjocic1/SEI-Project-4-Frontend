@@ -69,18 +69,20 @@ export default function App() {
 
   const categories = [
     "Fashion",
-    "Electronics",
-    "Sports, Hobbies, Leisure",
     "Home and Garden",
+    "Health and Beauty",
+    "Electronics",
     "Motors",
     "Media",
+    "Sports, Hobbies, Leisure",
     "Office Supplies",
-    "Health and Beauty",
     "Collectables and Art",
   ];
 
+
   const allCategories = categories.map((category) => {
     return (
+      
       <a href="/" key={category} className="categories-links">
         {category}
       </a>

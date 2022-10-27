@@ -21,7 +21,7 @@ export default function ProductEditForm(props) {
 
   return (
     <div className="container">
-      <h1>Add Product</h1>
+      <h1>Edit Product</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Title</Form.Label>
@@ -29,6 +29,7 @@ export default function ProductEditForm(props) {
             name="title"
             type="text"
             onChange={handleChange}
+            value={newProduct.title}
           ></Form.Control>
         </Form.Group>
         <Form.Group>
@@ -37,6 +38,7 @@ export default function ProductEditForm(props) {
             name="subTitle"
             type="text"
             onChange={handleChange}
+            value={newProduct.subTitle}
           ></Form.Control>
         </Form.Group>
         <Form.Group>
@@ -45,6 +47,7 @@ export default function ProductEditForm(props) {
             name="description"
             type="text"
             onChange={handleChange}
+            value={newProduct.description}
           ></Form.Control>
         </Form.Group>
         <Form.Group>
@@ -53,6 +56,7 @@ export default function ProductEditForm(props) {
             name="condition"
             type="text"
             onChange={handleChange}
+            value={newProduct.Condition}
           ></Form.Control>
         </Form.Group>
         <Form.Group>
@@ -61,6 +65,7 @@ export default function ProductEditForm(props) {
             name="price"
             type="text"
             onChange={handleChange}
+            value={newProduct.price}
           ></Form.Control>
         </Form.Group>
         <Form.Group>
@@ -104,6 +109,7 @@ export default function ProductEditForm(props) {
             name="shippingRate"
             type="text"
             onChange={handleChange}
+            value={newProduct.shippingRate}
           ></Form.Control>
         </Form.Group>
         <Form.Group>
@@ -112,6 +118,7 @@ export default function ProductEditForm(props) {
             name="returnsPolicy"
             type="text"
             onChange={handleChange}
+            value={newProduct.returnsPolicy}
           ></Form.Control>
         </Form.Group>
 
