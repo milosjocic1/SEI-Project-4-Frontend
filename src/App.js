@@ -12,7 +12,6 @@ import ProductCreateForm from "./product/ProductCreateForm";
 import SellerDashboard from "./seller/SellerAccount";
 import UserDashboard from "./user/UserDashboard";
 import jwt_decode from "jwt-decode";
-import Cart from "./cart/Cart"
 
 // Bootstrap
 import Container from "react-bootstrap/Container";
@@ -227,11 +226,7 @@ export default function App() {
                   <Link to="/productlist"> Product List </Link>
                   &nbsp;&nbsp;&nbsp;
                   <Link to="/product"> Single Product </Link>
-<<<<<<< HEAD
-                  <Link to="/cart"> Cart </Link>
-=======
                   <Link to="/cart">Cart</Link>
->>>>>>> 8c529ccd629cae920dd62b6ee38758638753102c
                   <Link to="/logout" onClick={onLogoutHandler}>
                     Logout
                   </Link>{" "}
