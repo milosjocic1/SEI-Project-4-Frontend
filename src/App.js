@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-
 // Components
 import Home from "./Home";
 import Signup from "./auth/Signup";
@@ -218,6 +217,20 @@ export default function App() {
       }
     };
 
+    // search 
+
+    const [query, setQuery] = useState("");
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+      const fetchProducts = async () => {
+        const res = await Axios.get(`/search/?q=${query}`);
+        setData(res.data);
+      }
+      if(query.length === 0 || query.length > 2) fetchProducts()
+    }, [query]);
+
+
   return (
     <Router>
       <Navbar expand="lg">
@@ -326,6 +339,7 @@ export default function App() {
             }
           ></Route>
           <Route path="/cart" element={<Cart user={user} products={products}/>} />
+
           <Route path="/logout" user={user} product={products}></Route>
         </Routes>
       </div>
