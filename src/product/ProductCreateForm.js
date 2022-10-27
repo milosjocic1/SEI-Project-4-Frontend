@@ -16,11 +16,6 @@ export default function ProductCreateForm(props) {
     setNewProduct(product);
   };
 
-  // function updatePage() {
-  //   props.handleShowAddProductForm(false);
-  //   props.myProducts();
-  // }
-
   // const changeOptions = (event) => {
   //   const parentValue = event.target.value;
   //   let options;
@@ -28,10 +23,10 @@ export default function ProductCreateForm(props) {
   //     options = ""
   //   }
   // }
-  // function updatePage() {
-  //   props.handleShowAddProductForm(false);
-  //   props.myProducts();
-  // }
+  function updatePage() {
+    props.handleShowAddProductForm(false);
+    // props.myProducts();
+  }
 
   // const changeOptions = (event) => {
   //   const parentValue = event.target.value;
@@ -44,7 +39,7 @@ export default function ProductCreateForm(props) {
     event.preventDefault();
     props.functions.addProduct(newProduct, thisSellerId);
     event.target.reset();
-    // updatePage();
+    updatePage();
   };
 
   return (
@@ -94,8 +89,15 @@ export default function ProductCreateForm(props) {
         <Form.Group>
           <Form.Label>Category</Form.Label>
           {/* <Form.Control name="category" type="text" onChange={handleChange}></Form.Control> */}
-          <Form.Select name="category" type="text" onChange={handleChange}>
-            <option>Open this select menu</option>
+          <Form.Select
+            name="category"
+            type="text"
+            onChange={handleChange}
+            defaultValue="default"
+          >
+            <option value="default" disabled>
+              Categories
+            </option>
             <option value="Fashion">Fashion</option>
             <option value="Electronics">Electronics</option>
             <option value="Sports, Hobbies, Leisure">
@@ -112,8 +114,15 @@ export default function ProductCreateForm(props) {
         <Form.Group>
           <Form.Label>Subcategory</Form.Label>
           {/* <Form.Control name="subcategory" type="text" onChange={handleChange}></Form.Control> */}
-          <Form.Select name="subCategory" type="text" onChange={handleChange}>
-            <option>Open this select menu</option>
+          <Form.Select
+            name="subCategory"
+            type="text"
+            onChange={handleChange}
+            defaultValue="default"
+          >
+            <option value="default" disabled>
+              Sub-Categories
+            </option>
             <option value="Fashion">Fashion</option>
             <option value="Electronics">Electronics</option>
             <option value="Sports, Hobbies, Leisure">
