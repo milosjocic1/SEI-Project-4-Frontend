@@ -56,7 +56,7 @@ export default function MyProductList(props) {
       <div className="card">
         <img
           className="card-img-top"
-          src="https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/449717/item/goods_00_449717.jpg?width=480&impolicy=quality_70&imformat=chrome"
+          src={`${props.cloudinary_url}`}
           alt=" "
         ></img>
         <div className="card-body">
