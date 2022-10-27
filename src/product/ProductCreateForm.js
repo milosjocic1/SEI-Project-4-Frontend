@@ -99,7 +99,6 @@ export default function ProductCreateForm(props) {
             type="text"
             onChange={handleChange}
             defaultValue="default"
-            required
           >
             <option value="default" disabled>
               Categories
@@ -125,7 +124,6 @@ export default function ProductCreateForm(props) {
             type="text"
             onChange={handleChange}
             defaultValue="default"
-            required
           >
             <option value="default" disabled>
               Sub-Categories
