@@ -11,10 +11,8 @@ export default function ProductCreateForm(props) {
   const handleChange = (event) => {
     const attributeToChange = event.target.name;
     const newValue = event.target.value;
-
     const product = { ...newProduct };
     product[attributeToChange] = newValue;
-
     setNewProduct(product);
   };
 
@@ -41,12 +39,12 @@ export default function ProductCreateForm(props) {
     event.preventDefault();
     props.functions.addProduct(newProduct, thisSellerId);
     event.target.reset();
-    props.handleSubmitFile(props.response.data.user._id);
+    props.handleSubmitFileProduct(props.response.data.user._id);
     updatePage();
   };
 
-  const handleFileInputChange = (e) => {
-    props.handleFileInputChange(e)
+  const handleProductFileInputChange = (e) => {
+    props.handleProductFileInputChange(e)
   };
 
 
@@ -54,7 +52,7 @@ export default function ProductCreateForm(props) {
   return (
     <div className="container">
       <h1>Add Product</h1>
-      <form>
+      <form encType="multiform/form-data">
         <div>
           <input name="title" type="text" onChange={handleChange} placeholder="Product Title"></input>
           <input name="subTitle" type="text" onChange={handleChange} placeholder="Product Subtitle"></input>
@@ -87,12 +85,12 @@ export default function ProductCreateForm(props) {
           <input name="returnsPolicy" type="text" onChange={handleChange} placeholder="Policy"></input>
           <label>Upload a photo of the product</label>&nbsp;<br></br>
               <div>
-                <input name="cloudinary_url" type="file"  onChange={handleFileInputChange}></input>
+                <input name="cloudinary_url" type="file"  onChange={handleProductFileInputChange}></input>
               </div> 
                <div>
-                {props.previewSource && (
+                {props.previewSourceProduct && (
                   <img
-                    src={props.previewSource}
+                    src={props.previewSourceProduct}
                     alt="chosen"
                     style={{ height: "150px" }}
                   />

@@ -164,8 +164,43 @@ export default function App() {
     catch (error){
       console.log(error)
     }
-
   }
+
+  // ATTEMPT TO ADD PRODUCT IMAGE
+    const [previewSourceProduct, setPreviewSourceProduct] = useState();
+
+    const handleProductFileInputChange = (e) => {
+      const file = e.target.files[0];
+      previewProductFile(file);
+    };
+ 
+      const previewProductFile = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          setPreviewSourceProduct(reader.result);
+        };
+      };
+
+    const handleSubmitFileProduct = (productId) => {
+      // e.preventDefault();
+      if (!previewSource) return;
+      uploadProduct(previewSource, productId);
+    };
+
+    const uploadProduct = async (base64EncodedImage, productId) => {
+      try {
+        // let userId = localStorage.getItem("userId");
+        console.log(productId);
+        await fetch(`/api/uploadProduct?productId=${productId}`, {
+          method: "POST",
+          body: JSON.stringify({ data: base64EncodedImage }),
+          headers: { "Content-type": "application/json" },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   return (
     <Router>
@@ -266,7 +301,10 @@ export default function App() {
                 user={user}
                 products={products}
                 handleFileInputChange={handleFileInputChange}
-                previewSource={previewSource}
+                previewSourceProduct={previewSourceProduct}
+                handleProductFileInputChange={handleProductFileInputChange}
+                previewProductFile={previewProductFile}
+                handleSubmitFileProduct={handleSubmitFileProduct}
               />
             }
           ></Route>

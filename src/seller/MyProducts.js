@@ -49,9 +49,10 @@ export default function MyProducts(props) {
           functions={props}
           seller={props.seller}
           user={props.user}
-          handleShowAddProductForm={handleShowAddProductForm}
-          handleFileInputChange={props.handleFileInputChange}
-          previewSource={props.previewSource}
+          handleProductFileInputChange={props.handleProductFileInputChange}
+          previewSourceProduct={props.previewSourceProduct}
+          previewProductFile={props.previewProductFile}
+          handleSubmitFileProduct={props.handleSubmitFileProduct}
         />
       ) : (
         <div> </div>
