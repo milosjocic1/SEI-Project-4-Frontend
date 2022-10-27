@@ -5,6 +5,7 @@ import Axios from "axios";
 import Home from "./Home";
 import Signup from "./auth/Signup";
 import Signin from "./auth/Signin";
+import Cart from "./cart/Cart";
 import ProductList from "./product/ProductList";
 import Product from "./product/Product";
 import ProductCreateForm from "./product/ProductCreateForm";
@@ -190,6 +191,7 @@ export default function App() {
                   <Link to="/productlist"> Product List </Link>
                   &nbsp;&nbsp;&nbsp;
                   <Link to="/product"> Single Product </Link>
+                  <Link to="/cart"> Cart </Link>
                   <Link to="/logout" onClick={onLogoutHandler}>
                     Logout
                   </Link>{" "}
@@ -255,6 +257,7 @@ export default function App() {
             path="/user/dashboard"
             element={<UserDashboard user={user} products={products} />}
           ></Route>
+          <Route path="/cart" element={<Cart user={user} products={products}/>} />
           <Route path="/logout" user={user} product={products}></Route>
         </Routes>
       </div>
@@ -268,6 +271,7 @@ export default function App() {
             <br></br>
             {/* Below will have to add seller id to this link */}
             <Link to="/user/dashboard"> User Dashboard </Link>
+    
           </div>
           <div className="col-3">
             <a href="/">Link 1</a>
