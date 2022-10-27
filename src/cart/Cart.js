@@ -72,7 +72,6 @@ import { Form, Button } from "react-bootstrap";
       useEffect(() => {
         loadCartList();
       }, []);
-      
       const loadCartList = () => {
         Axios.get(`/cart/?userId=${props.user.id}`)
           .then(({data}) => {
@@ -106,7 +105,7 @@ import { Form, Button } from "react-bootstrap";
                     <th></th>
                   </tr>
                 </tbody>
-              {cart.products?.map((item, index) => (
+                {cart.products?.map((item, index) => (
                 <tr key={index}>
                     {<CartItem {...item}/>}
                 </tr>
