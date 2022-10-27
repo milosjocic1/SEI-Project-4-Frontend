@@ -48,6 +48,9 @@ export default function App() {
     Axios.post("/auth/signup", user)
       .then((response) => {
         console.log(response);
+        console.log(response.data.user._id);
+        localStorage.setItem("userId", response.data.user._id);
+        handleSubmitFile(response.data.user._id);
       })
       .catch((error) => {
         console.log(error);
@@ -69,18 +72,20 @@ export default function App() {
 
   const categories = [
     "Fashion",
-    "Electronics",
-    "Sports, Hobbies, Leisure",
     "Home and Garden",
+    "Health and Beauty",
+    "Electronics",
     "Motors",
     "Media",
+    "Sports, Hobbies, Leisure",
     "Office Supplies",
-    "Health and Beauty",
     "Collectables and Art",
   ];
 
+
   const allCategories = categories.map((category) => {
     return (
+      
       <a href="/" key={category} className="categories-links">
         {category}
       </a>
@@ -118,6 +123,48 @@ export default function App() {
         console.log(error);
       });
   };
+
+  // signup image upload
+
+  const [fileInputState, setFileInputState] = useState("");
+  const [selectedFile, setSelectedFile] = useState("");
+  const [previewSource, setPreviewSource] = useState();
+
+  //IMAGE UPLOAD
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    previewFile(file);
+  };
+
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource(reader.result);
+    };
+  };
+
+  const handleSubmitFile = (userId) => {
+    // e.preventDefault();
+    if (!previewSource) return;
+    uploadImage(previewSource, userId);
+  }
+
+  const uploadImage = async (base64EncodedImage, userId) => {
+    try {
+      // let userId = localStorage.getItem("userId");
+      console.log(userId);
+      await fetch(`/api/upload?userId=${userId}`, {
+        method: 'POST',
+        body: JSON.stringify({data: base64EncodedImage}),
+        headers: {'Content-type': 'application/json'}
+      })
+    } 
+    catch (error){
+      console.log(error)
+    }
+
+  }
 
   return (
     <Router>
@@ -182,7 +229,7 @@ export default function App() {
           ></Route>
           <Route
             path="/signup"
-            element={<Signup register={registerHandler} />}
+            element={<Signup register={registerHandler} handleFileInputChange={handleFileInputChange} previewSource={previewSource}/>}
           ></Route>
           <Route
             path="/productlist/*"

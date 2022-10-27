@@ -36,10 +36,23 @@ export default function Home(props) {
       <Search></Search>
       <div>
         <div className="buy-sell-background">
-          <h1 className="buy-sell-title">Buy and Sell Anything</h1> <br></br>
-          <a href="/" className="buy-sell-btn">
-            How it works
-          </a>
+          <div className="row">
+            <div className="col-md-7 col-sm-12">
+              <h1 className="buy-sell-title">Buy and Sell Anything</h1>{" "}
+              <br></br>
+              <a href="/" className="buy-sell-btn">
+                How it works
+              </a>
+            </div>
+            <div className="col-md-5 col-sm-12">
+              <img
+              className="agora-image-cart"
+                src="https://cdn3d.iconscout.com/3d/premium/thumb/online-shopping-delivery-4049862-3363949.png"
+                alt="agora-market"
+                width="500px"
+              />
+            </div>
+          </div>
         </div>
       </div>
       <Slider heading="Example Slider" slides={slideData} />
