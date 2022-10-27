@@ -6,7 +6,7 @@ import SellerAccount from "../seller/SellerAccount";
 import "./User.css";
 
 export default function UserDashboard(props) {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
   const [seller, setSeller] = useState({});
   const [isEdit, setIsEdit] = useState(false);

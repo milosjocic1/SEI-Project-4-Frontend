@@ -49,19 +49,22 @@ export default function Signup(props) {
     // e.preventDefault();
     if (!previewSource) return;
     uploadImage(previewSource);
-  };
+
+  }
 
   const uploadImage = async (base64EncodedImage) => {
     try {
-      await fetch("/api/upload", {
-        method: "POST",
-        body: JSON.stringify({ data: base64EncodedImage }),
-        headers: { "Content-type": "application/json" },
-      });
-    } catch (error) {
-      console.log(error);
+      await fetch('/api/upload', {
+        method: 'POST',
+        body: JSON.stringify({data: base64EncodedImage}),
+        headers: {'Content-type': 'application/json'}
+      })
+    } 
+    catch (error){
+      console.log(error)
     }
-  };
+
+  }
 
   return (
     <div className="signupForm container">
@@ -141,14 +144,9 @@ export default function Signup(props) {
               </div>
               <div className="groupOne group1">
                 <label>Upload a profile photo</label>&nbsp;<br></br>
-                <input
-                  name="image"
-                  type="file"
-                  value={fileInputState}
-                  onChange={handleFileInputChange}
-                ></input>
-              </div>
-              <div>
+                <input name="cloudinary_url" type="file" value={fileInputState} onChange={handleFileInputChange}></input>
+              </div> 
+               <div>
                 {previewSource && (
                   <img
                     src={previewSource}

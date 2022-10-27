@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import Axios from "axios";
 import "../App.css";
 import { Link } from "react-router-dom";
+import ProductEditForm from "../product/ProductEditForm";
 
 export default function MyProductList(props) {
   //   EDIT PRODUCTS
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
+
+  
 
   const editView = (id) => {
     Axios.get(`/product/edit?id=${id}`)
@@ -21,7 +24,7 @@ export default function MyProductList(props) {
       });
   };
   const editProduct = (product) => {
-    Axios.put("/product/update", product)
+    Axios.put(`/product/update`, product)
       .then((response) => {
         console.log(response);
         // loadProductList();
@@ -43,6 +46,8 @@ export default function MyProductList(props) {
       });
   };
 
+
+
   return (
     <div key={props._id} className="col-lg-4 col-sm-12 mt-3">
       <div className="card">
@@ -63,8 +68,12 @@ export default function MyProductList(props) {
             </div>
             <div className="col-3">
               <Link
+                onClick={<ProductEditForm key={props._id} product={currentProduct} editProduct={editProduct} />
+                    // CONTINUE FROM HERE!!!!
+
+                }
                 className="index-price-button edit-delete-btn"
-                to={`/product/${props._id}`}
+                to={`/product/edit?id=${props._id}`}
               >
                 Edit
               </Link>

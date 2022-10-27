@@ -111,7 +111,6 @@ export default function SellerAccount(props) {
         seller={props.seller}
         user={props.user}
         products={props.products}
-        // products={allProducts}
         addProduct={addProduct}
         // editView={editView}
         // editProduct={editProduct}

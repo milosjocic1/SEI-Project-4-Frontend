@@ -17,7 +17,7 @@ export default function ProductList(props) {
           <p className="card-text">{product.subTitle}</p>
 
           <Link className="index-price-button" to={`/product/${product._id}`}>
-            {product.price}
+            £{product.price}
           </Link>
         </div>
       </div>
