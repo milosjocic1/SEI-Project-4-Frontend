@@ -10,6 +10,7 @@ export default function SellerAccount(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
+  console.log(props)
   // const loadDashboard = () => {
   //   Axios.get("/seller/dashboard")
   //     .then((response) => {
@@ -109,6 +110,8 @@ export default function SellerAccount(props) {
     <div className="container">
       <Profile user={props.user} />
       <MyProducts
+        handleFileInputChange={props.handleFileInputChange}
+        previewSource={props.previewSource}
         seller={props.seller}
         user={props.user}
         products={props.products}

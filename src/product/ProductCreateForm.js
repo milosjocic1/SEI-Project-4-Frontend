@@ -4,6 +4,8 @@ import { Container, Form, Button } from "react-bootstrap";
 export default function ProductCreateForm(props) {
   const [newProduct, setNewProduct] = useState({});
 
+
+  console.log(props)
   const thisSellerId = props.seller._id;
 
   const handleChange = (event) => {
@@ -47,7 +49,7 @@ export default function ProductCreateForm(props) {
     props.handleFileInputChange(e)
   };
 
-  console.log(props)
+
 
   return (
     <div className="container">
@@ -63,22 +65,22 @@ export default function ProductCreateForm(props) {
             <option value="fashion">Fashion</option>
             <option value="electronics">Electronics</option>
             <option value="sports-hobbies-leisures">Sports, hobbies, leisures</option>
-            <option value="home-garden">Home & Garden</option>
+            <option value="home-garden">Home and Garden</option>
             <option value="motors">Motors</option>
             <option value="media">Media</option>
             <option value="office-supplies">Office Supplies</option>
-            <option value="health-beauty">Health & Beauty</option>
+            <option value="health-beauty">Health and Beauty</option>
             <option value="collectables-art">Collectables and Art</option>
           </select>
-          <select name="subCategory" onChange={handleChange} placeholder="Subcategory">
+          <select type="text" name="subCategory" onChange={handleChange} placeholder="Subcategory">
             <option value="fashion">Fashion</option>
             <option value="electronics">Electronics</option>
             <option value="sports-hobbies-leisures">Sports, hobbies, leisures</option>
-            <option value="home-garden">Home & Garden</option>
+            <option value="home-garden">Home and Garden</option>
             <option value="motors">Motors</option>
             <option value="media">Media</option>
             <option value="office-supplies">Office Supplies</option>
-            <option value="health-beauty">Health & Beauty</option>
+            <option value="health-beauty">Health and Beauty</option>
             <option value="collectables-art">Collectables and Art</option>
           </select>
           <input name="shippingRate" type="text" onChange={handleChange} placeholder="Shipping Rate"></input>
