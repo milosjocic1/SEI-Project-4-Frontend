@@ -523,6 +523,14 @@ button:hover {
   font-size: 18px;
 }
 
+.checkout-btn2 {
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: white;
+  padding: 2px 20px;
+  font-size: 18px;
+}
+
 .card {
   background-color: white;
   padding: 10px 20px 11px;
@@ -543,3 +551,11 @@ button:hover {
   color: white !important;
   border: 0 !important;
 }
+
+.stripe {
+  background-color: rgb(229, 229, 229);
+  display: flex;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
