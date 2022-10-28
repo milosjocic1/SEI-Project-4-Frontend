@@ -33,7 +33,7 @@ export default function Home(props) {
 
   return (
     <div className="container component">
-      <Search></Search>
+      <Search search={props.search}></Search>
       <div>
         <div className="buy-sell-background">
           <div className="row">
@@ -55,7 +55,7 @@ export default function Home(props) {
           </div>
         </div>
       </div>
-      <Slider heading="Example Slider" slides={slideData} />
+      <Slider heading="Example Slider" slides={props.product} />
       <Categories category={props.category}></Categories>
     </div>
   );

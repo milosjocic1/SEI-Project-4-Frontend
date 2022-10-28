@@ -4,11 +4,13 @@ import Search from "../components/Search";
 import Review from "../seller/Review";
 import { useParams } from "react-router-dom";
 
+
 export default function Product(props) {
   const { productId } = useParams();
   const thisProduct = props.product.find(
     (product) => product._id === productId
   );
+  console.log(props)
 
   return (
     <div className="container">
@@ -20,22 +22,36 @@ export default function Product(props) {
       {/* PRODUCT DETAILS */}
 
       <div className="row d-flex mt-6 product-details-div">
-        <p>{thisProduct.subCategory}</p>
-        <div className="col-md-5">
-          <img src={`${thisProduct.cloudinary_url}`} alt="" />
+        <p className="subcategories">{thisProduct.subCategory}</p>
+        <div className="col-md-6">
+          <img
+            src={`${thisProduct.cloudinary_url}`}
+            alt={`${thisProduct.cloudinary_url}`}
+            className="product-image-detail"
+          />
         </div>
-        <div className="col-md-7">
+        <div className="col-md-6">
           <h1>{thisProduct.title}</h1>
           <h4> {thisProduct.subTitle} </h4> <br />
           <br /> <br /> <br />
           <p>
-            Condition: <span>{thisProduct.condition}</span>
+            Condition:{" "}
+            <span>
+              <strong>{thisProduct.condition}</strong>
+            </span>
           </p>
           <p>
-            Sold by: <span>{thisProduct.seller[0].sellerName}</span>
+            Sold by:{" "}
+            <span>
+              <strong>{thisProduct.seller[0].sellerName}</strong>
+            </span>
           </p>
           <p>
-            Shipping fee to the UK: <span> £{thisProduct.shippingRate}</span>
+            Shipping fee to the UK:{" "}
+            <span>
+              {" "}
+              <strong>£{thisProduct.shippingRate}</strong>{" "}
+            </span>
           </p>{" "}
           <br />
           <br />
@@ -44,9 +60,9 @@ export default function Product(props) {
         </div>
       </div>
       <div className="mt-5 mb-5">
-        <h5>Product Description</h5>
-        <p>{thisProduct.description}</p>
-        <h5>Returns Policy</h5>
+        <h2>Product Description</h2>
+        <p>{thisProduct.description}</p> <br />
+        <h2>Returns Policy</h2>
         <p>{thisProduct.returnsPolicy}</p>
       </div>
       <Review></Review>

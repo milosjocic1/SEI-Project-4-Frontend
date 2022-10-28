@@ -11,29 +11,7 @@ export default function SellerAccount(props) {
   const [currentProduct, setCurrentProduct] = useState({});
 
   console.log(props)
-  // const loadDashboard = () => {
-  //   Axios.get("/seller/dashboard")
-  //     .then((response) => {
-
-  //       setSellers(response.data.user);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-
-  //     });
-  // }
-
-  // const loadProductList = (seller) => {
-
-  //   if (seller.products) {
-  //     const products = seller.products.map((item, key) => (
-  //       <div key={key}>
-  //         <p>{item.title}</p>
-  //       </div>
-  //     ));
-  //     return products;
-  //   }
-  // };
+ 
   useEffect(() => {
     // Axios function
     loadProductList();
@@ -64,39 +42,7 @@ export default function SellerAccount(props) {
       });
   };
 
-  // const editView = (id) => {
-  //   Axios.get(`/product/edit?id=${id}`)
-  //     .then((response) => {
-  //       let product = response.data.product;
-  //       setIsEdit(true);
-  //       setCurrentProduct(product);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  // const editProduct = (product) => {
-  //   Axios.put("/product/update", product)
-  //     .then((response) => {
-  //       console.log(response);
-  //       // loadProductList();
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  // const deleteProduct = (id) => {
-  //   Axios.delete(`/product/delete?id=${id}`)
-  //     .then((response) => {
-  //       console.log(response);
-  //       // loadProductList();
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+  
 
   const allProducts = products.map((product, index) => (
     <div key={index}>
