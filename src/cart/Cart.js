@@ -28,7 +28,6 @@ export default function Cart(props) {
       .then((response) => {
         console.log("Shipping details updated successfully");
         console.log(response);
-        // loadAuthorList();
       })
       .catch((error) => {
         console.log("Error editing shipping details");
@@ -45,7 +44,6 @@ export default function Cart(props) {
       .then((response) => {
         console.log("Billing details updated successfully");
         console.log(response);
-        // loadAuthorList();
       })
       .catch((error) => {
         console.log("Error editing billing details");
