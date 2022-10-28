@@ -9,11 +9,11 @@ export default function ProductList(props) {
       <div className="card">
         <img
           className="card-img-top"
-          src="https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/449717/item/goods_00_449717.jpg?width=480&impolicy=quality_70&imformat=chrome"
+          src={`${product.cloudinary_url}`}
           alt=" "
         ></img>
         <div className="card-body">
-          <h5 className="card-title">{product.title}</h5>
+          <h3 className="card-title">{product.title}</h3>
           <p className="card-text">{product.subTitle}</p>
 
           <Link className="index-price-button" to={`/product/${product._id}`}>
