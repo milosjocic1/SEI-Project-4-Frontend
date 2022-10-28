@@ -3,7 +3,7 @@ import React from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "../App.css";
 
-export const CheckoutForm = () => {
+export const CheckoutForm = (props) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -23,13 +23,14 @@ export const CheckoutForm = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container  stripe">
     <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
-      <div  class="card">
+      <div  class="card stripe-card">
         <h4>Card Details</h4>
       <CardElement />
       </div>
-      <button class="buy-btn">Pay</button>
+      <h6>Your card will be charged <b>£{props.total}</b></h6>
+      <button class="buy-btn">Pay now with Stripe</button>
     </form>
     </div>
   );

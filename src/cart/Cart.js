@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import CartItem from "../cart/CartItem";
 import StripeContainer from "../stripe/StripeContainer";
-import { Form, Button, Table } from "react-bootstrap";
+import { Form, Button, Table, Card } from "react-bootstrap";
 import "../App.css";
 
 export default function Cart(props) {
@@ -12,13 +12,16 @@ export default function Cart(props) {
   const [newBilling, setNewBilling] = useState(props.user.billingAddress);
   const [showAddSB, setShowAddSB] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
+  const [buttonStyle, setButtonStyle] = useState("checkout-btn");
 
   const handleShowAddSB = (boolean) => {
     setShowAddSB(boolean);
+    setButtonStyle("checkout-btn2");
   };
 
   const handleShowCheckout = (boolean) => {
     setShowCheckout(boolean);
+    setButtonStyle("checkout-btn2");
   };
 
   const editShipping = (newShipping) => {
@@ -30,7 +33,6 @@ export default function Cart(props) {
       .then((response) => {
         console.log("Shipping details updated successfully");
         console.log(response);
-        // loadAuthorList();
       })
       .catch((error) => {
         console.log("Error editing shipping details");
@@ -47,7 +49,6 @@ export default function Cart(props) {
       .then((response) => {
         console.log("Billing details updated successfully");
         console.log(response);
-        // loadAuthorList();
       })
       .catch((error) => {
         console.log("Error editing billing details");
@@ -128,7 +129,7 @@ export default function Cart(props) {
           </div>
           <br />
 
-          <button className="checkout-btn"
+          <button className={buttonStyle}
             value="showSB"
             onClick={() => {
               setShowAddSB(true);
@@ -235,7 +236,7 @@ export default function Cart(props) {
               ></Form.Control>
             </Form.Group>
 
-            <button className="checkout-btn"
+            <button className={buttonStyle}
               value="show checkout"
               type="submit"
               onClick={() => {
@@ -249,7 +250,8 @@ export default function Cart(props) {
       ) : (
         <div></div>
       )}
-      {showCheckout ? <StripeContainer /> : <div></div>}
+      <br/>
+      {showCheckout ? <StripeContainer total={cart.total}/> : <div></div>}
     </div>
   );
 }

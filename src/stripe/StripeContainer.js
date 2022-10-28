@@ -8,10 +8,10 @@ console.log(PUBLIC_KEY)
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
-export default function Stripe() {
+export default function Stripe(props) {
   return (
     <Elements stripe={stripeTestPromise}>
-      <CheckoutForm />
+      <CheckoutForm  total={props.total}/>
     </Elements>
   );
 };
