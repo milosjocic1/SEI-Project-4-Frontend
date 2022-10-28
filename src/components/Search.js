@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -7,29 +7,36 @@ import ProductList from '../product/ProductList';
 import "../App.css";
 
 
-export default function Search() {
 
-  
+import { useNavigate } from "react-router-dom";
+
+
+export default function Search(){
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   return (
-    <div>
-      <InputGroup className="mb-4 div-search">
-        <Form.Control
+    <div className='container'>
+     <InputGroup className="mb-4 div-search">
+        <Form.Control 
+        type="search"
           placeholder="What are you looking for?"
           aria-label="Search"
           aria-describedby="basic-addon2"
           className='search-input'
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+
         />
-        <Link to="productlist">
-        <Button className='search-btn' variant="outline-secondary" id="button-addon2">
+       
+        <Button className='search-btn' variant="outline-secondary" id="button-addon2"
+        onClick={() => navigate(`/search?query=${search}`)}
+        >
           Search
         </Button>
-        </Link>
+        
       </InputGroup>
-      <div>
-        <Routes>
-          <Route path="productlist" element={<ProductList></ProductList>}></Route>
-        </Routes>
-      </div>
+    
     </div>
   );
-}
+};
