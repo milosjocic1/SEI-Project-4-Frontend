@@ -33,7 +33,7 @@ export default function Home(props) {
 
   return (
     <div className="container component">
-      <Search></Search>
+      <Search search={props.search}></Search>
       <div>
         <div className="buy-sell-background">
           <div className="row">

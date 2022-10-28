@@ -6,6 +6,8 @@ import { Form, Button, Table } from "react-bootstrap";
 import "../App.css";
 
 export default function Cart(props) {
+  console.log(props)
+
   const [newShipping, setNewShipping] = useState(props.user.shippingAddress);
   const [newBilling, setNewBilling] = useState(props.user.billingAddress);
   const [showAddSB, setShowAddSB] = useState(false);
