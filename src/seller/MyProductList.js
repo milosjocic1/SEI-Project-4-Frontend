@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "../App.css";
 import { Link } from "react-router-dom";
@@ -9,6 +9,7 @@ export default function MyProductList(props) {
   // const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
   const [showEditProductForm, setShowEditProductForm] = useState(false);
+
 
   const handleShowEditProductForm = (boolean) => {
     setShowEditProductForm(boolean);

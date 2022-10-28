@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 
+
 export default function ProductCreateForm(props) {
   const [newProduct, setNewProduct] = useState({});
 
@@ -54,58 +55,126 @@ export default function ProductCreateForm(props) {
       <h1>Add Product</h1>
       <form encType="multiform/form-data">
         <div>
-          <input name="title" type="text" onChange={handleChange} placeholder="Product Title"></input>
-          <input name="subTitle" type="text" onChange={handleChange} placeholder="Product Subtitle"></input>
-          <input name="description" type="text" onChange={handleChange} placeholder="Desription"></input>
-          <input name="condition" type="text" onChange={handleChange} placeholder="Condition"></input>
-          <input name="price" type="text" onChange={handleChange} placeholder="Price"></input>
-          <select name="category" onChange={handleChange} placeholder="Category">
-            <option value="fashion">Fashion</option>
-            <option value="electronics">Electronics</option>
-            <option value="sports-hobbies-leisures">Sports, hobbies, leisures</option>
-            <option value="home-garden">Home and Garden</option>
-            <option value="motors">Motors</option>
-            <option value="media">Media</option>
-            <option value="office-supplies">Office Supplies</option>
-            <option value="health-beauty">Health and Beauty</option>
-            <option value="collectables-art">Collectables and Art</option>
-          </select>
-          <select type="text" name="subCategory" onChange={handleChange} placeholder="Subcategory">
-            <option value="fashion">Fashion</option>
-            <option value="electronics">Electronics</option>
-            <option value="sports-hobbies-leisures">Sports, hobbies, leisures</option>
-            <option value="home-garden">Home and Garden</option>
-            <option value="motors">Motors</option>
-            <option value="media">Media</option>
-            <option value="office-supplies">Office Supplies</option>
-            <option value="health-beauty">Health and Beauty</option>
-            <option value="collectables-art">Collectables and Art</option>
-          </select>
-          <input name="shippingRate" type="text" onChange={handleChange} placeholder="Shipping Rate"></input>
-          <input name="returnsPolicy" type="text" onChange={handleChange} placeholder="Policy"></input>
+          <div className="form-group">
+            <input
+              className="add-product-field"
+              name="title"
+              type="text"
+              onChange={handleChange}
+              placeholder="Product Title"
+            ></input>
+          </div>
+          <div>
+            <input
+              name="subTitle"
+              type="text"
+              onChange={handleChange}
+              placeholder="Product Subtitle"
+            ></input>
+          </div>
+          <div>
+            <input
+              name="description"
+              type="text"
+              onChange={handleChange}
+              placeholder="Desription"
+            ></input>
+          </div>
+          <div>
+            <input
+              name="condition"
+              type="text"
+              onChange={handleChange}
+              placeholder="Condition"
+            ></input>
+          </div>
+          <div>
+            <input
+              name="price"
+              type="text"
+              onChange={handleChange}
+              placeholder="Price"
+            ></input>
+          </div>
+          <div>
+            <select
+              name="category"
+              onChange={handleChange}
+              placeholder="Category"
+            >
+              <option value="no-category">Category</option>
+              <option value="fashion">Fashion</option>
+              <option value="electronics">Electronics</option>
+              <option value="sports-hobbies-leisures">
+                Sports, hobbies, leisures
+              </option>
+              <option value="home-garden">Home and Garden</option>
+              <option value="motors">Motors</option>
+              <option value="media">Media</option>
+              <option value="office-supplies">Office Supplies</option>
+              <option value="health-beauty">Health and Beauty</option>
+              <option value="collectables-art">Collectables and Art</option>
+            </select>
+          </div>
+          <div>
+            <select
+              type="text"
+              name="subCategory"
+              onChange={handleChange}
+              placeholder="Subcategory"
+            >
+              <option value="no-category">Sub Category</option>
+              <option value="fashion">Fashion</option>
+              <option value="electronics">Electronics</option>
+              <option value="sports-hobbies-leisures">
+                Sports, hobbies, leisures
+              </option>
+              <option value="home-garden">Home and Garden</option>
+              <option value="motors">Motors</option>
+              <option value="media">Media</option>
+              <option value="office-supplies">Office Supplies</option>
+              <option value="health-beauty">Health and Beauty</option>
+              <option value="collectables-art">Collectables and Art</option>
+            </select>
+          </div>
+          <div>
+            <input
+              name="shippingRate"
+              type="text"
+              onChange={handleChange}
+              placeholder="Shipping Rate"
+            ></input>
+          </div>
+          <div>
+            <input
+              name="returnsPolicy"
+              type="text"
+              onChange={handleChange}
+              placeholder="Policy"
+            ></input>
+          </div>
           <label>Upload a photo of the product</label>&nbsp;<br></br>
-              <div>
-                <input name="cloudinary_url" type="file"  onChange={handleProductFileInputChange}></input>
-              </div> 
-               <div>
-                {props.previewSourceProduct && (
-                  <img
-                    src={props.previewSourceProduct}
-                    alt="chosen"
-                    style={{ height: "150px" }}
-                  />
-                )}
-              </div>
-          <button
-                className="sign-button"
-                onClick={handleSubmit}
-              >
-                Add product
-              </button>
+          <div>
+            <input
+              name="cloudinary_url"
+              type="file"
+              onChange={handleProductFileInputChange}
+            ></input>
+          </div>
+          <div>
+            {props.previewSourceProduct && (
+              <img
+                src={props.previewSourceProduct}
+                alt="chosen"
+                style={{ height: "150px" }}
+              />
+            )}
+          </div>
+          <button className="sign-button" onClick={handleSubmit}>
+            Add product
+          </button>
         </div>
-
       </form>
-
 
       {/* <Form onSubmit={handleSubmit}>
         <Form.Group>
