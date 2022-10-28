@@ -217,20 +217,7 @@ export default function App() {
       }
     };
 
-    // search 
-
-    const [query, setQuery] = useState("");
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-      const fetchProducts = async () => {
-        const res = await Axios.get(`/search/?q=${query}`);
-        setData(res.data);
-      }
-      if(query.length === 0 || query.length > 2) fetchProducts()
-    }, [query]);
-
-
+   
   return (
     <Router>
       <Navbar expand="lg">
