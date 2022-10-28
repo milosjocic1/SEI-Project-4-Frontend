@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default class Slide extends React.Component {
   constructor(props) {
@@ -70,9 +71,13 @@ export default class Slide extends React.Component {
 
         <article className="slide__content">
           <h2 className="slide__headline">{this.props.slide.title}</h2>
-          <button className="slide__action slide_btn">
+          <Link
+            to={`product/${this.props.slide._id}`}
+            className="slide__action slide_btn"
+          >
             £{this.props.slide.price}
-          </button>
+          </Link>
+          {/* <button className="slide__action slide_btn"></button> */}
         </article>
       </li>
     );

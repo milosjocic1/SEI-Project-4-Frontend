@@ -8,9 +8,9 @@ import Cart from "./cart/Cart";
 import ProductList from "./product/ProductList";
 import Product from "./product/Product";
 import ProductCreateForm from "./product/ProductCreateForm";
-import SellerDashboard from "./seller/SellerAccount";
 import UserDashboard from "./user/UserDashboard";
 import jwt_decode from "jwt-decode";
+import SearchResults from "./SearchResults"
 
 // Bootstrap
 import Container from "react-bootstrap/Container";
@@ -140,6 +140,12 @@ export default function App() {
       });
   };
 
+  // SEARCH
+
+  
+
+
+
   // signup image upload
 
   const [fileInputState, setFileInputState] = useState("");
@@ -217,7 +223,20 @@ export default function App() {
       }
     };
 
-   
+    // search 
+
+    // const [query, setQuery] = useState("");
+    // const [data, setData] = useState([]);
+
+    // useEffect(() => {
+    //   const fetchProducts = async () => {
+    //     const res = await Axios.get(`/search/?q=${query}`);
+    //     setData(res.data);
+    //   }
+    //   if(query.length === 0 || query.length > 2) fetchProducts()
+    // }, [query]);
+
+
   return (
     <Router>
       <Navbar expand="lg">
@@ -235,31 +254,30 @@ export default function App() {
           >
             <Nav className="">
               {isAuth ? (
-                <div>
-                  <Link to="/">HOME</Link>&nbsp;
-                  {user ? "Welcome " + user.name : null}&nbsp;
-                  <Link to="/user/dashboard">MY ACCOUNT</Link>&nbsp;
-                  <Link to="/productlist">Product List</Link>&nbsp;
-                  <Link to="/product">Single Product</Link>&nbsp;
-                  <Link to="/cart">Cart {counter}</Link>&nbsp;
-                  <Link to="/logout" onClick={onLogoutHandler}>
-                    Logout
-                  </Link>{" "}
+                <div className="d-flex justify-end ">
+                  {user ? (
+                    <span className="user-name-nav me-5">
+                      Hey, {user.name}!
+                    </span>
+                  ) : null}
+                  &nbsp;
+                  <span className="me-4">
+                    <Link to="/user/dashboard">My Account</Link>&nbsp;
+                  </span>
+                  <span className="me-4">
+                    <Link to="/logout" onClick={onLogoutHandler}>
+                      Logout
+                    </Link>{" "}
+                  </span>
+                  <span className="cart-number">
+                    <Link to="/cart">My cart: {counter}</Link>&nbsp;
+                  </span>
                 </div>
               ) : (
                 <div>
                   <Link to="/signin"> Sign In </Link>&nbsp;&nbsp;&nbsp;
                   <Link to="/signup"> Sign Up </Link>&nbsp;&nbsp;&nbsp;
-                  {/* {user.userRole === "seller" ? (
-                    <Link to="/seller/dashboard"> Seller Dashboard </Link>
-                  ) : (
-                    <Link to="/user/dashboard"> User Dashboard </Link>
-                  )} */}
-                  &nbsp;&nbsp;&nbsp;
-                  <Link to="/productlist"> Product List </Link>
-                  &nbsp;&nbsp;&nbsp;
-                  <Link to="/product"> Single Product </Link>
-                  &nbsp;&nbsp;&nbsp;
+                  
                 </div>
               )}
             </Nav>
@@ -275,6 +293,7 @@ export default function App() {
               <Home category={allCategories} user={user} product={products} />
             }
           ></Route>
+          <Route path="/search" element={<SearchResults />}></Route>
           <Route
             path="/signin"
             element={<Signin login={loginHandler} />}
@@ -291,7 +310,9 @@ export default function App() {
           ></Route>
           <Route
             path="/productlist/*"
-            element={<ProductList user={user} products={products} buyItem={buyItem}/>}
+            element={
+              <ProductList user={user} products={products} buyItem={buyItem} />
+            }
           ></Route>
           <Route
             path="/product/:productId/*"
@@ -325,7 +346,10 @@ export default function App() {
               />
             }
           ></Route>
-          <Route path="/cart" element={<Cart user={user} products={products}/>} />
+          <Route
+            path="/cart"
+            element={<Cart user={user} products={products} />}
+          />
 
           <Route path="/logout" user={user} product={products}></Route>
         </Routes>
@@ -340,7 +364,6 @@ export default function App() {
             <br></br>
             {/* Below will have to add seller id to this link */}
             <Link to="/user/dashboard"> User Dashboard </Link>
-    
           </div>
           <div className="col-3">
             <a href="/">Link 1</a>

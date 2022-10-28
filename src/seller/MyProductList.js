@@ -61,20 +61,25 @@ export default function MyProductList(props) {
           alt=" "
         ></img>
         <div className="card-body">
-          <h5 className="card-title">{props.title}</h5>
+          <h3 className="card-title">{props.title}</h3>
           <p className="card-text">{props.subTitle}</p>
-          <p className="card-text">Price: £{props.price}</p>
+          <p className="card-text">
+            Price: <strong>£{props.price}</strong>
+          </p>
           <div className="row">
             <div className="col-4">
-              <Link className="index-price-button view-product-btn m-1" to={`/product/${props._id}`}>
+              <Link
+                className="index-price-button view-product-btn m-1"
+                to={`/product/${props._id}`}
+              >
                 View
               </Link>
             </div>
             <div className="col-3">
               <Link
                 onClick={() => editView(props._id)}
-                    // CONTINUE FROM HERE!!!!
-                    className="index-price-button m-1 edit-delete-btn"
+                // CONTINUE FROM HERE!!!!
+                className="index-price-button m-1 edit-delete-btn"
               >
                 Edit
               </Link>
@@ -98,12 +103,13 @@ export default function MyProductList(props) {
           seller={props.seller}
           user={props.user}
           handleShowEditProductForm={handleShowEditProductForm}
-          key={currentProduct._id} product={currentProduct} editProduct={editProduct}
+          key={currentProduct._id}
+          product={currentProduct}
+          editProduct={editProduct}
         />
       ) : (
         <div> </div>
       )}
     </div>
-  
   );
 }

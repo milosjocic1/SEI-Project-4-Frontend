@@ -10,6 +10,7 @@ export default function Product(props) {
   const thisProduct = props.product.find(
     (product) => product._id === productId
   );
+  console.log(props)
 
   return (
     <div className="container">
