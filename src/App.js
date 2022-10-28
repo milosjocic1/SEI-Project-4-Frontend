@@ -4,13 +4,13 @@ import Axios from "axios";
 import Home from "./Home";
 import Signup from "./auth/Signup";
 import Signin from "./auth/Signin";
+import Cart from "./cart/Cart";
 import ProductList from "./product/ProductList";
 import Product from "./product/Product";
 import ProductCreateForm from "./product/ProductCreateForm";
-import SellerDashboard from "./seller/SellerAccount";
 import UserDashboard from "./user/UserDashboard";
 import jwt_decode from "jwt-decode";
-import Cart from "./cart/Cart"
+import SearchResults from "./SearchResults"
 
 // Bootstrap
 import Container from "react-bootstrap/Container";
@@ -28,6 +28,8 @@ export default function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState({});
   const [message, setMessage] = useState(null);
+
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -66,6 +68,20 @@ export default function App() {
     loadProductList();
   };
 
+  const buyItem = (id, productId) => {
+    Axios.post(`/cart?userId=${id}&productId=${productId}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  
+
+  const counterUp = () => {
+    setCounter(prevCount => prevCount + 1);
+  }
   //  const errMessage = message ? (
   //    <Alert variant="danger"> {message}</Alert>
   //  ) : null;
@@ -123,6 +139,12 @@ export default function App() {
         console.log(error);
       });
   };
+
+  // SEARCH
+
+  
+
+
 
   // signup image upload
 
@@ -201,6 +223,20 @@ export default function App() {
       }
     };
 
+    // search 
+
+    // const [query, setQuery] = useState("");
+    // const [data, setData] = useState([]);
+
+    // useEffect(() => {
+    //   const fetchProducts = async () => {
+    //     const res = await Axios.get(`/search/?q=${query}`);
+    //     setData(res.data);
+    //   }
+    //   if(query.length === 0 || query.length > 2) fetchProducts()
+    // }, [query]);
+
+
   return (
     <Router>
       <Navbar expand="lg">
@@ -218,32 +254,30 @@ export default function App() {
           >
             <Nav className="">
               {isAuth ? (
-                <div>
-                  <Link to="/"> HOME </Link>
-                  {user ? "Welcome " + user.name : null}&nbsp;
-                  <Link to="/user/dashboard"> MY ACCOUNT </Link>
-                  <Link to="/productlist"> Product List </Link>
-                  &nbsp;&nbsp;&nbsp;
-                  <Link to="/product"> Single Product </Link>
-                  <Link to="/cart">Cart</Link>
-                  <Link to="/logout" onClick={onLogoutHandler}>
-                    Logout
-                  </Link>{" "}
+                <div className="d-flex justify-end ">
+                  {user ? (
+                    <span className="user-name-nav me-5">
+                      Hey, {user.name}!
+                    </span>
+                  ) : null}
+                  &nbsp;
+                  <span className="me-4">
+                    <Link to="/user/dashboard">My Account</Link>&nbsp;
+                  </span>
+                  <span className="me-4">
+                    <Link to="/logout" onClick={onLogoutHandler}>
+                      Logout
+                    </Link>{" "}
+                  </span>
+                  <span className="cart-number">
+                    <Link to="/cart">My cart: {counter}</Link>&nbsp;
+                  </span>
                 </div>
               ) : (
                 <div>
                   <Link to="/signin"> Sign In </Link>&nbsp;&nbsp;&nbsp;
                   <Link to="/signup"> Sign Up </Link>&nbsp;&nbsp;&nbsp;
-                  {/* {user.userRole === "seller" ? (
-                    <Link to="/seller/dashboard"> Seller Dashboard </Link>
-                  ) : (
-                    <Link to="/user/dashboard"> User Dashboard </Link>
-                  )} */}
-                  &nbsp;&nbsp;&nbsp;
-                  <Link to="/productlist"> Product List </Link>
-                  &nbsp;&nbsp;&nbsp;
-                  <Link to="/product"> Single Product </Link>
-                  &nbsp;&nbsp;&nbsp;
+                  
                 </div>
               )}
             </Nav>
@@ -259,6 +293,7 @@ export default function App() {
               <Home category={allCategories} user={user} product={products} />
             }
           ></Route>
+          <Route path="/search" element={<SearchResults />}></Route>
           <Route
             path="/signin"
             element={<Signin login={loginHandler} />}
@@ -275,7 +310,9 @@ export default function App() {
           ></Route>
           <Route
             path="/productlist/*"
-            element={<ProductList user={user} products={products} />}
+            element={
+              <ProductList user={user} products={products} buyItem={buyItem} />
+            }
           ></Route>
           <Route
             path="/product/:productId/*"
@@ -284,6 +321,8 @@ export default function App() {
                 product={products}
                 category={allCategories}
                 user={user}
+                buyItem={buyItem}
+                counterUp={counterUp}
               />
             }
           ></Route>
@@ -307,7 +346,10 @@ export default function App() {
               />
             }
           ></Route>
-          <Route path="/cart" element={<Cart user={user} products={products}/>} />
+          <Route
+            path="/cart"
+            element={<Cart user={user} products={products} />}
+          />
 
           <Route path="/logout" user={user} product={products}></Route>
         </Routes>

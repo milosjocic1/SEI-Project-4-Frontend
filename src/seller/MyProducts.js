@@ -45,24 +45,27 @@ export default function MyProducts(props) {
       </button>
 
       {showAddProductForm ? (
-        <ProductCreateForm
-          functions={props}
-          seller={props.seller}
-          user={props.user}
-          handleProductFileInputChange={props.handleProductFileInputChange}
-          previewSourceProduct={props.previewSourceProduct}
-          previewProductFile={props.previewProductFile}
-          handleSubmitFileProduct={props.handleSubmitFileProduct}
-        />
+        <div>
+          <ProductCreateForm
+            functions={props}
+            seller={props.seller}
+            user={props.user}
+            handleProductFileInputChange={props.handleProductFileInputChange}
+            previewSourceProduct={props.previewSourceProduct}
+            previewProductFile={props.previewProductFile}
+            handleSubmitFileProduct={props.handleSubmitFileProduct}
+          />
+        </div>
       ) : (
         <div> </div>
       )}
-
-      <div className="row card-group mt-1 mb-3">
-        <h3>My Listings</h3>
-        <br></br>
-        <br></br>
-        {!!myProducts.length ? myProducts : <p>No listings yet!</p>}
+      <div>
+        <div className="row card-group mt-1 mb-3">
+          <h3>My Listings</h3>
+          <br></br>
+          <br></br>
+          {!!myProducts.length ? myProducts : <p>No listings yet!</p>}
+        </div>
       </div>
     </div>
   );

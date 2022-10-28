@@ -71,7 +71,7 @@ export default function ProductEditForm(props) {
           <Form.Label>Price</Form.Label>
           <Form.Control
             name="price"
-            type="text"
+            type="number"
             onChange={handleChange}
             value={newProduct.price}
           ></Form.Control>
@@ -131,7 +131,7 @@ export default function ProductEditForm(props) {
           <Form.Label>Shipping Rate</Form.Label>
           <Form.Control
             name="shippingRate"
-            type="text"
+            type="number"
             onChange={handleChange}
             value={newProduct.shippingRate}
           ></Form.Control>
