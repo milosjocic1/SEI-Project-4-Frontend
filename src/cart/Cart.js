@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import CartItem from "../cart/CartItem";
-import { Form, Button } from "react-bootstrap";
+import StripeContainer from "../stripe/StripeContainer";
+import { Form, Button, Table } from "react-bootstrap";
+import "../App.css";
 
 export default function Cart(props) {
   const [newShipping, setNewShipping] = useState(props.user.shippingAddress);
   const [newBilling, setNewBilling] = useState(props.user.billingAddress);
+  const [showAddSB, setShowAddSB] = useState(false);
+  const [showCheckout, setShowCheckout] = useState(false);
+
+  const handleShowAddSB = (boolean) => {
+    setShowAddSB(boolean);
+  };
+
+  const handleShowCheckout = (boolean) => {
+    setShowCheckout(boolean);
+  };
 
   const editShipping = (newShipping) => {
     Axios.put("/shipping_billing/update", newShipping, {
@@ -89,128 +101,156 @@ export default function Cart(props) {
   //   })
   // }
   return (
-    <div>
-      <table>
-        <tbody>
-          <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Item Price</th>
-            <th>Shipping</th>
-            <th>Total Price</th>
-            <th></th>
-          </tr>
-        </tbody>
-        {cart.products?.map((item, index) => (
-          <tr key={index}>{<CartItem {...item} />}</tr>
-        ))}
-      </table>
-      <br />
-      <div>Cart Total: £{cart.total}</div>
-      <br />
-      <Button variant="primary" value="Update Product">
-        Continue to Shipping
-      </Button>
+    <div className="container">
+      <h1>My Cart</h1>
+      {parseInt(cart.total) !== 0 ? (
+        <div>
+          <Table striped responsive="sm">
+            <tbody>
+              <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Item Price</th>
+                <th>Shipping</th>
+                <th>Total Price</th>
+                <th></th>
+              </tr>
+            </tbody>
+            {cart.products?.map((item, index) => (
+              <tr key={index}>{<CartItem {...item} />}</tr>
+            ))}
+          </Table>
+          <br />
+          <div>
+            Cart Total: <b>£{cart.total}</b>
+          </div>
+          <br />
 
-      <div className="container">
-        <h3>Shipping Address</h3>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <Form.Label>Address Line 1</Form.Label>
-            <Form.Control
-              name="addressLine1S"
-              type="text"
-              onChange={handleChangeS}
-            ></Form.Control>
-          </Form.Group>
+          <button className="checkout-btn"
+            value="showSB"
+            onClick={() => {
+              setShowAddSB(true);
+            }}
+          >
+            Continue with Checkout
+          </button>
+        </div>
+      ) : (
+        <div></div>
+      )}
+      {showAddSB ? (
+        <div className="container">
+          <h4>Shipping Address</h4>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Label>Address Line 1</Form.Label>
+              <Form.Control
+                name="addressLine1S"
+                type="text"
+                onChange={handleChangeS}
+              ></Form.Control>
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Address Line 2</Form.Label>
-            <Form.Control
-              name="addressLine2S"
-              type="text"
-              onChange={handleChangeS}
-            ></Form.Control>
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>Address Line 2</Form.Label>
+              <Form.Control
+                name="addressLine2S"
+                type="text"
+                onChange={handleChangeS}
+              ></Form.Control>
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>City</Form.Label>
-            <Form.Control
-              name="cityS"
-              type="text"
-              onChange={handleChangeS}
-            ></Form.Control>
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                name="cityS"
+                type="text"
+                onChange={handleChangeS}
+              ></Form.Control>
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>County</Form.Label>
-            <Form.Control
-              name="countyS"
-              type="text"
-              onChange={handleChangeS}
-            ></Form.Control>
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>County</Form.Label>
+              <Form.Control
+                name="countyS"
+                type="text"
+                onChange={handleChangeS}
+              ></Form.Control>
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>PostCode</Form.Label>
-            <Form.Control
-              name="priceS"
-              type="text"
-              onChange={handleChangeS}
-            ></Form.Control>
-          </Form.Group>
-          <h3>Billing Address</h3>
+            <Form.Group>
+              <Form.Label>PostCode</Form.Label>
+              <Form.Control
+                name="priceS"
+                type="text"
+                onChange={handleChangeS}
+              ></Form.Control>
+            </Form.Group>
+            <h4>Billing Address</h4>
 
-          <Form.Group>
-            <Form.Label>Address Line 1</Form.Label>
-            <Form.Control
-              name="addressLine1B"
-              type="text"
-              onChange={handleChangeB}
-            ></Form.Control>
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>Address Line 1</Form.Label>
+              <Form.Control
+                name="addressLine1B"
+                type="text"
+                onChange={handleChangeB}
+              ></Form.Control>
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Address Line 2</Form.Label>
-            <Form.Control
-              name="addressLine2B"
-              type="text"
-              onChange={handleChangeB}
-            ></Form.Control>
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>Address Line 2</Form.Label>
+              <Form.Control
+                name="addressLine2B"
+                type="text"
+                onChange={handleChangeB}
+              ></Form.Control>
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>City</Form.Label>
-            <Form.Control
-              name="cityB"
-              type="text"
-              onChange={handleChangeB}
-            ></Form.Control>
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                name="cityB"
+                type="text"
+                onChange={handleChangeB}
+              ></Form.Control>
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>County</Form.Label>
-            <Form.Control
-              name="countyB"
-              type="text"
-              onChange={handleChangeB}
-            ></Form.Control>
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>County</Form.Label>
+              <Form.Control
+                name="countyB"
+                type="text"
+                onChange={handleChangeB}
+              ></Form.Control>
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>PostCode</Form.Label>
-            <Form.Control
-              name="postCodeB"
-              type="text"
-              onChange={handleChangeB}
-            ></Form.Control>
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>PostCode</Form.Label>
+              <Form.Control
+                name="postCodeB"
+                type="text"
+                onChange={handleChangeB}
+              ></Form.Control>
+            </Form.Group>
 
-          <Button variant="primary" value="Update Product" type="submit">
-            Checkout
-          </Button>
-        </Form>
-      </div>
+            <button className="checkout-btn"
+              value="show checkout"
+              type="submit"
+              onClick={() => {
+                setShowCheckout(true);
+              }}
+            >
+              Confirm and Go to Payment
+            </button>
+          </Form>
+        </div>
+      ) : (
+        <div></div>
+      )}
+      {showCheckout ? <StripeContainer /> : <div></div>}
     </div>
   );
 }
+      
+ 
+  

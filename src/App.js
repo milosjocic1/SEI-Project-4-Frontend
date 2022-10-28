@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-
 // Components
 import Home from "./Home";
 import Signup from "./auth/Signup";
 import Signin from "./auth/Signin";
+import Cart from "./cart/Cart";
 import ProductList from "./product/ProductList";
 import Product from "./product/Product";
 import ProductCreateForm from "./product/ProductCreateForm";
 import SellerDashboard from "./seller/SellerAccount";
 import UserDashboard from "./user/UserDashboard";
 import jwt_decode from "jwt-decode";
-import Cart from "./cart/Cart"
 
 // Bootstrap
 import Container from "react-bootstrap/Container";
@@ -29,6 +28,8 @@ export default function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState({});
   const [message, setMessage] = useState(null);
+
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -67,6 +68,20 @@ export default function App() {
     loadProductList();
   };
 
+  const buyItem = (id, productId) => {
+    Axios.post(`/cart?userId=${id}&productId=${productId}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  
+
+  const counterUp = () => {
+    setCounter(prevCount => prevCount + 1);
+  }
   //  const errMessage = message ? (
   //    <Alert variant="danger"> {message}</Alert>
   //  ) : null;
@@ -202,6 +217,20 @@ export default function App() {
       }
     };
 
+    // search 
+
+    const [query, setQuery] = useState("");
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+      const fetchProducts = async () => {
+        const res = await Axios.get(`/search/?q=${query}`);
+        setData(res.data);
+      }
+      if(query.length === 0 || query.length > 2) fetchProducts()
+    }, [query]);
+
+
   return (
     <Router>
       <Navbar expand="lg">
@@ -220,13 +249,12 @@ export default function App() {
             <Nav className="">
               {isAuth ? (
                 <div>
-                  <Link to="/"> HOME </Link>
+                  <Link to="/">HOME</Link>&nbsp;
                   {user ? "Welcome " + user.name : null}&nbsp;
-                  <Link to="/user/dashboard"> MY ACCOUNT </Link>
-                  <Link to="/productlist"> Product List </Link>
-                  &nbsp;&nbsp;&nbsp;
-                  <Link to="/product"> Single Product </Link>
-                  <Link to="/cart">Cart</Link>
+                  <Link to="/user/dashboard">MY ACCOUNT</Link>&nbsp;
+                  <Link to="/productlist">Product List</Link>&nbsp;
+                  <Link to="/product">Single Product</Link>&nbsp;
+                  <Link to="/cart">Cart {counter}</Link>&nbsp;
                   <Link to="/logout" onClick={onLogoutHandler}>
                     Logout
                   </Link>{" "}
@@ -276,7 +304,7 @@ export default function App() {
           ></Route>
           <Route
             path="/productlist/*"
-            element={<ProductList user={user} products={products} />}
+            element={<ProductList user={user} products={products} buyItem={buyItem}/>}
           ></Route>
           <Route
             path="/product/:productId/*"
@@ -285,6 +313,8 @@ export default function App() {
                 product={products}
                 category={allCategories}
                 user={user}
+                buyItem={buyItem}
+                counterUp={counterUp}
               />
             }
           ></Route>
@@ -309,6 +339,7 @@ export default function App() {
             }
           ></Route>
           <Route path="/cart" element={<Cart user={user} products={products}/>} />
+
           <Route path="/logout" user={user} product={products}></Route>
         </Routes>
       </div>
@@ -322,6 +353,7 @@ export default function App() {
             <br></br>
             {/* Below will have to add seller id to this link */}
             <Link to="/user/dashboard"> User Dashboard </Link>
+    
           </div>
           <div className="col-3">
             <a href="/">Link 1</a>

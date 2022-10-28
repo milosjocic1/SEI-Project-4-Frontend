@@ -55,7 +55,7 @@ export default function Product(props) {
           <br />
           <br />
           <h2>£{thisProduct.price}</h2> <br />
-          <button className="buy-btn">Buy</button>
+          <button className="buy-btn" onClick={() => {props.buyItem(props.user.id, thisProduct._id); props.counterUp()}}>Buy</button>
         </div>
       </div>
       <div className="mt-5 mb-5">

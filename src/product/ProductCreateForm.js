@@ -273,7 +273,7 @@ export default function ProductCreateForm(props) {
           <Form.Label>Shipping Rate</Form.Label>
           <Form.Control
             name="shippingRate"
-            type="text"
+            type="number"
             onChange={handleChange}
           ></Form.Control>
         </Form.Group>
