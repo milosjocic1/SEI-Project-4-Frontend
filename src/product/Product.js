@@ -61,7 +61,7 @@ export default function Product(props) {
       </div>
       <div className="mt-5 mb-5">
         <h2>Product Description</h2>
-        <p>{thisProduct.description}</p> <br />
+        <p className="product-description">{thisProduct.description}</p> <br />
         <h2>Returns Policy</h2>
         <p>{thisProduct.returnsPolicy}</p>
       </div>

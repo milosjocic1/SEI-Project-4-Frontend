@@ -48,7 +48,7 @@ export default function Home(props) {
         </div>
       </div>
       <Slider heading="Example Slider" slides={props.product} />
-      <Categories category={props.category}></Categories>
+      <Categories></Categories>
     </div>
   );
 }

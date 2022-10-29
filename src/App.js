@@ -82,31 +82,7 @@ export default function App() {
   const counterUp = () => {
     setCounter(prevCount => prevCount + 1);
   }
-  //  const errMessage = message ? (
-  //    <Alert variant="danger"> {message}</Alert>
-  //  ) : null;
 
-  const categories = [
-    "Fashion",
-    "Home and Garden",
-    "Health and Beauty",
-    "Electronics",
-    "Motors",
-    "Media",
-    "Sports, Hobbies, Leisure",
-    "Office Supplies",
-    "Collectables and Art",
-  ];
-
-
-  const allCategories = categories.map((category) => {
-    return (
-      
-      <a href="/" key={category} className="categories-links">
-        {category}
-      </a>
-    );
-  });
 
   const [products, setProducts] = useState([]);
 
@@ -140,19 +116,13 @@ export default function App() {
       });
   };
 
-  // SEARCH
 
-  
-
-
-
-  // signup image upload
+  // SIGNUP IMAGE UPLOAD
 
   const [fileInputState, setFileInputState] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState();
 
-  //IMAGE UPLOAD
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     previewFile(file);
@@ -187,7 +157,7 @@ export default function App() {
     }
   }
 
-  // ATTEMPT TO ADD PRODUCT IMAGE
+  // ADD PRODUCT IMAGE
     const [previewSourceProduct, setPreviewSourceProduct] = useState();
 
     const handleProductFileInputChange = (e) => {
@@ -222,20 +192,6 @@ export default function App() {
         console.log(error);
       }
     };
-
-    // search 
-
-    // const [query, setQuery] = useState("");
-    // const [data, setData] = useState([]);
-
-    // useEffect(() => {
-    //   const fetchProducts = async () => {
-    //     const res = await Axios.get(`/search/?q=${query}`);
-    //     setData(res.data);
-    //   }
-    //   if(query.length === 0 || query.length > 2) fetchProducts()
-    // }, [query]);
-
 
   return (
     <Router>
@@ -291,7 +247,7 @@ export default function App() {
           <Route
             path="/*"
             element={
-              <Home category={allCategories} user={user} product={products} />
+              <Home  user={user} product={products} />
             }
           ></Route>
           
@@ -322,7 +278,6 @@ export default function App() {
             element={
               <Product
                 product={products}
-                category={allCategories}
                 user={user}
                 buyItem={buyItem}
                 counterUp={counterUp}
@@ -358,7 +313,7 @@ export default function App() {
         </Routes>
       </div>
       <footer>
-        <div className=" d-flex">
+        <div className=" d-flex container">
           <div className="col-3">
             <img className="logo" alt="agora-logo" src="AGORA-LOGO.png"></img>
           </div>
