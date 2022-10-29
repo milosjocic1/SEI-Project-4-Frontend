@@ -4,9 +4,10 @@
 }
 
 nav {
-  margin-top: 40px;
-  margin-bottom: 70px;
   z-index: 9999;
+}
+.navbar {
+  margin: 5px;
 }
 .logo {
   width: 150px;
@@ -45,32 +46,37 @@ h2 {
   border-radius: 0;
 } */
 .search-input {
-  border: 1px rgb(186, 186, 186) solid !important;
-  border-radius: 10px!important;
+  border: 0px rgb(186, 186, 186) solid !important;
+  border-radius: 10px 0px 0px 10px!important;
   font-size: 22px !important;
-  padding: 10px 20px !important;
+  padding: 20px !important;
   background-color: white !important;
-}
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;}
 .search-btn {
-  background-color: black !important;
+  background-color: #0057FF !important;
   color: white !important;
   width: 200px !important;
   font-size: 22px !important;
   border: none !important;
-  margin-left: 10px !important;
-  border-radius: 10px !important;
-  height: 55px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;  
+  border-radius: 0px 10px 10px 0px !important;
+  height: 73px;
+}
+.search-input:focus {
+  outline: none!important;
+  box-shadow: #0055ff48 0px 1px 22px !important;  ;
 }
 .div-search {
   display: flex;
   justify-content: center;
+  padding: 0px 150px;
 }
 
 /* HERO */
 .buy-sell-background {
   /* background-image: url("/public/agora-cover.jpg"); */
-  background-size: cover;
-  background: linear-gradient(90deg, rgba(158,23,246,1) 0%, rgba(91,10,251,1) 42%, rgba(9,191,221,1) 100%);
+  /* background-size: cover; */
+  /* background: linear-gradient(90deg, rgba(158,23,246,1) 0%, rgba(91,10,251,1) 42%, rgba(9,191,221,1) 100%); */
   height: 380px;
   padding: 100px 50px;
   border-radius: 10px;
@@ -79,17 +85,21 @@ h2 {
   position: relative;
   bottom: 170px
 }
-.buy-sell-title {
-  color: white;
-  font-size: 60px;
-  margin-top: 20px;
+.hero {
+padding-top: 40px;
+padding-bottom: 60px;
 }
-.buy-sell-btn {
-  color: transparent;
-  background-color: white;
-  padding: 10px 20px;
-  font-size: 22px;
-  border-radius: 10px;
+.buy-sell-title {
+  color: black;
+  font-size: 70px;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.buy-sell-subtitle {
+  color: black;
+  text-align: center;
 }
 
 /* SLIDER - CAROUSEL */
@@ -514,7 +524,14 @@ button:hover {
     font-size: 45px;
     margin-top: -10px;
   }
+  .div-search {
+    padding: 0px 10px !important;
+  }
+  .search-btn {
+    width: 110px !important;
+  }
 }
+
 .checkout-btn {
   border: none;
   background-color: black;

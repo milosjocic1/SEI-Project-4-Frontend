@@ -240,7 +240,7 @@ export default function App() {
   return (
     <Router>
       <Navbar expand="lg">
-        <Container>
+        <Container className="nav-bar">
           <Navbar.Brand>
             {" "}
             <Link to="/">
@@ -285,6 +285,7 @@ export default function App() {
         </Container>
       </Navbar>
       <div>
+       
         <Routes>
           {/* <Route path="/" element={<Home />}></Route> */}
           <Route
@@ -293,7 +294,9 @@ export default function App() {
               <Home category={allCategories} user={user} product={products} />
             }
           ></Route>
+          
           <Route path="/search" element={<SearchResults />}></Route>
+          
           <Route
             path="/signin"
             element={<Signin login={loginHandler} />}
@@ -355,7 +358,7 @@ export default function App() {
         </Routes>
       </div>
       <footer>
-        <div className="container d-flex">
+        <div className=" d-flex">
           <div className="col-3">
             <img className="logo" alt="agora-logo" src="AGORA-LOGO.png"></img>
           </div>
