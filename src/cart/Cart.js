@@ -108,7 +108,7 @@ export default function Cart(props) {
       {parseInt(cart.total) !== 0 ? (
         <div>
           <Table striped responsive="sm">
-            <tbody>
+            {/* <tbody>
               <tr>
                 <th>Product</th>
                 <th>Quantity</th>
@@ -117,7 +117,7 @@ export default function Cart(props) {
                 <th>Total Price</th>
                 <th></th>
               </tr>
-            </tbody>
+            </tbody> */}
             {cart.products?.map((item, index) => (
               <tr key={index}>{<CartItem {...item} />}</tr>
             ))}
