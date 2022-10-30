@@ -14,6 +14,7 @@ export default function Product(props) {
 
   return (
     <div className="container">
+      
       <Search></Search>
       <div className="categories-single-product">
         <Categories category={props.category}></Categories>

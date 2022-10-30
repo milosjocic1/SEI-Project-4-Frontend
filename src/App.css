@@ -482,9 +482,6 @@ button:hover {
   background-color: red;
 }
 
-
-
-
 .edit-delete-btn{
     color: black !important;
     background-color: rgb(237, 237, 237);
@@ -558,18 +555,34 @@ button:hover {
 
 .card {
   background-color: white;
-  padding: 10px 20px 11px;
   margin: 20px;
   border-radius: 5px;
   width: 100%;
-  border: 1px solid #afafaf;
+  border: none !important;
   box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
 }
+.card:hover {
+
+  z-index: 1;
+  box-shadow: 0 8px 50px rgba(#000, 0.2);
+      transform: scale(1.02);
+      transition: box-shadow 0.2s ease,
+                  transform 0.2s ease,
+                  z-index 0s 0s ease;
+}
+
 .card-img-top{
-  float: left;
+  /* float: left; */
     width:  100px;
     height: 300px;
     object-fit: cover;
+}
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+.card-text {
+  font-size: 18px;
 }
 .remove-cart {
   background-color: black !important;

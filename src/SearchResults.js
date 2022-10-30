@@ -22,27 +22,28 @@ export default function SearchResults() {
 
   return (
     <div className="container">
-        <Search />
+      <Search></Search>
       <div className="row">
         {searchResults.map((searchResult) => (
           <div className="col-lg-4 col-sm-12">
-            <div className="card">
-              <img
-                className="card-img-top"
-                src={`${searchResult.cloudinary_url}`}
-                alt={searchResult.title}
-              ></img>
-              <div className="card-body">
-                <h3 className="card-title">{searchResult.title}</h3>
-                <p className="card-text">{searchResult.subTitle}</p>
-                <Link
-                  className="index-price-button"
-                  to={`/product/${searchResult._id}`}
-                >
-                  £{searchResult.price}
-                </Link>
+            <Link to={`/product/${searchResult._id}`}>
+              <div className="card">
+                <img
+                  className="card-img-top"
+                  src={`${searchResult.cloudinary_url}`}
+                  alt={searchResult.title}
+                ></img>
+                <div className="card-body">
+                  <h3 className="card-title">{searchResult.title}</h3>
+                  <p className="card-text">{searchResult.subTitle}</p>
+                  <button
+                    className="index-price-button"
+                  >
+                    £{searchResult.price}
+                  </button>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>
