@@ -446,17 +446,20 @@ footer {
 }
 .buy-btn {
   border: none;
-  background-color: black;
+  background-color: #0057FF;
   color: white;
-
   padding: 10px 60px;
   font-size: 24px;
   border-radius: 5px;
-
 }
 
 button:hover {
-  background-color: rgb(78, 77, 77);
+  z-index: 1;
+  box-shadow: 0 8px 50px rgba(#000, 0.2);
+      transform: scale(1.02);
+      transition: box-shadow 0.2s ease,
+                  transform 0.2s ease,
+                  z-index 0s 0s ease;
 }
 
 .index-price-button {
@@ -559,6 +562,20 @@ button:hover {
     
 } 
 
+.modal-content {
+  padding: 20px;
+}
+.modal-header {
+  justify-content: center !important;
+}
+.modal-dialog {
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 35% !important;
+}
+.modal-footer {
+  justify-content: center !important;
+}
 
 /* RESPONSIVE */
 
