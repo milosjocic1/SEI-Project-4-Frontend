@@ -460,13 +460,17 @@ button:hover {
 }
 
 .index-price-button {
-  background-color: black;
-  color: white !important;
-  padding: 5px 40px;
+  background-color: #0055ff28;
+  color: #0057FF!important;
+  font-weight: 500;
+  padding: 5px 20px;
   font-size: 22px;
   border: 0;
   border-radius: 5px;
-
+}
+.index-price-button:hover {
+  background-color:  #0057FF;
+  color: white !important;
 }
 
 .subcategories {
@@ -477,9 +481,45 @@ button:hover {
   width: 550px;
 }
 
+.card {
+  background-color: white;
+  margin: 20px;
+  border-radius: 5px;
+  width: 25rem;
+  border: none !important;
+  box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+}
+.card:hover {
 
-.index-price-button:hover {
-  background-color: red;
+  z-index: 1;
+  box-shadow: 0 8px 50px rgba(#000, 0.2);
+      transform: scale(1.02);
+      transition: box-shadow 0.2s ease,
+                  transform 0.2s ease,
+                  z-index 0s 0s ease;
+}
+.card-body {
+  padding: 25px 35px !important;
+}
+
+.card-img-top{
+  /* float: left; */
+    width:  100px;
+    height: 250px;
+    object-fit: cover;
+}
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+.card-text {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.687);
+  overflow: hidden !important;
+  max-width: 55ch !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap;
 }
 
 .edit-delete-btn{
@@ -493,9 +533,6 @@ button:hover {
   padding: 5px 20px;
 }
 
-.view-product-btn:hover {
-  background-color: red;
-}
 .add-product {
   margin-top: 100px;
   margin-bottom: 50px;
@@ -553,37 +590,7 @@ button:hover {
   font-size: 18px;
 }
 
-.card {
-  background-color: white;
-  margin: 20px;
-  border-radius: 5px;
-  width: 100%;
-  border: none !important;
-  box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
-}
-.card:hover {
 
-  z-index: 1;
-  box-shadow: 0 8px 50px rgba(#000, 0.2);
-      transform: scale(1.02);
-      transition: box-shadow 0.2s ease,
-                  transform 0.2s ease,
-                  z-index 0s 0s ease;
-}
-
-.card-img-top{
-  /* float: left; */
-    width:  100px;
-    height: 300px;
-    object-fit: cover;
-}
-.card-title {
-  font-size: 20px;
-  font-weight: 600;
-}
-.card-text {
-  font-size: 18px;
-}
 .remove-cart {
   background-color: black !important;
   color: white !important;

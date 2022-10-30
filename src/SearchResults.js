@@ -19,9 +19,15 @@ export default function SearchResults() {
         };
          searchProduct();
        }, []);
+   
 
   return (
     <div className="container">
+      <br />
+      <br />
+      <br />
+      <br />
+      
       <Search></Search>
       <div className="row">
         {searchResults.map((searchResult) => (
@@ -34,13 +40,16 @@ export default function SearchResults() {
                   alt={searchResult.title}
                 ></img>
                 <div className="card-body">
+                  <div className="row">
+                    <div className="col-6">
+                      <button className="index-price-button">
+                        £{searchResult.price}
+                      </button>
+                    </div>
+                    <div className="col-6">Reviews</div>
+                  </div>
                   <h3 className="card-title">{searchResult.title}</h3>
                   <p className="card-text">{searchResult.subTitle}</p>
-                  <button
-                    className="index-price-button"
-                  >
-                    £{searchResult.price}
-                  </button>
                 </div>
               </div>
             </Link>
