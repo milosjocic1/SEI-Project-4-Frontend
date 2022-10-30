@@ -27,7 +27,7 @@ export default function ProductList(props) {
   return (
     <div className="container">
       <div>
-        <Search></Search>
+        <Search />
         <div className="row card-group mt-1 mb-3">{allProducts}</div>
       </div>
     </div>

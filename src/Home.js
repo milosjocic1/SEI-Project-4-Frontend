@@ -33,7 +33,7 @@ export default function Home(props) {
 
   return (
     <div className="container component">
-      <Search search={props.search}></Search>
+      <Search />
       <div>
         <div className="buy-sell-background">
           <div className="row">
@@ -46,7 +46,7 @@ export default function Home(props) {
             </div>
             <div className="col-md-5 col-sm-12">
               <img
-              className="agora-image-cart"
+                className="agora-image-cart"
                 src="https://cdn3d.iconscout.com/3d/premium/thumb/online-shopping-delivery-4049862-3363949.png"
                 alt="agora-market"
                 width="500px"
