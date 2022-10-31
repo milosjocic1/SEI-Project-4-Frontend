@@ -46,6 +46,7 @@ export default function UserDashboard(props) {
           handleProductFileInputChange={props.handleProductFileInputChange}
           previewProductFile={props.previewProductFile}
           handleSubmitFileProduct={props.handleSubmitFileProduct}
+          loadProductList={props.loadProductList}
         />
       )}
     </div>

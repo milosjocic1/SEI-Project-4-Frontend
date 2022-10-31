@@ -281,10 +281,11 @@ export default function App() {
                 user={user}
                 buyItem={buyItem}
                 counterUp={counterUp}
+                loadProductList={loadProductList}
               />
             }
           ></Route>
-          <Route path="/addproduct" element={<ProductCreateForm />}></Route>
+          <Route path="/addproduct" element={<ProductCreateForm loadProductList={loadProductList} />}></Route>
           {/* Below will have to add seller id to this link */}
           {/* <Route
             path="/seller/dashboard"
@@ -301,6 +302,7 @@ export default function App() {
                 handleProductFileInputChange={handleProductFileInputChange}
                 previewProductFile={previewProductFile}
                 handleSubmitFileProduct={handleSubmitFileProduct}
+                loadProductList={loadProductList}
               />
             }
           ></Route>
