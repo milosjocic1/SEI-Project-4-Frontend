@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import ProductList from "../product/ProductList";
 import "../App.css";
 
 import { useNavigate } from "react-router-dom";

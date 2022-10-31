@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import CartItem from "../cart/CartItem";
 import StripeContainer from "../stripe/StripeContainer";
-import { Form, Button, Table, Card } from "react-bootstrap";
+import { Form, Table } from "react-bootstrap";
 import "../App.css";
 
 export default function Cart(props) {
