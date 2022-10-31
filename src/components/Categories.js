@@ -47,8 +47,8 @@ export default function Categories(props) {
       <h2 className="categories-headline">Browse by Category</h2> <br/>
 
       <div className="row d-flex">
-        {categories.map((category) => (
-          <div className="col-md-3 col-6 category mb-3">
+        {categories.map((category, index) => (
+          <div key={index} className="col-md-3 col-6 category mb-3">
             <div className="category-card d-block text-center">
               <h3 className="category-name align-middle">
                 {category.categoryName}

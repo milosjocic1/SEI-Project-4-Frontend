@@ -67,7 +67,7 @@ export default class Slider extends Component {
             </h3>
 
             {slides.map((slide, key) => {
-              console.log(slide);
+              // console.log(slide);
               return (
                 <Slide
                   key={key}
