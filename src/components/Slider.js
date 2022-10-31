@@ -53,12 +53,13 @@ export default class Slider extends Component {
       .replace(/\s+/g, "-")
       .toLowerCase()}`;
     const wrapperTransform = {
-      transform: `translateX(-${current * (1500 / slides.length)}%)`,
+      transform: `translateX(-${current * (800 / slides.length)}%)`,
       // transform: `translateX(-${current * (100 / slides.length)}%)`,
     };
 
     return (
       <div className="slider container" aria-labelledby={headingId}>
+        <h2>Recently Added Products</h2> <br/>
 
           <ul className="slider__wrapper" style={wrapperTransform}>
             <h3 id={headingId} className="visuallyhidden">
@@ -66,7 +67,7 @@ export default class Slider extends Component {
             </h3>
 
             {slides.map((slide, key) => {
-              console.log(slide);
+              // console.log(slide);
               return (
                 <Slide
                   key={key}

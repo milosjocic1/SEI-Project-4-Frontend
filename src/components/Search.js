@@ -7,6 +7,7 @@ import ProductList from "../product/ProductList";
 import "../App.css";
 
 import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 function searchFunc(query, navigate, event) {
   event.preventDefault();
@@ -14,9 +15,12 @@ function searchFunc(query, navigate, event) {
   navigate(`/search?query=${query}`);
 }
 
-export default function Search() {
+export default function Search(){
+
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+
+  
 
   return (
     <form
@@ -29,9 +33,14 @@ export default function Search() {
           placeholder="What are you looking for?"
           aria-label="Search"
           aria-describedby="basic-addon2"
-          className="search-input"
-          onChange={({ target }) => {
-            setSearch(target.value);
+          className='search-input'
+          onChange={(e) => {
+          setSearch(e.target.value);
+          }}
+          onKeyDown={event => {
+            if (event.key === 'Enter') {
+              navigate(`/search?query=${search}`);
+            }
           }}
         />
 

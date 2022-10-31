@@ -66,12 +66,12 @@ export default function ProductCreateForm(props) {
           name="subTitle"
           type="text"
           onChange={handleChange}
-          placeholder="Product ubtitle"
+          placeholder="Product Subtitle"
         ></input>
         <input
           className="add-product-field full-width"
           name="description"
-          type="text"
+          type="textarea"
           onChange={handleChange}
           placeholder="Description"
         ></input>

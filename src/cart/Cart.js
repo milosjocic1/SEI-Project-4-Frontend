@@ -93,6 +93,19 @@ export default function Cart(props) {
         console.log(error);
       });
   };
+
+  // DELETE ITEM FROM CARD
+  const deleteItem = (id, productId) => {
+    Axios.delete(`/cart?userId=${id}&productId=${productId}`)
+    .then(response => {
+      console.log(response)
+      loadCartList()
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
   // const removeItem = () => {
   //   Axios.delete(`/cart/?userId=${props.user.id}?productId=${props.productId._id}`)
   //   .then(({data}) => {
@@ -108,8 +121,8 @@ export default function Cart(props) {
       <h1>My Cart</h1>
       {parseInt(cart.total) !== 0 ? (
         <div>
-          <Table striped responsive="sm">
-            <tbody>
+          {/* <Table striped responsive="sm"> */}
+            {/* <tbody>
               <tr>
                 <th>Product</th>
                 <th>Quantity</th>
@@ -118,11 +131,11 @@ export default function Cart(props) {
                 <th>Total Price</th>
                 <th></th>
               </tr>
-            </tbody>
+            </tbody> */}
             {cart.products?.map((item, index) => (
-              <tr key={index}>{<CartItem {...item} />}</tr>
+              <div key={index}>{<CartItem {...item} loadCartList={loadCartList} deleteItem={deleteItem}/>}</div>
             ))}
-          </Table>
+          {/* </Table> */}
           <br />
           <div>
             Cart Total: <b>£{cart.total}</b>

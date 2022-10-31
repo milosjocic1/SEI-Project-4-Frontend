@@ -26,11 +26,17 @@ export default function SearchResults() {
 
   return (
     <div className="container">
-      <Search />
+      <br />
+      <br />
+      <br />
+      <br />
+      
+      <Search></Search>
       <div className="row">
         {searchResults.length ? (
           searchResults.map((searchResult) => (
             <div className="col-lg-4 col-sm-12">
+                <Link to={`/product/${searchResult._id}`}>
               <div className="card">
                 <img
                   className="card-img-top"
@@ -38,16 +44,17 @@ export default function SearchResults() {
                   alt={searchResult.title}
                 ></img>
                 <div className="card-body">
+                    <div className="row">
+                        <div className="col-6">
+                            <button className="index-price-button">£{searchResult.price}</button>
+                        </div>
+                        <div className="col-6"> Reviews</div>
+                    </div>
                   <h3 className="card-title">{searchResult.title}</h3>
                   <p className="card-text">{searchResult.subTitle}</p>
-                  <Link
-                    className="index-price-button"
-                    to={`/product/${searchResult._id}`}
-                  >
-                    £{searchResult.price}
-                  </Link>
                 </div>
               </div>
+              </Link>
             </div>
           ))
         ) : (
