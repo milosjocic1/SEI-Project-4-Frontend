@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom"
 
-
 export default function Product(props) {
   const { productId } = useParams();
   const thisProduct = props.product.find(

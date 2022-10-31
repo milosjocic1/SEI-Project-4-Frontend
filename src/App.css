@@ -613,6 +613,15 @@ button:hover {
   border: 0 !important;
   padding: 2px 10px !important;
 }
+
+.stripe {
+  background-color: rgb(229, 229, 229);
+  display: flex;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+
 .cart-product-image {
   margin-top: 30px;
   width: 130px;
