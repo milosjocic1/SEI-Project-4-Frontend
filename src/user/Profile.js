@@ -9,7 +9,11 @@ export default function Profile(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
-    const [showEditProfileForm, setShowEditProductForm] = useState(false);
+  const [showEditProfileForm, setShowEditProfileForm] = useState(false);
+
+  const handleShowEditProfileForm = (boolean) => {
+    setShowEditProfileForm(boolean)
+  }
  
   const editView = (id) => {
     Axios.get(`/auth/update?id=${id}`)
@@ -68,7 +72,7 @@ export default function Profile(props) {
                   className="change-password-button edit-btn"
                   onClick={() => {
                     editView(props._id);
-                    setShowEditProductForm(true)
+                    setShowEditProfileForm(true)
                   }}
                 >
                   Edit Profile
@@ -79,7 +83,7 @@ export default function Profile(props) {
                   key={props.user._id}
                   user={props.user}
                   editUser={editUser}
-                  showEditProfileForm={showEditProfileForm}
+                  handleShowEditProfileForm={handleShowEditProfileForm}
                 ></ProfileEditForm>
                   </div>
                 ): (
