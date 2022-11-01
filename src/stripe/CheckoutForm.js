@@ -42,13 +42,13 @@ export const CheckoutForm = (props) => {
 
   return (
     <div className="container  stripe">
-    <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
+    <form onSubmit={handleSubmit} style={{ maxWidth: 400 }} class="stripe-container">
+      <h4>Card Details</h4>
       <div  class="card stripe-card">
-        <h4>Card Details</h4>
       <CardElement />
       </div>
       <h6>Your card will be charged <b>£{props.total}</b></h6>
-      <button class="buy-btn">Pay now with Stripe</button>
+      <button class="buy-btn stripe-btn">Pay now with Stripe</button>
     </form>
     </div>
   );

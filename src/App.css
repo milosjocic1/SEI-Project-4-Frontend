@@ -634,3 +634,13 @@ button:hover {
 .cart-div {
   padding: 2px 100px !important;
 }
+
+.stripe-card {
+  padding: 20px;
+  border: 2px solid gray;
+  margin: 10px;
+}
+
+.stripe-btn {
+  margin: 10px;
+}

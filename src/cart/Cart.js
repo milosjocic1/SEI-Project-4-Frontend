@@ -31,7 +31,7 @@ export default function Cart(props) {
     })
       .then((response) => {
         console.log("Shipping details updated successfully");
-        console.log(response)
+        console.log("response is " + response)
       })
       .catch((error) => {
         console.log("Error editing shipping details");
@@ -144,6 +144,7 @@ export default function Cart(props) {
       )}
       {showAddSB ? (
         <div className="container">
+        <br/>
           <h4>Shipping Address</h4>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
