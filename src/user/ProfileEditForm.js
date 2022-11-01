@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 export default function ProfileEditForm(props) {
   const [newUser, setNewUser] = useState(props.user);
-
+    const [showEditProfileForm, setShowEditProfileForm] = useState(true);
   // Function
   const handleChange = (event) => {
     const attributeToChange = event.target.name;
@@ -19,14 +19,23 @@ export default function ProfileEditForm(props) {
     event.preventDefault();
     props.editUser(newUser);
     event.target.reset();
+    setShowEditProfileForm(false);
   };
 
   return (
     <div>
-      <h1>Edit User</h1>
-      <form onSubmit={handleSubmit}>
+      {" "}
+      <br />
+      <br />
+      <br />
+      <br />
+      <h2>Update your details</h2>
+      <form onSubmit= {handleSubmit}
+      
+     >
         <div>
           <input
+            className="add-product-field full-width"
             name="firstName"
             type="text"
             onChange={handleChange}
@@ -35,6 +44,7 @@ export default function ProfileEditForm(props) {
         </div>
         <div>
           <input
+            className="add-product-field full-width"
             name="lastName"
             type="text"
             onChange={handleChange}
@@ -43,6 +53,7 @@ export default function ProfileEditForm(props) {
         </div>
         <div>
           <input
+            className="add-product-field full-width"
             name="emailAddress"
             type="text"
             onChange={handleChange}
@@ -50,7 +61,7 @@ export default function ProfileEditForm(props) {
           ></input>
         </div>
         <div>
-          <input type="submit" value="Update User" />
+          <input className="sign-button" type="submit" value="Update User" />
         </div>
       </form>
     </div>
