@@ -1,8 +1,40 @@
-import React from "react";
+import Axios from "axios";
+import React, {useEffect, useState} from "react";
+import ProfileEditForm from "./ProfileEditForm";
 
 import "./User.css";
 
 export default function Profile(props) {
+
+  const [isEdit, setIsEdit] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+
+  console.log(props)
+  const editView = (id) => {
+    Axios.get(`/auth/update?id=${id}`)
+    .then( response => {
+      let user = response.data.user;
+      setIsEdit(true);
+      setCurrentUser(user)
+
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
+  const editUser = (user) => {
+    Axios.put("/auth/update", user)
+    .then( response => {
+      console.log(response)
+
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
+
   return (
     <div>
       <div className="row container">
@@ -28,11 +60,21 @@ export default function Profile(props) {
                   Change your password
                 </a>
               </p>
-              <p>
-                <a className="change-password-button edit-btn" href="/">
+              <div>
+                {(!isEdit) ?
+                <ProfileEditForm
+                  key={props.user._id}
+                  user={props.user}
+                  editUser={editUser}
+                ></ProfileEditForm> : <div></div>}
+                {/* <button
+                  className="change-password-button edit-btn"
+                  onClick={editView(props._id)}
+                >
                   Edit Profile
-                </a>
-              </p>
+                </button> */}
+                
+              </div>
             </div>
             <div className="col-md-3 col-sm-12">
               <img

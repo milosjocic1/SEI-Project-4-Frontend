@@ -18,7 +18,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
 // Router
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 
 // Css
 import "./App.css";
@@ -59,13 +65,15 @@ export default function App() {
       });
   };
 
+
   const onLogoutHandler = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
     setIsAuth(false);
     setUser(null);
     setMessage("User logged out successfully");
-    loadProductList();
+    
+   
   };
 
   const buyItem = (id, productId) => {
