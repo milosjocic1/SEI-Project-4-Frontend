@@ -27,6 +27,7 @@ export default function Profile(props) {
   const editUser = (user) => {
     Axios.put("/auth/update", user)
     .then( response => {
+      console.log(user)
       console.log(response)
 
     })
