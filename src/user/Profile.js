@@ -10,6 +10,10 @@ export default function Profile(props) {
   const [currentUser, setCurrentUser] = useState({});
 
   const [showEditProfileForm, setShowEditProfileForm] = useState(false);
+
+  const handleShowEditProfileForm = (boolean) => {
+    setShowEditProfileForm(boolean)
+  }
  
   const editView = (id) => {
     Axios.get(`/auth/update?id=${id}`)
@@ -79,7 +83,7 @@ export default function Profile(props) {
                   key={props.user._id}
                   user={props.user}
                   editUser={editUser}
-                  showEditProfileForm={showEditProfileForm}
+                  handleShowEditProfileForm={handleShowEditProfileForm}
                 ></ProfileEditForm>
                   </div>
                 ): (

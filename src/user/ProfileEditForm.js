@@ -19,7 +19,7 @@ export default function ProfileEditForm(props) {
     event.preventDefault();
     props.editUser(newUser);
     event.target.reset();
-    setShowEditProfileForm(false);
+    props.handleShowEditProfileForm(false);
   };
 
   return (
