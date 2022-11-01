@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import CartItem from "../cart/CartItem";
 import StripeContainer from "../stripe/StripeContainer";
-import { Form, Table } from "react-bootstrap";
+import { Form, Button} from "react-bootstrap";
 import "../App.css";
 
 export default function Cart(props) {
+
   console.log(props)
+  console.log(props.user)
+
 
   const [newShipping, setNewShipping] = useState(props.user.shippingAddress);
   const [newBilling, setNewBilling] = useState(props.user.billingAddress);
@@ -24,34 +27,18 @@ export default function Cart(props) {
     setButtonStyle("checkout-btn2");
   };
 
-  const editShipping = (newShipping) => {
-    Axios.put("/shipping_billing/update", newShipping, {
+  const shippingAndBilling = (data) => {
+    Axios.post(`/shipping_billing/update/?userId=${props.user.id}`, data, {
       headers: {
         Authorisation: "Bearer " + localStorage.getItem("token"),
       },
     })
       .then((response) => {
         console.log("Shipping details updated successfully");
-        console.log(response);
+        console.log("response is " + response)
       })
       .catch((error) => {
         console.log("Error editing shipping details");
-        console.log(error);
-      });
-  };
-
-  const editBilling = (newBilling) => {
-    Axios.put("/shipping_billing/update", newBilling, {
-      headers: {
-        Authorisation: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => {
-        console.log("Billing details updated successfully");
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log("Error editing billing details");
         console.log(error);
       });
   };
@@ -72,10 +59,15 @@ export default function Cart(props) {
     setNewBilling(billing);
   };
 
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    editShipping(newShipping);
-    editBilling(newBilling);
+    const data = {
+      newShipping: newShipping, 
+      newBilling: newBilling
+    }  
+    shippingAndBilling(data.newShipping,props.user.id);
+    shippingAndBilling(data.newBilling,props.user.id);
     event.target.reset();
   };
 
@@ -83,28 +75,35 @@ export default function Cart(props) {
   useEffect(() => {
     loadCartList();
   }, []);
+
   const loadCartList = () => {
     Axios.get(`/cart/?userId=${props.user.id}`)
       .then(({ data }) => {
+
         console.log(data.cart.products);
+        console.log(data.cart.products[0].productId._id);
+
         setCart(data.cart);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
+  const handleDeleteItem = (id, productId) => {
+    console.log(productId);
+    deleteItem(id, productId);
+  }
   // DELETE ITEM FROM CARD
-  // const deleteItem = (id, productId) => {
-  //   Axios.delete(`/cart?userId=${id}&productId=${productId}`)
-  //   .then(response => {
-  //     console.log(response)
-  //     loadCartList()
-  //   })
-  //   .catch(error => {
-  //     console.log(error)
-  //   })
-  // }
+  const deleteItem = (id, productId) => {
+    Axios.delete(`/cart?userId=${id}&productId=${productId}`)
+    .then(response => {
+      console.log(response)
+      loadCartList()
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
 
   // const removeItem = () => {
   //   Axios.delete(`/cart/?userId=${props.user.id}?productId=${props.productId._id}`)
@@ -133,7 +132,7 @@ export default function Cart(props) {
               </tr>
             </tbody> */}
             {cart.products?.map((item, index) => (
-              <div key={index}>{<CartItem {...item} loadCartList={loadCartList} />}</div>
+              <div key={index}>{<CartItem {...item} loadCartList={loadCartList} id={cart.products[index].productId._id} userId={props.user.id} handleDeleteItem={handleDeleteItem}/>}</div>
             ))}
           {/* </Table> */}
           <br />
@@ -142,20 +141,21 @@ export default function Cart(props) {
           </div>
           <br />
 
-          <button className={buttonStyle}
+          <Button className={buttonStyle}
             value="showSB"
             onClick={() => {
-              setShowAddSB(true);
+              handleShowAddSB(true);
             }}
           >
             Continue with Checkout
-          </button>
+          </Button>
         </div>
       ) : (
         <div></div>
       )}
       {showAddSB ? (
         <div className="container">
+        <br/>
           <h4>Shipping Address</h4>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
@@ -197,13 +197,13 @@ export default function Cart(props) {
             <Form.Group>
               <Form.Label>PostCode</Form.Label>
               <Form.Control
-                name="priceS"
+                name="postCodeS"
                 type="text"
                 onChange={handleChangeS}
               ></Form.Control>
             </Form.Group>
-            <h4>Billing Address</h4>
 
+            <h4>Billing Address</h4>
             <Form.Group>
               <Form.Label>Address Line 1</Form.Label>
               <Form.Control
@@ -249,15 +249,15 @@ export default function Cart(props) {
               ></Form.Control>
             </Form.Group>
 
-            <button className={buttonStyle}
+            <Button className={buttonStyle}
               value="show checkout"
               type="submit"
               onClick={() => {
-                setShowCheckout(true);
+                handleShowCheckout(true);
               }}
             >
               Confirm and Go to Payment
-            </button>
+            </Button>
           </Form>
         </div>
       ) : (
