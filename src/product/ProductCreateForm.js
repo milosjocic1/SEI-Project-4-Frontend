@@ -15,6 +15,7 @@ export default function ProductCreateForm(props) {
     const product = { ...newProduct };
     product[attributeToChange] = newValue;
     setNewProduct(product);
+   
   };
 
   // const changeOptions = (event) => {
@@ -41,6 +42,7 @@ export default function ProductCreateForm(props) {
     props.functions.addProduct(newProduct, thisSellerId);
     event.target.reset();
     props.handleSubmitFileProduct(props.response.data.user._id);
+    props.loadProductList()
     updatePage();
   };
 
