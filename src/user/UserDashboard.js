@@ -35,7 +35,11 @@ console.log(props.user)
   return (
     <div>
       {props.user.userRole === "buyer" ? (
-        <BuyerAccount user={props.user} product={props} />
+        <BuyerAccount
+          user={props.user}
+          product={props}
+          loadDashboard={loadDashboard}
+        />
       ) : (
         <SellerAccount
           handleFileInputChange={props.handleFileInputChange}
@@ -47,6 +51,7 @@ console.log(props.user)
           previewProductFile={props.previewProductFile}
           handleSubmitFileProduct={props.handleSubmitFileProduct}
           loadProductList={props.loadProductList}
+          loadDashboard={loadDashboard}
         />
       )}
     </div>

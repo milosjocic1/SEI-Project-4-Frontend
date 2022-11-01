@@ -56,7 +56,7 @@ export default function SellerAccount(props) {
 
   return (
     <div className="container">
-      <Profile user={props.user} />
+      <Profile user={props.user} loadDashboard={props.loadDashboard} />
       <MyProducts
         handleProductFileInputChange={props.handleProductFileInputChange}
         previewSourceProduct={props.previewSourceProduct}

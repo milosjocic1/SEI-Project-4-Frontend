@@ -60,13 +60,13 @@ export default function App() {
         console.log(response);
         console.log(response.data.user._id);
         localStorage.setItem("userId", response.data.user._id);
+     
         handleSubmitFile(response.data.user._id);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
 
   const onLogoutHandler = (e) => {
     e.preventDefault();
