@@ -7,6 +7,10 @@ import "../App.css";
 
 export default function Cart(props) {
 
+  console.log(props)
+  console.log(props.user)
+
+
   const [newShipping, setNewShipping] = useState(props.user.shippingAddress);
   const [newBilling, setNewBilling] = useState(props.user.billingAddress);
   const [showAddSB, setShowAddSB] = useState(false);
@@ -75,24 +79,31 @@ export default function Cart(props) {
   const loadCartList = () => {
     Axios.get(`/cart/?userId=${props.user.id}`)
       .then(({ data }) => {
+
+        console.log(data.cart.products);
+        console.log(data.cart.products[0].productId._id);
+
         setCart(data.cart);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
+  const handleDeleteItem = (id, productId) => {
+    console.log(productId);
+    deleteItem(id, productId);
+  }
   // DELETE ITEM FROM CARD
-  // const deleteItem = (id, productId) => {
-  //   Axios.delete(`/cart?userId=${id}&productId=${productId}`)
-  //   .then(response => {
-  //     console.log(response)
-  //     loadCartList()
-  //   })
-  //   .catch(error => {
-  //     console.log(error)
-  //   })
-  // }
+  const deleteItem = (id, productId) => {
+    Axios.delete(`/cart?userId=${id}&productId=${productId}`)
+    .then(response => {
+      console.log(response)
+      loadCartList()
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
 
   // const removeItem = () => {
   //   Axios.delete(`/cart/?userId=${props.user.id}?productId=${props.productId._id}`)
@@ -121,7 +132,7 @@ export default function Cart(props) {
               </tr>
             </tbody> */}
             {cart.products?.map((item, index) => (
-              <div key={index}>{<CartItem {...item} loadCartList={loadCartList} />}</div>
+              <div key={index}>{<CartItem {...item} loadCartList={loadCartList} id={cart.products[index].productId._id} userId={props.user.id} handleDeleteItem={handleDeleteItem}/>}</div>
             ))}
           {/* </Table> */}
           <br />
