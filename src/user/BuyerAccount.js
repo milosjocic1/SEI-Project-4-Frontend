@@ -6,6 +6,7 @@ import Transaction from "./Transaction";
 import Profile from "./Profile";
 
 export default function BuyerAccount(props) {
+  console.log(props)
   return (
     <div className="container">
       <Profile user={props.user} />

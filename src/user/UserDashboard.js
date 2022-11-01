@@ -31,11 +31,11 @@ export default function UserDashboard(props) {
         console.log(error);
       });
   };
-
+console.log(props.user)
   return (
     <div>
       {props.user.userRole === "buyer" ? (
-        <BuyerAccount user={currentUser} product={props} />
+        <BuyerAccount user={props.user} product={props} />
       ) : (
         <SellerAccount
           handleFileInputChange={props.handleFileInputChange}
@@ -46,6 +46,7 @@ export default function UserDashboard(props) {
           handleProductFileInputChange={props.handleProductFileInputChange}
           previewProductFile={props.previewProductFile}
           handleSubmitFileProduct={props.handleSubmitFileProduct}
+          loadProductList={props.loadProductList}
         />
       )}
     </div>

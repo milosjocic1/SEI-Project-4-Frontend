@@ -12,21 +12,21 @@ export default function SellerAccount(props) {
 
   console.log(props)
  
-  useEffect(() => {
-    // Axios function
-    loadProductList();
-  }, []);
+  // useEffect(() => {
+  //   // Axios function
+  //   loadProductList();
+  // }, []);
 
-  const loadProductList = () => {
-    // Axios code will go here
-    Axios.get("/product/index")
-      .then((response) => {
-        setProducts(response.data.products);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const loadProductList = () => {
+  //   // Axios code will go here
+  //   Axios.get("/product/index")
+  //     .then((response) => {
+  //       setProducts(response.data.products);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   const addProduct = (product, id) => {
     Axios.post(`/product/add?id=${id}`, product)
@@ -34,8 +34,7 @@ export default function SellerAccount(props) {
         console.log("Product added successfully from seller account");
         // product image upload test
         props.handleSubmitFileProduct(response.data.product._id);
-
-        loadProductList()
+        props.loadProductList()
       })
       .catch((error) => {
         console.log(error);
@@ -67,6 +66,7 @@ export default function SellerAccount(props) {
         user={props.user}
         products={props.products}
         addProduct={addProduct}
+        loadProductList={props.loadProductList}
         // editView={editView}
         // editProduct={editProduct}
         // deleteProduct={deleteProduct}
