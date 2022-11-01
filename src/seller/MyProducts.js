@@ -26,7 +26,7 @@ export default function MyProducts(props) {
       }
     })
     .map((product) => {
-      return <MyProductList key={product._id} {...product} />;
+      return <MyProductList key={product._id} {...product} loadProductList={props.loadProductList} />;
     });
 
   const handleShowAddProductForm = (boolean) => {
@@ -54,6 +54,7 @@ export default function MyProducts(props) {
             previewSourceProduct={props.previewSourceProduct}
             previewProductFile={props.previewProductFile}
             handleSubmitFileProduct={props.handleSubmitFileProduct}
+            loadProductList={props.loadProductList}
           />
         </div>
       ) : (

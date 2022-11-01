@@ -95,16 +95,16 @@ export default function Cart(props) {
   };
 
   // DELETE ITEM FROM CARD
-  const deleteItem = (id, productId) => {
-    Axios.delete(`/cart?userId=${id}&productId=${productId}`)
-    .then(response => {
-      console.log(response)
-      loadCartList()
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  }
+  // const deleteItem = (id, productId) => {
+  //   Axios.delete(`/cart?userId=${id}&productId=${productId}`)
+  //   .then(response => {
+  //     console.log(response)
+  //     loadCartList()
+  //   })
+  //   .catch(error => {
+  //     console.log(error)
+  //   })
+  // }
 
   // const removeItem = () => {
   //   Axios.delete(`/cart/?userId=${props.user.id}?productId=${props.productId._id}`)
