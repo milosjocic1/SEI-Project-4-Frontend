@@ -33,7 +33,7 @@ export default function MyProductList(props) {
     Axios.put(`/product/update`, product)
       .then((response) => {
         console.log(response);
-        // loadProductList();
+        props.loadProductList()
       })
       .catch((error) => {
         console.log(error);
@@ -45,7 +45,7 @@ export default function MyProductList(props) {
     Axios.delete(`/product/delete?id=${id}`)
       .then((response) => {
         console.log(response);
-        //   loadAuthorList();
+        props.loadProductList()
       })
       .catch((error) => {
         console.log(error);
@@ -88,6 +88,7 @@ export default function MyProductList(props) {
               <Link
                 onClick={() => {
                   deleteProduct(props._id);
+                  props.loadProductList();
                 }}
                 className="index-price-button m-1 edit-delete-btn"
               >
