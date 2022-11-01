@@ -1,7 +1,9 @@
 import React from 'react'
 import { Form, Button, Table } from "react-bootstrap";
 export default function CartItem(props) {
-
+  console.log(props.userId)
+  console.log(props.productId._id)
+  console.log(props.id)
   // ADD DELETE FROM CART API HERE
 
     return (
@@ -30,7 +32,7 @@ export default function CartItem(props) {
                 {parseInt(props.quantity) * parseInt(props.productId.price) +
                   parseInt(props.productId.shippingRate)}
               </h4> <br/>
-              <Button className="remove-cart" variant="primary" value="remove" onClick={props.deleteItem(props.user.id, props.productId)}>
+              <Button className="remove-cart" variant="primary" value="remove" onClick={() => props.handleDeleteItem(props.userId, props.id)}>
                 Delete
               </Button>
             </div>
