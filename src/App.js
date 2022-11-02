@@ -93,6 +93,10 @@ export default function App() {
     setCounter(prevCount => prevCount + 1);
   }
 
+  const counterDown = () => {
+    setCounter(prevCount => prevCount - 1);
+  }
+
 
   const [products, setProducts] = useState([]);
 
@@ -318,7 +322,7 @@ export default function App() {
           ></Route>
           <Route
             path="/cart"
-            element={<Cart user={user} products={products} />}
+            element={<Cart user={user} products={products} counterDown={counterDown}/>}
           />
 
           <Route path="/logout" user={user} product={products}></Route>

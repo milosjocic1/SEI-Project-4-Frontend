@@ -131,7 +131,7 @@ export default function Cart(props) {
               </tr>
             </tbody> */}
             {cart.products?.map((item, index) => (
-              <div key={index}>{<CartItem {...item} loadCartList={loadCartList} id={cart.products[index].productId._id} userId={props.user.id} handleDeleteItem={handleDeleteItem}/>}</div>
+              <div key={index}>{<CartItem {...item} loadCartList={loadCartList} id={cart.products[index].productId._id} userId={props.user.id} handleDeleteItem={handleDeleteItem} counterDown={props.counterDown}/>}</div>
             ))}
           {/* </Table> */}
           <br />

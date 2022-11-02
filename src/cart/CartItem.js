@@ -32,7 +32,7 @@ export default function CartItem(props) {
                 {parseInt(props.quantity) * parseInt(props.productId.price) +
                   parseInt(props.productId.shippingRate)}
               </h4> <br/>
-              <Button className="remove-cart" variant="primary" value="remove" onClick={() => props.handleDeleteItem(props.userId, props.id)}>
+              <Button className="remove-cart" variant="primary" value="remove" onClick={() => {props.handleDeleteItem(props.userId, props.id); props.counterDown()}}>
                 Delete
               </Button>
             </div>
