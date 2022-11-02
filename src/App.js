@@ -57,10 +57,6 @@ export default function App() {
         console.log(error);
       });
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> f24f1fc
   const onLogoutHandler = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
