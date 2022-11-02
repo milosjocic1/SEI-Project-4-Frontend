@@ -10,7 +10,7 @@ export default function SellerAccount(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
-  console.log(props)
+  console.log(props.user)
  
   // useEffect(() => {
   //   // Axios function
