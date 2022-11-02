@@ -74,8 +74,13 @@ export default function App() {
     setIsAuth(false);
     setUser(null);
     setMessage("User logged out successfully");
-    
-   
+    // Axios.get('/auth/logout')
+    // .then((response) => {
+    //   console.log(response)
+    // })
+    // .catch((error) => {
+    //   console.log(error)
+    // })
   };
 
   const buyItem = (id, productId) => {
