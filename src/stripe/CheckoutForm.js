@@ -18,12 +18,14 @@ export const CheckoutForm = (props) => {
     if (!error) {
       console.log("Stripe 23 | token generated!", paymentMethod);
       try {
+        console.log("user id is " + props.user.id)
         const { id } = paymentMethod;
         const response = await axios.post(
-          "http://localhost:5423/stripe/charge",
+          `/stripe/charge?userId=${props.user.id}`,
           {
             amount: props.total,
             id: id,
+            userId: props.user.id
           }
         );
 

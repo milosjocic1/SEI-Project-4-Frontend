@@ -10,7 +10,6 @@ export default function Cart(props) {
   console.log(props)
   console.log(props.user)
 
-
   const [newShipping, setNewShipping] = useState(props.user.shippingAddress);
   const [newBilling, setNewBilling] = useState(props.user.billingAddress);
   const [showAddSB, setShowAddSB] = useState(false);
@@ -264,7 +263,7 @@ export default function Cart(props) {
         <div></div>
       )}
       <br/>
-      {showCheckout ? <StripeContainer total={cart.total}/> : <div></div>}
+      {showCheckout ? <StripeContainer total={cart.total} user={props.user} cart={cart.products} loadCartList={loadCartList}/> : <div></div>}
     </div>
   );
 }
