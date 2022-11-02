@@ -10,13 +10,11 @@ import Product from "./product/Product";
 import ProductCreateForm from "./product/ProductCreateForm";
 import UserDashboard from "./user/UserDashboard";
 import jwt_decode from "jwt-decode";
-import SearchResults from "./SearchResults"
-
+import SearchResults from "./SearchResults";
 // Bootstrap
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-
 // Router
 import {
   BrowserRouter as Router,
@@ -25,25 +23,18 @@ import {
   Link,
   useNavigate,
 } from "react-router-dom";
-
 // Css
 import "./App.css";
-
 export default function App() {
   // ADD USER
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState({});
   const [message, setMessage] = useState(null);
-
   const [counter, setCounter] = useState(0);
-
-
-
   useEffect(() => {
     let token = localStorage.getItem("token");
     if (token != null) {
       let { user } = jwt_decode(token);
-
       if (user) {
         setIsAuth(true);
         setUser(user);
@@ -53,31 +44,30 @@ export default function App() {
       }
     }
   }, []);
-
   const registerHandler = (user) => {
     Axios.post("/auth/signup", user)
       .then((response) => {
         console.log(response);
         console.log(response.data.user._id);
         localStorage.setItem("userId", response.data.user._id);
+     
         handleSubmitFile(response.data.user._id);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+<<<<<<< HEAD
+=======
 
-
+>>>>>>> f24f1fc
   const onLogoutHandler = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
     setIsAuth(false);
     setUser(null);
     setMessage("User logged out successfully");
-    
-   
   };
-
   const buyItem = (id, productId) => {
     Axios.post(`/cart?userId=${id}&productId=${productId}`)
       .then((response) => {
@@ -87,23 +77,16 @@ export default function App() {
         console.log(error);
       });
   };
-  
-
   const counterUp = () => {
-    setCounter(prevCount => prevCount + 1);
-  }
-
+    setCounter((prevCount) => prevCount + 1);
+  };
   const counterDown = () => {
-    setCounter(prevCount => prevCount - 1);
-  }
-
-
+    setCounter((prevCount) => prevCount - 1);
+  };
   const [products, setProducts] = useState([]);
-
   useEffect(() => {
     loadProductList();
   }, []);
-
   // PRODUCTS SHOW
   const loadProductList = () => {
     Axios.get("/product/index")
@@ -114,7 +97,6 @@ export default function App() {
         console.log(error);
       });
   };
-
   const loginHandler = (cred) => {
     Axios.post("/auth/signin", cred)
       .then((response) => {
@@ -129,19 +111,14 @@ export default function App() {
         console.log(error);
       });
   };
-
-
   // SIGNUP IMAGE UPLOAD
-
   const [fileInputState, setFileInputState] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState();
-
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     previewFile(file);
   };
-
   const previewFile = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -149,64 +126,55 @@ export default function App() {
       setPreviewSource(reader.result);
     };
   };
-
   const handleSubmitFile = (userId) => {
     // e.preventDefault();
     if (!previewSource) return;
     uploadImage(previewSource, userId);
-  }
-
+  };
   const uploadImage = async (base64EncodedImage, userId) => {
     try {
       // let userId = localStorage.getItem("userId");
       console.log(userId);
       await fetch(`/api/upload?userId=${userId}`, {
-        method: 'POST',
-        body: JSON.stringify({data: base64EncodedImage}),
-        headers: {'Content-type': 'application/json'}
-      })
-    } 
-    catch (error){
-      console.log(error)
+        method: "POST",
+        body: JSON.stringify({ data: base64EncodedImage }),
+        headers: { "Content-type": "application/json" },
+      });
+    } catch (error) {
+      console.log(error);
     }
-  }
-
+  };
   // ADD PRODUCT IMAGE
-    const [previewSourceProduct, setPreviewSourceProduct] = useState();
-
-    const handleProductFileInputChange = (e) => {
-      const file = e.target.files[0];
-      previewProductFile(file);
+  const [previewSourceProduct, setPreviewSourceProduct] = useState();
+  const handleProductFileInputChange = (e) => {
+    const file = e.target.files[0];
+    previewProductFile(file);
+  };
+  const previewProductFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSourceProduct(reader.result);
     };
- 
-      const previewProductFile = (file) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-          setPreviewSourceProduct(reader.result);
-        };
-      };
-
-    const handleSubmitFileProduct = (productId) => {
-      // e.preventDefault();
-      if (!previewSourceProduct) return;
-      uploadProduct(previewSourceProduct, productId);
-    };
-
-    const uploadProduct = async (base64EncodedImage, productId) => {
-      try {
-        // let userId = localStorage.getItem("userId");
-        console.log(productId);
-        await fetch(`/api/uploadProduct?productId=${productId}`, {
-          method: "POST",
-          body: JSON.stringify({ data: base64EncodedImage }),
-          headers: { "Content-type": "application/json" },
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
+  };
+  const handleSubmitFileProduct = (productId) => {
+    // e.preventDefault();
+    if (!previewSourceProduct) return;
+    uploadProduct(previewSourceProduct, productId);
+  };
+  const uploadProduct = async (base64EncodedImage, productId) => {
+    try {
+      // let userId = localStorage.getItem("userId");
+      console.log(productId);
+      await fetch(`/api/uploadProduct?productId=${productId}`, {
+        method: "POST",
+        body: JSON.stringify({ data: base64EncodedImage }),
+        headers: { "Content-type": "application/json" },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Router>
       <Navbar expand="lg">
@@ -247,7 +215,6 @@ export default function App() {
                 <div>
                   <Link to="/signin"> Sign In </Link>&nbsp;&nbsp;&nbsp;
                   <Link to="/signup"> Sign Up </Link>&nbsp;&nbsp;&nbsp;
-                  
                 </div>
               )}
             </Nav>
@@ -255,18 +222,13 @@ export default function App() {
         </Container>
       </Navbar>
       <div>
-       
         <Routes>
           {/* <Route path="/" element={<Home />}></Route> */}
           <Route
             path="/*"
-            element={
-              <Home  user={user} product={products} />
-            }
+            element={<Home user={user} product={products} />}
           ></Route>
-          
           <Route path="/search" element={<SearchResults />}></Route>
-          
           <Route
             path="/signin"
             element={<Signin login={loginHandler} />}
@@ -299,7 +261,10 @@ export default function App() {
               />
             }
           ></Route>
-          <Route path="/addproduct" element={<ProductCreateForm loadProductList={loadProductList} />}></Route>
+          <Route
+            path="/addproduct"
+            element={<ProductCreateForm loadProductList={loadProductList} />}
+          ></Route>
           {/* Below will have to add seller id to this link */}
           {/* <Route
             path="/seller/dashboard"
@@ -322,9 +287,10 @@ export default function App() {
           ></Route>
           <Route
             path="/cart"
-            element={<Cart user={user} products={products} counterDown={counterDown}/>}
+            element={
+              <Cart user={user} products={products} counterDown={counterDown} />
+            }
           />
-
           <Route path="/logout" user={user} product={products}></Route>
         </Routes>
       </div>

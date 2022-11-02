@@ -10,7 +10,7 @@ export default function SellerAccount(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
 
-  console.log(props)
+  console.log(props.user)
  
   // useEffect(() => {
   //   // Axios function
@@ -56,7 +56,7 @@ export default function SellerAccount(props) {
 
   return (
     <div className="container">
-      <Profile user={props.user} />
+      <Profile user={props.user} loadDashboard={props.loadDashboard} />
       <MyProducts
         handleProductFileInputChange={props.handleProductFileInputChange}
         previewSourceProduct={props.previewSourceProduct}
