@@ -4,6 +4,7 @@ import Search from "../components/Search";
 import { Link } from "react-router-dom";
 
 export default function ProductList(props) {
+  console.log(props)
   const allProducts = props.products.map((product) => (
     <div key={product._id} className="col-lg-4 col-sm-12 mt-3 card">
       <div className="card">

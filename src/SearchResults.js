@@ -10,10 +10,13 @@ export default function SearchResults() {
   const query = new URLSearchParams(location.search).get("query");
   const { slug } = useParams();
 
+  
   const searchProduct = async () => {
     try {
       const { data } = await axios.get(`/search/?q=${query}`);
       setSearchResults(data.products);
+      console.log(data.products)
+      
     } catch (error) {
       setSearchResults([]);
       setError(error.message);
@@ -30,30 +33,37 @@ export default function SearchResults() {
       <br />
       <br />
       <br />
-      
+
       <Search></Search>
       <div className="row">
         {searchResults.length ? (
           searchResults.map((searchResult) => (
             <div className="col-lg-4 col-sm-12">
-                <Link to={`/product/${searchResult._id}`}>
-              <div className="card">
-                <img
-                  className="card-img-top"
-                  src={`${searchResult.cloudinary_url}`}
-                  alt={searchResult.title}
-                ></img>
-                <div className="card-body">
+              <Link to={`/product/${searchResult._id}`}>
+                <div className="card">
+                  <img
+                    className="card-img-top"
+                    src={`${searchResult.cloudinary_url}`}
+                    alt={searchResult.title}
+                  ></img>
+                  <div className="card-body">
                     <div className="row">
-                        <div className="col-6">
-                            <button className="index-price-button">£{searchResult.price}</button>
-                        </div>
-                        <div className="col-6"> Reviews</div>
+                      <div className="col-6">
+                        <button className="index-price-button">
+                          £{searchResult.price}
+                        </button>
+                      </div>
+                      <div className="col-6 d-flex">
+                        
+                        <p className="sold-by mt-2">Sold by:</p>&nbsp;
+                        <p className="seller-name-card mt-2">{searchResult.seller[0].sellerName}</p> <br/>
+                      </div>
+                      
                     </div>
-                  <h3 className="card-title">{searchResult.title}</h3>
-                  <p className="card-text">{searchResult.subTitle}</p>
+                    <h3 className="card-title">{searchResult.title}</h3>
+                    <p className="card-text">{searchResult.subTitle}</p>
+                  </div>
                 </div>
-              </div>
               </Link>
             </div>
           ))
