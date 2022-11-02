@@ -30,7 +30,11 @@ export default function UserDashboard(props) {
   return (
     <div>
       {props.user.userRole === "buyer" ? (
-        <BuyerAccount user={props.user} product={props} />
+        <BuyerAccount
+          user={props.user}
+          product={props}
+          loadDashboard={loadDashboard}
+        />
       ) : (
         <SellerAccount
           handleFileInputChange={props.handleFileInputChange}
@@ -42,6 +46,7 @@ export default function UserDashboard(props) {
           previewProductFile={props.previewProductFile}
           handleSubmitFileProduct={props.handleSubmitFileProduct}
           loadProductList={props.loadProductList}
+          loadDashboard={loadDashboard}
         />
       )}
     </div>
