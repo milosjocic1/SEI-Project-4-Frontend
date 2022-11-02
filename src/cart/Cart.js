@@ -78,10 +78,8 @@ export default function Cart(props) {
   const loadCartList = () => {
     Axios.get(`/cart/?userId=${props.user.id}`)
       .then(({ data }) => {
-
         console.log(data.cart.products);
         console.log(data.cart.products[0].productId._id);
-
         setCart(data.cart);
       })
       .catch((error) => {
@@ -263,7 +261,7 @@ export default function Cart(props) {
         <div></div>
       )}
       <br/>
-      {showCheckout ? <StripeContainer total={cart.total} user={props.user} cart={cart.products} loadCartList={loadCartList}/> : <div></div>}
+      {showCheckout ? <StripeContainer total={cart.total} user={props.user} cart={cart.products}/> : <div></div>}
     </div>
   );
 }

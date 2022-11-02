@@ -1,10 +1,12 @@
 
-import React from "react";
+import React, {useState} from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import "../App.css";
 
 export const CheckoutForm = (props) => {
+  const [showAddSB, setShowAddSB] = useState(false);
+  const [showCheckout, setShowCheckout] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -28,7 +30,7 @@ export const CheckoutForm = (props) => {
             userId: props.user.id
           }
         );
-
+        console.log("Stripe 35 | data", response.data);
         console.log("Stripe 35 | data", response.data.success);
         if (response.data.success) {
           console.log("CheckoutForm.js 25 | payment successful!");

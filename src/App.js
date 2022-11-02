@@ -78,8 +78,8 @@ export default function App() {
    
   };
 
-  const buyItem = (id, productId) => {
-    Axios.post(`/cart?userId=${id}&productId=${productId}`)
+  const buyItem = (userId, productId) => {
+    Axios.post(`/cart?userId=${userId}&productId=${productId}`)
       .then((response) => {
         console.log(response);
       })

@@ -11,7 +11,7 @@ const stripePromise  = loadStripe(PUBLIC_KEY);
 export default function Stripe(props) {
   return (
     <Elements stripe={stripePromise}>
-      <CheckoutForm  total={props.total} user={props.user} cart={props.cart.products} />
+      <CheckoutForm  total={props.total} user={props.user} cart={props.cart.products}  reloadComponent={props.reloadComponent}/>
     </Elements>
   );
 };
