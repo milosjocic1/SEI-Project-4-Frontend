@@ -91,16 +91,24 @@ export default function Product(props) {
             <span>Price: </span>£{thisProduct.price}
           </h2>{" "}
           <br />
-          <button
-            className="buy-btn"
-            onClick={() => {
-              props.buyItem(props.user.id, thisProduct._id);
-              props.counterUp();
-              showModal();
-            }}
-          >
-            Buy
-          </button>
+          {thisProduct.isSold === false ? (
+            <button
+              className="buy-btn"
+              onClick={() => {
+                props.buyItem(props.user.id, thisProduct._id);
+                props.counterUp();
+                showModal();
+              }}
+            >
+              Buy
+            </button>
+          ) : (
+            <button
+              className="buy-btn sold-btn"
+            >
+              Product Unavailable
+            </button>
+          )}
           {/* MODAL */}
           <Modal
             as="section"
