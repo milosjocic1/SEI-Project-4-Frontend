@@ -666,6 +666,11 @@ opacity: 0.4;
   font-size: 34px;
   font-weight: 600;
 }
+.my-sold-product {
+  bottom: 330px;
+  left: 100px;
+
+}
 .sold-btn {
   background-color: grey;
 }
