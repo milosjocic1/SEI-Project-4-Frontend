@@ -80,8 +80,8 @@ export default function Cart(props) {
     Axios.get(`/cart/?userId=${props.user.id}`)
       .then(({ data }) => {
 
-        console.log(data.cart.products);
-        console.log(data.cart.products[0].productId._id);
+        // console.log(data.cart.products);
+        // console.log(data.cart.products[0].productId._id);
 
         setCart(data.cart);
       })
