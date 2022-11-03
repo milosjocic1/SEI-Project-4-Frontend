@@ -28,7 +28,6 @@ import "./App.css";
 //icon
 
 export default function App() {
-  // ADD USER
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState({});
   const [message, setMessage] = useState(null);
@@ -49,10 +48,8 @@ export default function App() {
   const registerHandler = (user) => {
     Axios.post("/auth/signup", user)
       .then((response) => {
-        console.log(response);
-        console.log(response.data.user._id);
         localStorage.setItem("userId", response.data.user._id);
-     
+
         handleSubmitFile(response.data.user._id);
       })
       .catch((error) => {
@@ -85,7 +82,7 @@ export default function App() {
   useEffect(() => {
     loadProductList();
   }, []);
-  // PRODUCTS SHOW
+
   const loadProductList = () => {
     Axios.get("/product/index")
       .then((response) => {
@@ -109,7 +106,7 @@ export default function App() {
         console.log(error);
       });
   };
-  // SIGNUP IMAGE UPLOAD
+
   const [fileInputState, setFileInputState] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState();
@@ -125,14 +122,11 @@ export default function App() {
     };
   };
   const handleSubmitFile = (userId) => {
-    // e.preventDefault();
     if (!previewSource) return;
     uploadImage(previewSource, userId);
   };
   const uploadImage = async (base64EncodedImage, userId) => {
     try {
-      // let userId = localStorage.getItem("userId");
-      console.log(userId);
       await fetch(`/api/upload?userId=${userId}`, {
         method: "POST",
         body: JSON.stringify({ data: base64EncodedImage }),
@@ -142,7 +136,7 @@ export default function App() {
       console.log(error);
     }
   };
-  // ADD PRODUCT IMAGE
+
   const [previewSourceProduct, setPreviewSourceProduct] = useState();
   const handleProductFileInputChange = (e) => {
     const file = e.target.files[0];
@@ -156,14 +150,11 @@ export default function App() {
     };
   };
   const handleSubmitFileProduct = (productId) => {
-    // e.preventDefault();
     if (!previewSourceProduct) return;
     uploadProduct(previewSourceProduct, productId);
   };
   const uploadProduct = async (base64EncodedImage, productId) => {
     try {
-      // let userId = localStorage.getItem("userId");
-      console.log(productId);
       await fetch(`/api/uploadProduct?productId=${productId}`, {
         method: "POST",
         body: JSON.stringify({ data: base64EncodedImage }),
@@ -263,11 +254,6 @@ export default function App() {
             path="/addproduct"
             element={<ProductCreateForm loadProductList={loadProductList} />}
           ></Route>
-          {/* Below will have to add seller id to this link */}
-          {/* <Route
-            path="/seller/dashboard"
-            element={<SellerDashboard user={user} product={products} />}
-          ></Route> */}
           <Route
             path="/user/dashboard"
             element={
@@ -286,7 +272,12 @@ export default function App() {
           <Route
             path="/cart"
             element={
-              <Cart user={user} products={products} counterDown={counterDown} />
+              <Cart
+                user={user}
+                products={products}
+                counterDown={counterDown}
+                setCounter={setCounter}
+              />
             }
           />
           <Route path="/logout" user={user} product={products}></Route>
@@ -300,7 +291,6 @@ export default function App() {
           <div className="col-3">
             <Link to="/addproduct"> Add a Product </Link>
             <br></br>
-            {/* Below will have to add seller id to this link */}
             <Link to="/user/dashboard"> User Dashboard </Link>
           </div>
           <div className="col-3">

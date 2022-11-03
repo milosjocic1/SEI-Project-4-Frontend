@@ -36,13 +36,11 @@ export default function Home(props) {
       <div className="hero">
         <div>
           <div className="buy-sell-background">
-            
-              <div>
-                <h1 className="buy-sell-title">Buy and Sell Anything</h1>{" "}
-                <br></br>
-                <h2 className="buy-sell-subtitle">Whatever it is. Use Agora.</h2>
-              </div>
-          
+            <div>
+              <h1 className="buy-sell-title">Buy and Sell Anything</h1>{" "}
+              <br></br>
+              <h2 className="buy-sell-subtitle">Whatever it is. Use Agora.</h2>
+            </div>
           </div>
           <Search search={props.search}></Search>
         </div>

@@ -17,7 +17,6 @@ export default function ProductEditForm(props) {
 
   function updatePage() {
     props.handleShowEditProductForm(false);
-    // props.myProducts();
   }
 
   const handleSubmit = (event) => {

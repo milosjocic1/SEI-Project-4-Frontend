@@ -1,27 +1,17 @@
-import React, { Component } from 'react'
-import SliderControl from './SliderControl';
-import Slide from './Slide';
-
+import React, { Component } from "react";
+import SliderControl from "./SliderControl";
+import Slide from "./Slide";
 
 export default class Slider extends Component {
   constructor(props) {
     super(props);
 
-
-   
     this.state = { current: 0 };
     this.handlePreviousClick = this.handlePreviousClick.bind(this);
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handleSlideClick = this.handleSlideClick.bind(this);
-     ;
-    
-
-    
-
   }
-  
 
-    
   handlePreviousClick() {
     const previous = this.state.current - 1;
 
@@ -54,32 +44,27 @@ export default class Slider extends Component {
       .toLowerCase()}`;
     const wrapperTransform = {
       transform: `translateX(-${current * (800 / slides.length)}%)`,
-      // transform: `translateX(-${current * (100 / slides.length)}%)`,
     };
 
     return (
       <div className="slider container" aria-labelledby={headingId}>
-        <h2>Recently Added Products</h2> <br/>
+        <h2>Recently Added Products</h2> <br />
+        <ul className="slider__wrapper" style={wrapperTransform}>
+          <h3 id={headingId} className="visuallyhidden">
+            {heading}
+          </h3>
 
-          <ul className="slider__wrapper" style={wrapperTransform}>
-            <h3 id={headingId} className="visuallyhidden">
-              {heading}
-            </h3>
-
-            {slides.map((slide, key) => {
-              // console.log(slide);
-              return (
-                <Slide
-                  key={key}
-                  slide={slide}
-                  current={current}
-                  handleSlideClick={this.handleSlideClick}
-                />
-              );
-            })}
-          </ul>
- 
-
+          {slides.map((slide, key) => {
+            return (
+              <Slide
+                key={key}
+                slide={slide}
+                current={current}
+                handleSlideClick={this.handleSlideClick}
+              />
+            );
+          })}
+        </ul>
         <div className="slider__controls">
           <SliderControl
             type="previous"
@@ -96,5 +81,4 @@ export default class Slider extends Component {
       </div>
     );
   }
-
 }
