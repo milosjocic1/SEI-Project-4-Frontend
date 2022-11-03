@@ -38,14 +38,15 @@ export default function SearchResults() {
       <div className="row">
         {searchResults.length ? (
           searchResults.map((searchResult) => (
-            <div className="col-lg-4 col-sm-12">
+            <div className="col-lg-4 col-sm-12 ">
               <Link to={`/product/${searchResult._id}`}>
-                <div className="card">
+                <div className={"card " + (searchResult.isSold === false ? "" : "disabled")} >
                   <img
-                    className="card-img-top"
+                    className={"card-img-top " + (searchResult.isSold === false ? "" : "disabled-image")}
                     src={`${searchResult.cloudinary_url}`}
                     alt={searchResult.title}
                   ></img>
+                  {searchResult.isSold === true ? <p className="sold-item">Too late!</p> : ""}
                   <div className="card-body">
                     <div className="row">
                       <div className="col-6">

@@ -54,13 +54,20 @@ export default function MyProductList(props) {
 
   return (
     <div key={props._id} className="col-md-5 col-lg-4 col-sm-12 mt-3">
-      <div className="card">
+      <div className={"card " + (props.isSold === false ? "" : "disabled")}>
         <img
-          className="card-img-top"
+          className={
+            "card-img-top " + (props.isSold === false ? "" : "disabled-image")
+          }
           src={`${props.cloudinary_url}`}
           alt=" "
         ></img>
         <div className="card-body">
+          {props.isSold === true ? (
+            <p className="sold-item my-sold-product">You sold it!</p>
+          ) : (
+            ""
+          )}
           <h3 className="card-title">{props.title}</h3>
           <p className="card-text">{props.subTitle}</p>
           <p className="card-text">
