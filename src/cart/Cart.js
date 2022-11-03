@@ -9,7 +9,6 @@ import "../App.css";
 
 const PUBLIC_KEY =
   "pk_test_51Lw9TvHUgNwNJdr54LEFuED1VU7NMKosZg58j0EpzHajUT6qMYbPBclcIpfSaBXgVevZWYtO5PFr8UX33KhCxRc100mvUYxKOC";
-console.log(PUBLIC_KEY);
 
 const stripePromise = loadStripe(PUBLIC_KEY);
 
@@ -71,7 +70,7 @@ export default function Cart(props) {
     console.log(productId);
     deleteItem(id, productId);
   };
-  // DELETE ITEM FROM CARD
+
   const deleteItem = (id, productId) => {
     Axios.delete(`/cart?userId=${id}&productId=${productId}`)
       .then((response) => {
@@ -83,16 +82,6 @@ export default function Cart(props) {
       });
   };
 
-  // const removeItem = () => {
-  //   Axios.delete(`/cart/?userId=${props.user.id}?productId=${props.productId._id}`)
-  //   .then(({data}) => {
-  //     console.log(data.cart.products)
-  //     loadCartList()
-  //   })
-  //   .catch(error => {
-  //     console.log(error)
-  //   })
-  // }
   return (
     <div className="container">
       <h1>My Cart</h1>
@@ -256,6 +245,7 @@ export default function Cart(props) {
             user={props.user}
             setShowCheckout={setShowCheckout}
             handleSetShowCheckout={handleSetShowCheckout}
+            setCounter={props.setCounter}
           />
         </Elements>
       ) : null}

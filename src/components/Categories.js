@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Categories(props) {
-
   const categories = [
     {
       categoryName: "Fashion",
@@ -39,13 +38,9 @@ export default function Categories(props) {
     },
   ];
 
-
-
-
   return (
     <div className="categories-div container">
-      <h2 className="categories-headline">Browse by Category</h2> <br/>
-
+      <h2 className="categories-headline">Browse by Category</h2> <br />
       <div className="row d-flex">
         {categories.map((category, index) => (
           <div key={index} className="col-md-3 col-6 category mb-3">

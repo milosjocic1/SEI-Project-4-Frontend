@@ -4,7 +4,7 @@ import Search from "../components/Search";
 import Review from "../seller/Review";
 import { useParams } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export default function Product(props) {
   const { productId } = useParams();
@@ -27,9 +27,6 @@ export default function Product(props) {
     setTitle("Product added to your cart!");
   };
 
-
-  
-
   return (
     <div className="container">
       <br></br>
@@ -38,8 +35,6 @@ export default function Product(props) {
       <br></br>
       <br></br>
       <Search></Search>
-
-      {/* PRODUCT DETAILS */}
 
       <div className="row d-flex mt-6 product-details-div">
         <p className="subcategories">{thisProduct.subCategory}</p>
@@ -103,13 +98,8 @@ export default function Product(props) {
               Buy
             </button>
           ) : (
-            <button
-              className="buy-btn sold-btn"
-            >
-              Product Unavailable
-            </button>
+            <button className="buy-btn sold-btn">Product Unavailable</button>
           )}
-          {/* MODAL */}
           <Modal
             as="section"
             show={isOpen}
@@ -144,9 +134,6 @@ export default function Product(props) {
       <div className="categories-single-product">
         <Categories category={props.category}></Categories>
       </div>
-      {/* MODAL - CONTINUE SHOPPING OR CART */}
     </div>
   );
 }
-
-

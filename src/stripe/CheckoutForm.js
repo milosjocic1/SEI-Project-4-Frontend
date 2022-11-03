@@ -11,6 +11,7 @@ export const CheckoutForm = (props) => {
   const handleParentShowCheckout = () => {
     setPaymentSuccess(true);
     props.setShowCheckout(false);
+    props.setCounter(0);
   };
   const handleSubmit = async (event) => {
     event.preventDefault();

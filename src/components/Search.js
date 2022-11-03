@@ -9,16 +9,12 @@ import "../App.css";
 
 function searchFunc(query, navigate, event) {
   event.preventDefault();
-  // if (!query) return;
   navigate(`/search?query=${query}`);
 }
 
-export default function Search(){
-
+export default function Search() {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
-
-  
 
   return (
     <form
@@ -31,16 +27,16 @@ export default function Search(){
           placeholder="What are you looking for?"
           aria-label="Search"
           aria-describedby="basic-addon2"
-          className='search-input'
+          className="search-input"
           onChange={(e) => {
-          if (e.target.value) {
-            setSearch(e.target.value)
-          } else {
-            setSearch("all")
-          };
+            if (e.target.value) {
+              setSearch(e.target.value);
+            } else {
+              setSearch("all");
+            }
           }}
-          onKeyDown={event => {
-            if (event.key === 'Enter') {
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
               navigate(`/search?query=${search}`);
             }
           }}

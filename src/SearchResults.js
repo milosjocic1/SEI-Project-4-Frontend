@@ -10,13 +10,10 @@ export default function SearchResults() {
   const query = new URLSearchParams(location.search).get("query");
   const { slug } = useParams();
 
-  
   const searchProduct = async () => {
     try {
       const { data } = await axios.get(`/search/?q=${query}`);
       setSearchResults(data.products);
-      console.log(data.products)
-      
     } catch (error) {
       setSearchResults([]);
       setError(error.message);
@@ -40,13 +37,24 @@ export default function SearchResults() {
           searchResults.map((searchResult) => (
             <div className="col-lg-4 col-sm-12 ">
               <Link to={`/product/${searchResult._id}`}>
-                <div className={"card " + (searchResult.isSold === false ? "" : "disabled")} >
+                <div
+                  className={
+                    "card " + (searchResult.isSold === false ? "" : "disabled")
+                  }
+                >
                   <img
-                    className={"card-img-top " + (searchResult.isSold === false ? "" : "disabled-image")}
+                    className={
+                      "card-img-top " +
+                      (searchResult.isSold === false ? "" : "disabled-image")
+                    }
                     src={`${searchResult.cloudinary_url}`}
                     alt={searchResult.title}
                   ></img>
-                  {searchResult.isSold === true ? <p className="sold-item">Too late!</p> : ""}
+                  {searchResult.isSold === true ? (
+                    <p className="sold-item">Too late!</p>
+                  ) : (
+                    ""
+                  )}
                   <div className="card-body">
                     <div className="row">
                       <div className="col-6">
@@ -55,11 +63,12 @@ export default function SearchResults() {
                         </button>
                       </div>
                       <div className="col-6 d-flex">
-                        
                         <p className="sold-by mt-2">Sold by:</p>&nbsp;
-                        <p className="seller-name-card mt-2">{searchResult.seller[0].sellerName}</p> <br/>
+                        <p className="seller-name-card mt-2">
+                          {searchResult.seller[0].sellerName}
+                        </p>{" "}
+                        <br />
                       </div>
-                      
                     </div>
                     <h3 className="card-title">{searchResult.title}</h3>
                     <p className="card-text">{searchResult.subTitle}</p>

@@ -1,18 +1,10 @@
 import React, { useState } from "react";
 import ProductCreateForm from "../product/ProductCreateForm";
-// import ProductEditForm from "../product/ProductEditForm";
 import "../App.css";
 import MyProductList from "./MyProductList";
-// import axios from "axios";
 
 export default function MyProducts(props) {
   const [showAddProductForm, setShowAddProductForm] = useState(false);
-
-  // const [showAllItems, setShowAllItems] = useState(allProducts)
-
-  // const all
-
-  //   SHOW SELLER RPDOCUTS ONLY
 
   const myProducts = props.products
     .filter((product) => {

@@ -7,13 +7,10 @@ export default function Signup(props) {
   const navigate = useNavigate();
 
   const [showBuyer, setShowBuyer] = useState(false);
-  // const buyerClick = () => setShowBuyer(true)
 
   const [showSeller, setShowSeller] = useState(false);
-  // const sellerClick = () => setShowSeller(true)
 
   const [newUser, setNewUser] = useState({});
-
 
   const changeHandler = (e) => {
     const user = { ...newUser };
@@ -24,29 +21,16 @@ export default function Signup(props) {
 
   const registerHandler = async () => {
     await props.register(newUser);
-    // await handleSubmitFile();
     navigate("/signin");
   };
 
-  // //IMAGE UPLOAD
   const handleFileInputChange = (e) => {
-    props.handleFileInputChange(e)
+    props.handleFileInputChange(e);
   };
 
-  // const previewFile = (file) => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onloadend = () => {
-  //     setPreviewSource(reader.result);
-  //   };
-  // };
-
-  
   return (
     <div className="signupForm container">
       <h1 className="sign-title">Sign Up</h1>
-      {/* <form> */}
-      {/* <form method="POST" action="/auth/signup" encType="multipart/form-data"> */}
       <h3 className="sign-up-text">How would you like to sign up today?</h3>
       <br></br>
       <div className="button-div div-spaced">
