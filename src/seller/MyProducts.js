@@ -9,7 +9,6 @@ export default function MyProducts(props) {
   const [showAddProductForm, setShowAddProductForm] = useState(false);
 
   // const [showAllItems, setShowAllItems] = useState(allProducts)
-  
 
   // const all
 
@@ -26,13 +25,19 @@ export default function MyProducts(props) {
       }
     })
     .map((product) => {
-      return <MyProductList key={product._id} {...product} loadProductList={props.loadProductList} />;
+      return (
+        <MyProductList
+          key={product._id}
+          {...product}
+          loadProductList={props.loadProductList}
+        />
+      );
     });
 
   const handleShowAddProductForm = (boolean) => {
     setShowAddProductForm(boolean);
   };
-  
+
   return (
     <div>
       <button
