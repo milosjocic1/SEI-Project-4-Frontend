@@ -7,8 +7,8 @@ import { CheckoutForm } from "../stripe/CheckoutForm";
 import { Form, Button } from "react-bootstrap";
 import "../App.css";
 
-const PUBLIC_KEY =
-  "pk_test_51Lw9TvHUgNwNJdr54LEFuED1VU7NMKosZg58j0EpzHajUT6qMYbPBclcIpfSaBXgVevZWYtO5PFr8UX33KhCxRc100mvUYxKOC";
+const PUBLIC_KEY = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
+
 
 const stripePromise = loadStripe(PUBLIC_KEY);
 
@@ -24,7 +24,6 @@ export default function Cart(props) {
 
   const handleSetShowCheckout = (bool) => {
     setShowCheckout(bool);
-    console.log("checkout");
   };
 
   useEffect(() => {
