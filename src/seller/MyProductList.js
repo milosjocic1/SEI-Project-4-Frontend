@@ -5,11 +5,8 @@ import { Link } from "react-router-dom";
 import ProductEditForm from "../product/ProductEditForm";
 
 export default function MyProductList(props) {
-  //   EDIT PRODUCTS
-  // const [isEdit, setIsEdit] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
   const [showEditProductForm, setShowEditProductForm] = useState(false);
-
 
   const handleShowEditProductForm = (boolean) => {
     setShowEditProductForm(boolean);
@@ -20,7 +17,6 @@ export default function MyProductList(props) {
       .then((response) => {
         let product = response.data.product;
 
-        // setIsEdit(true);
         setShowEditProductForm(true);
         setCurrentProduct(product);
         editProduct(product);
@@ -33,19 +29,18 @@ export default function MyProductList(props) {
     Axios.put(`/product/update`, product)
       .then((response) => {
         console.log(response);
-        props.loadProductList()
+        props.loadProductList();
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  // DELETE PRODUCT
 
   const deleteProduct = (id) => {
     Axios.delete(`/product/delete?id=${id}`)
       .then((response) => {
         console.log(response);
-        props.loadProductList()
+        props.loadProductList();
       })
       .catch((error) => {
         console.log(error);
@@ -54,13 +49,20 @@ export default function MyProductList(props) {
 
   return (
     <div key={props._id} className="col-md-5 col-lg-4 col-sm-12 mt-3">
-      <div className="card">
+      <div className={"card " + (props.isSold === false ? "" : "disabled")}>
         <img
-          className="card-img-top"
+          className={
+            "card-img-top " + (props.isSold === false ? "" : "disabled-image")
+          }
           src={`${props.cloudinary_url}`}
           alt=" "
         ></img>
         <div className="card-body">
+          {props.isSold === true ? (
+            <p className="sold-item my-sold-product">You sold it!</p>
+          ) : (
+            ""
+          )}
           <h3 className="card-title">{props.title}</h3>
           <p className="card-text">{props.subTitle}</p>
           <p className="card-text">
@@ -78,7 +80,6 @@ export default function MyProductList(props) {
             <div className="col-3">
               <Link
                 onClick={() => editView(props._id)}
-                // CONTINUE FROM HERE!!!!
                 className="index-price-button m-1 edit-delete-btn"
               >
                 Edit

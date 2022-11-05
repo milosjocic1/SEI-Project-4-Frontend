@@ -4,7 +4,7 @@ import Search from "../components/Search";
 import Review from "../seller/Review";
 import { useParams } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export default function Product(props) {
   const { productId } = useParams();
@@ -27,9 +27,6 @@ export default function Product(props) {
     setTitle("Product added to your cart!");
   };
 
-
-  
-
   return (
     <div className="container">
       <br></br>
@@ -38,8 +35,6 @@ export default function Product(props) {
       <br></br>
       <br></br>
       <Search></Search>
-
-      {/* PRODUCT DETAILS */}
 
       <div className="row d-flex mt-6 product-details-div">
         <p className="subcategories">{thisProduct.subCategory}</p>
@@ -91,17 +86,20 @@ export default function Product(props) {
             <span>Price: </span>£{thisProduct.price}
           </h2>{" "}
           <br />
-          <button
-            className="buy-btn"
-            onClick={() => {
-              props.buyItem(props.user.id, thisProduct._id);
-              props.counterUp();
-              showModal();
-            }}
-          >
-            Buy
-          </button>
-          {/* MODAL */}
+          {thisProduct.isSold === false ? (
+            <button
+              className="buy-btn"
+              onClick={() => {
+                props.buyItem(props.user.id, thisProduct._id);
+                props.counterUp();
+                showModal();
+              }}
+            >
+              Buy
+            </button>
+          ) : (
+            <button className="buy-btn sold-btn">Product Unavailable</button>
+          )}
           <Modal
             as="section"
             show={isOpen}
@@ -136,9 +134,6 @@ export default function Product(props) {
       <div className="categories-single-product">
         <Categories category={props.category}></Categories>
       </div>
-      {/* MODAL - CONTINUE SHOPPING OR CART */}
     </div>
   );
 }
-
-

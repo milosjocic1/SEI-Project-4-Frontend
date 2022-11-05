@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React from "react";
 
 export default function SliderControl({ type, title, handleClick }) {
   return (
@@ -10,5 +9,3 @@ export default function SliderControl({ type, title, handleClick }) {
     </button>
   );
 }
-
-

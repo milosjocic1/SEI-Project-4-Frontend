@@ -33,6 +33,7 @@ export default function Profile(props) {
     .then( response => {
       console.log(user)
       console.log(response)
+      props.loadDashboard();
 
     })
     .catch(error => {

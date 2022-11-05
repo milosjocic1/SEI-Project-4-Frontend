@@ -484,6 +484,14 @@ button:hover {
   width: 550px;
 }
 
+.sold-by {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.687);
+}
+.seller-name-card {
+  font-size: 18px;
+  font-weight: 500;
+}
 .card {
   background-color: white;
   margin: 20px;
@@ -643,4 +651,26 @@ button:hover {
 
 .stripe-btn {
   margin: 10px;
+}
+
+.disabled {
+  background: linear-gradient(rgba(236, 236, 236, 0.8), rgba(190, 190, 190, 0.8));  /* Chrome 10-25, Safari 5.1-6 */
+}
+.disabled-image {
+opacity: 0.4;
+}
+.sold-item {
+  position: absolute;
+  bottom: 280px;
+  left: 120px;
+  font-size: 34px;
+  font-weight: 600;
+}
+.my-sold-product {
+  bottom: 330px;
+  left: 100px;
+
+}
+.sold-btn {
+  background-color: grey;
 }
