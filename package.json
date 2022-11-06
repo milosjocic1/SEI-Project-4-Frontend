@@ -55,6 +55,8 @@
   },
   "proxy": "http://localhost:5423",
   "react-dotenv": {
-    "whitelist": ["REACT_APP_STRIPE_PUBLIC_KEY"]
+    "whitelist": [
+      "REACT_APP_STRIPE_PUBLIC_KEY"
+    ]
   }
 }
